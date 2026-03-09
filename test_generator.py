@@ -91,18 +91,26 @@ def generate_test(
     intVar0 = random.randint(-2, 12)
     
     # class_ = classes[className]
+
+    testMethods = [
+        "var_1 = obj_0.move((-1.50, -2.50), 8, True)",
+        "var_2 = obj_0.distance_to_center()",
+        "var_3 = obj_0.is_passed_hogline()",
+        "obj_0.burn()",
+        "obj_0.move_out_of_play()",
+        "var_4 = obj_0.is_in_house()",
+        "var_5 = obj_0.is_out_of_play()",
+        "var_6 = str(obj_0)",
+        "var_7 = obj_0.is_guard()",
+        "var_8 = obj_0.is_out_of_bounds()"
+    ]
+
+    random.shuffle(testMethods)
     
     initObj = f"obj_0 = {className}({str(boolVar0)}, ({str(floatVar0)}, {str(floatVar1)}), {str(intVar0)}, {str(boolVar1)}, {str(boolVar2)})"
-    methods = """
-var_1 = obj_0.move((-1.50, -2.50), 8, True)
-var_2 = obj_0.distance_to_center()
-var_3 = obj_0.is_passed_hogline()
-var_4 = obj_0.is_in_house()
-var_5 = obj_0.is_out_of_play()
-var_6 = str(obj_0)
-    """
+    methods = "\n".join(testMethods)
 
-    method_description = [("var_1", "bool"), ("var_2", "float"), ("var_3", "bool"), ("var_4", "bool"), ("var_5", "bool"), ("var_6", "string")]
+    method_description = [("var_1", "bool"), ("var_2", "float"), ("var_3", "bool"), ("var_4", "bool"), ("var_5", "bool"), ("var_6", "string"), ("var_7", "bool"), ("var_8", "bool")]
 
     evaluation = evaluate(f"{initObj}\n{methods}", method_description, file)
     print(evaluation)
@@ -119,6 +127,8 @@ self.assertEqual(var_3, {evaluation[1][2][2]})
 self.assertEqual(var_4, {evaluation[1][3][2]})
 self.assertEqual(var_5, {evaluation[1][4][2]})
 self.assertEqual(var_6, {evaluation[1][5][2]})
+self.assertEqual(var_7, {evaluation[1][6][2]})
+self.assertEqual(var_8, {evaluation[1][7][2]})
         """
 
         test += f"{initObj}\n"
