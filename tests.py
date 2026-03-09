@@ -5,12274 +5,10422 @@ class TestGenerated(unittest.TestCase):
     def test_0(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_1(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-2.9091734083845626, 5.177388046044722), 9, False, True)
             
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (6.046811587892153, -4.082843360542441), 2, False, True))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.502506769836133, -0.571737950217253), -1, True, True))
+            var_3 = obj_0.is_guard()
+            obj_0.move_out_of_play()
+            obj_0.move_out_of_play()
+            var_6 = obj_0.is_in_house()
+            var_7 = obj_0.is_in_house()
+            var_0 = obj_0.__str__()
+            var_2 = obj_0.is_in_house()
+            var_4 = obj_0.is_out_of_bounds()
         
     def test_2(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-2.9983155215533284, -3.2489693138594777), 12, False, True)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((3.071937614290972, 7.295641707488484), 9, True)
-            var_10 = obj_0.__str__()
+            var_0 = obj_2.score()
+            obj_2.add_end(End(False))
+            var_3 = obj_2.score()
+            obj_2.add_end(End(True))
         
     def test_3(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (7.929213867915768, -7.841941672147362), 8, False, False)
+            
+            var_0 = obj_0.move((-2.9690268322808713, -1.039294664625496), 0, True)
         
     def test_4(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (0.534330482158202, -0.2090991811667724), 5, False, True)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((7.746307246440823, 2.8233354354354123), 3, True)
-            var_8 = obj_0.is_passed_hogline()
+        obj_2 = Game()
+        
+        var_3 = obj_2.red_winner()
+        obj_2.add_end(End(False))
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_3, None)
         
     def test_5(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.315821295741845, -7.843737470123937), 3, True, True))
-            obj_1.add_stone(Stone(True, (2.553696139098392, 6.106676440144154), 9, True, False))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
+            var_0 = obj_1.done()
+            var_2 = obj_1.overlaps_any_stone(Stone(False, (-1.0096483966269503, -4.577542491708748), -2, True, True))
+            obj_1.add_stone(Stone(True, (-0.4404636946188578, 6.633452475864273), -2, True, True))
+            var_3 = obj_1.drawn()
         
     def test_6(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (2.0124337700667088, 5.279660561264201), -2, False, True)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-3.2821326186226827, 5.093864543848378), 10, True, True)
             
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((1.0082946067977065, 2.183377614475882), 12, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
+            var_0 = obj_0.is_passed_hogline()
             obj_0.burn()
         
     def test_7(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-0.7850495766007537, -6.238790786621577), 4, True, True)
-            
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((-6.073993318933429, -0.5414007959905973), 12, False)
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_8(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-7.976430910036315, -3.7394957258853765), 12, False, False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-4.38371907158254, -6.757017521157541), 9, False, False)
             
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
+            var_2 = obj_0.move((3.039923261214396, 0.013721255328642101), 12, True)
+            var_1 = obj_0.is_passed_hogline()
+            var_5 = obj_0.is_in_house()
+            var_0 = obj_0.is_in_house()
+            var_4 = obj_0.is_in_house()
+            var_8 = obj_0.is_guard()
+            var_9 = obj_0.move((3.917574472271111, -7.409567703530323), 8, False)
             obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((2.7632065687815857, -2.9486770705469425), 4, False)
+            var_6 = obj_0.distance_to_center()
+            var_7 = obj_0.move((-2.8228621461406487, -6.227757658751775), 2, True)
         
     def test_9(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.score()
         var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
+        var_1 = obj_2.score()
+        var_4 = obj_2.display_scoreboard()
+        var_3 = obj_2.__str__()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, 'Game with 0 ends')
+        self.assertEqual(var_4, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_10(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+            obj_0 = Stone(True, (-5.25718808998438, 5.165132079404248), 4, True, False)
             
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.5222738597617482, -0.15475842730801403), 5, True, False))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (3.2128116048699358, -4.851589105268172), -2, False, False))
+            var_0 = obj_0.is_out_of_bounds()
         
     def test_11(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.4472597287820967, 0.34952117541739014), -1, False, False))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (5.057371764451899, -0.03586762489013928), 7, False, False))
+        obj_1 = End(True)
+        
+        var_6 = obj_1.__str__()
+        var_1 = obj_1.overlaps_any_stone(Stone(True, (-4.035734350370431, 2.516603297012086), 3, False, True))
+        var_0 = obj_1.done()
+        var_4 = obj_1.score()
+        var_5 = obj_1.score()
+        var_3 = obj_1.done()
+        var_2 = obj_1.drawn()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, 0)
+        self.assertEqual(var_5, 0)
+        self.assertEqual(var_6, 'End with Red hammer and 0 stones')
         
     def test_12(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.3004262229119234, -3.2906573662348215), 0, True, False))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (-7.939823143961252, -4.18490575110604), 11, False, False))
-            var_5 = obj_1.drawn()
-        
-    def test_13(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (1.6764056201635338, 2.926849249077293), -1, True, True)
-            
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-1.2051475287226339, 4.778493944580635), 7, False)
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-        
-    def test_14(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
             obj_1 = End(True)
             
-            var_3 = obj_1.red_won()
+            var_3 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (-0.20737511178984214, 7.648544673151605), 3, False, True))
+            var_2 = obj_1.red_won()
+            var_0 = obj_1.done()
+            obj_1.add_stone(Stone(True, (5.315815274614428, -3.5251398418096453), 2, True, True))
+        
+    def test_13(self):
+        obj_1 = End(False)
+        
+        var_0 = obj_1.done()
+        var_1 = obj_1.score()
+        var_2 = obj_1.drawn()
+        var_3 = obj_1.red_won()
+        var_6 = obj_1.__str__()
+        var_5 = obj_1.score()
+        var_4 = obj_1.drawn()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, True)
+        self.assertEqual(var_5, 0)
+        self.assertEqual(var_6, 'End with Yellow hammer and 0 stones')
+        
+    def test_14(self):
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(True)
+            
             var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.1775600706049705, -0.08591603741166942), 2, False, False))
-            obj_1.add_stone(Stone(True, (-4.709747116185907, 2.47091728028324), 6, False, False))
+            obj_1.add_stone(Stone(True, (1.0709440937631491, -7.244614239290135), 5, False, True))
             var_4 = obj_1.done()
-            var_6 = obj_1.score()
+            var_2 = obj_1.score()
+            obj_1.add_stone(Stone(False, (1.0252055646674076, 0.31753238186650634), 10, False, True))
+            obj_1.add_stone(Stone(True, (7.165932169500454, 3.045012308821086), 12, False, True))
         
     def test_15(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
         
     def test_16(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-5.881867448106151, 0.1699703306675513), 12, True, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.26991587892703, 1.8907973359440042), 11, True, True))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
+        obj_2 = Game()
+        
+        obj_2.add_end(End(True))
+        
         
     def test_17(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (6.772198788280049, -2.9591212044986683), 2, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.395629416806434, -1.6044335884462892), 7, False, False))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
+        obj_2 = Game()
+        
+        var_3 = obj_2.display_scoreboard()
+        var_4 = obj_2.red_winner()
+        var_1 = obj_2.__str__()
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_4, None)
         
     def test_18(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (5.103056146812014, -7.285644435207679), 3, False, False))
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-2.3448774527735985, 6.417916112557371), 10, True, False))
-            var_7 = obj_1.__str__()
+        obj_0 = Stone(True, (-0.2056371499244385, 0.7518327886582288), 6, True, False)
+        
+        var_2 = obj_0.is_guard()
+        var_1 = obj_0.is_guard()
+        var_0 = obj_0.is_guard()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, False)
         
     def test_19(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (4.402382050233443, -0.7447145983420835), 7, False, True))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (0.13593428595505053, -2.7598092171355617), 3, False, False))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
+        obj_2 = Game()
+        
+        obj_2.add_end(End(False))
+        var_2 = obj_2.score()
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 1 ends')
+        self.assertEqual(var_2, (0, 0))
         
     def test_20(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (7.472241924490946, -3.6561235233515283), 11, True, True)
+            
+            var_0 = obj_0.is_out_of_play()
+            var_2 = obj_0.is_in_house()
+            var_6 = obj_0.distance_to_center()
+            var_5 = obj_0.move((2.6583942143047548, -7.388910054760476), -1, True)
+            var_3 = obj_0.is_passed_hogline()
+            var_4 = obj_0.move((1.049977825381884, 2.6802537231539922), 7, False)
+            var_1 = obj_0.is_in_house()
         
     def test_21(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_3 = obj_1.overlaps_any_stone(Stone(True, (2.2247621166282503, -1.4358142560561724), 10, True, True))
+        var_1 = obj_1.overlaps_any_stone(Stone(True, (4.281948619087936, -4.273641173861678), 5, True, True))
+        var_2 = obj_1.drawn()
+        var_4 = obj_1.__str__()
+        var_0 = obj_1.drawn()
         
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, 'End with Red hammer and 0 stones')
         
     def test_22(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (7.497854571431317, -5.39031311706851), -2, False, False)
-            
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-3.235486903763457, -3.6404908641841534), 2, True)
+        obj_2 = Game()
+        
+        obj_2.add_end(End(False))
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
         
     def test_23(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-0.8228322679143467, -0.7593498424125968), 5, True, False))
-            obj_1.add_stone(Stone(False, (6.566873076404777, -3.2733380882124656), 2, True, False))
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
         
     def test_24(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-5.989445575153608, -0.9499330378398962), 4, True, False)
-            
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-6.2800919496109735, 1.6921239706873035), 3, True)
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_25(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-4.565525974858707, -2.1314329858857324), 5, False, True))
-            obj_1.add_stone(Stone(True, (2.7177038314595414, 4.646192453361724), 6, False, True))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        var_1 = obj_2.display_scoreboard()
+        var_0 = obj_2.score()
+        var_2 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, (0, 0))
         
     def test_26(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+            obj_0 = Stone(True, (-7.9438104518281225, -6.310347854110905), 2, True, False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.844335366193203, 6.907071328813808), 10, True, False))
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (4.137428933395064, -1.6452384833910614), 4, False, False))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
+            var_3 = obj_0.is_out_of_play()
+            var_7 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.__str__()
+            var_9 = obj_0.__str__()
+            var_0 = obj_0.__str__()
+            var_8 = obj_0.is_guard()
+            var_1 = obj_0.move((4.695834428593841, -7.623460619424643), 0, True)
+            var_2 = obj_0.is_guard()
+            obj_0.move_out_of_play()
+            obj_0.burn()
         
     def test_27(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-5.926860111884988, 1.5034010280601713), 1, False, False)
-            
-            var_4 = obj_0.move((0.2649079718015841, 6.310687186856505), -2, False)
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
+        obj_2 = Game()
+        
+        obj_2.add_end(End(False))
+        
         
     def test_28(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (7.792011347431117, 0.8486801962652688), 4, False, False))
+            var_2 = obj_1.score()
+            var_0 = obj_1.red_won()
+        
+    def test_29(self):
+        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
             obj_1 = End(False)
             
             var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.303297311965974, 6.084663348806437), 2, False, True))
-            obj_1.add_stone(Stone(False, (-0.9490279135852493, -4.534816088542634), 6, False, True))
-            var_7 = obj_1.__str__()
-        
-    def test_29(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        
+            var_2 = obj_1.drawn()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (-0.13992721749676562, 1.8132954338733942), 9, True, True))
+            var_0 = obj_1.__str__()
+            var_3 = obj_1.score()
+            obj_1.add_stone(Stone(True, (-0.009535144868600298, 3.238053289737662), 4, True, True))
+            var_6 = obj_1.overlaps_any_stone(Stone(True, (5.96087007745237, 3.650651567026955), 1, False, True))
         
     def test_30(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-0.6453957124721246, -4.127772349637706), 4, True, False)
-            
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-5.25423614597317, 3.271218801419204), -1, True)
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.red_won()
+        var_1 = obj_1.drawn()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, True)
         
     def test_31(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (1.7114919184016912, -6.931888843530837), 3, True, False))
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (-1.9432435115706088, -2.9226418186705363), -2, True, True))
-            var_4 = obj_1.done()
+        obj_2 = Game()
+        
+        var_2 = obj_2.__str__()
+        var_4 = obj_2.display_scoreboard()
+        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.score()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_4, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_32(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
         obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
         
     def test_33(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        
-        
-    def test_34(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (-6.112954080208189, 7.474959773713968), -2, True, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-0.8880502873060774, -5.412853165708192), 12, True, True))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
+            obj_1.add_stone(Stone(False, (-0.21568055912281991, 5.938905191153891), 10, False, False))
+            var_1 = obj_1.done()
+            var_2 = obj_1.score()
+            obj_1.add_stone(Stone(False, (-0.6105290510984869, 1.494515527251421), 2, False, False))
+            obj_1.add_stone(Stone(True, (1.1146307059846539, 5.192980661234397), 2, False, False))
+            var_0 = obj_1.red_won()
         
-    def test_35(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-3.4169743843363882, -3.7684378705934485), 10, False, True)
-            
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((0.8174948241645499, 3.7027539501571933), 4, True)
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-        
-    def test_36(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (-1.7858546769926402, 6.0526280964026125), 5, False, True)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((5.739569884155475, -1.110059059958795), 7, True)
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-        
-    def test_37(self):
+    def test_34(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.__str__()
         obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
+        var_2 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_2, 'Game with 1 ends')
+        
+    def test_35(self):
+        obj_1 = End(True)
+        
+        var_0 = obj_1.red_won()
+        
+        self.assertEqual(var_0, None)
+        
+    def test_36(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        
+    def test_37(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-3.739399985698567, -6.379898249534355), -2, True, True)
+            
+            obj_0.burn()
+            var_0 = obj_0.is_passed_hogline()
         
     def test_38(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (6.43348997906142, 6.434166745802088), 11, True, True)
+            obj_0 = Stone(False, (-5.925375490338915, -0.33945855515486656), -1, True, False)
             
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
+            var_1 = obj_0.is_guard()
+            var_3 = obj_0.is_passed_hogline()
+            var_0 = obj_0.move((7.227661716478078, -6.949102007942873), 0, True)
             obj_0.move_out_of_play()
-            var_4 = obj_0.move((-7.8243367446388365, 3.9231218666412015), 6, False)
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
         
     def test_39(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+            obj_0 = Stone(True, (-0.8016083499413025, -3.8466422149879236), -2, True, True)
             
-            obj_1.add_stone(Stone(False, (4.3595799795797205, 3.757119503260089), -1, True, False))
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-5.784430259138379, -3.0063569159126295), 4, False, True))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.__str__()
+            var_3 = obj_0.is_out_of_bounds()
+            var_0 = obj_0.is_out_of_bounds()
         
     def test_40(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-1.6385695577913424, 5.383408762254824), 12, True, False)
+            
+            obj_0.move_out_of_play()
+            obj_0.move_out_of_play()
+            var_2 = obj_0.is_in_house()
         
     def test_41(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
+        var_4 = obj_1.drawn()
+        var_0 = obj_1.done()
+        var_3 = obj_1.red_won()
+        var_1 = obj_1.drawn()
+        var_2 = obj_1.done()
         
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, True)
         
     def test_42(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (-0.7801986122391789, -0.943783797307546), 1, True, False)
-            
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((4.907122155616154, -7.883079073164431), 0, False)
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
         
     def test_43(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_44(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-0.030490103887355957, 6.348878105358077), 4, False, True)
+            
+            obj_0.move_out_of_play()
+            var_2 = obj_0.is_in_house()
+            var_1 = obj_0.__str__()
+            obj_0.move_out_of_play()
+            var_5 = obj_0.__str__()
+            var_4 = obj_0.is_in_house()
+            var_3 = obj_0.__str__()
         
     def test_45(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-3.1971791960847664, 4.2961724926777904), 0, False, False)
+            
+            var_2 = obj_0.is_guard()
+            var_3 = obj_0.is_in_house()
+            var_0 = obj_0.distance_to_center()
+            var_1 = obj_0.is_out_of_play()
+            var_4 = obj_0.is_in_house()
         
     def test_46(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-6.444747178659862, -3.8708378134902226), 12, False, True)
+        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
+            obj_1 = End(False)
             
-            var_4 = obj_0.move((6.923185480810302, -1.1933059201762681), 1, True)
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
+            obj_1.add_stone(Stone(True, (-7.366516568888212, 1.9374550839906846), 3, False, True))
+            var_1 = obj_1.drawn()
+            var_0 = obj_1.done()
+            obj_1.add_stone(Stone(False, (6.97017205873709, -1.343620515321307), 1, False, False))
+            var_4 = obj_1.red_won()
         
     def test_47(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-2.1654390686271796, 2.717523593517331), 0, False, True)
+            
+            obj_0.burn()
         
     def test_48(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
+            var_0 = obj_1.done()
+            var_6 = obj_1.red_won()
             var_4 = obj_1.done()
+            var_5 = obj_1.score()
             var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-2.18906046184982, -7.082008827533135), 4, False, True))
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-0.9041326532032805, 5.321708024887807), 1, True, True))
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (7.719708513579411, 6.614167274779888), -1, True, True))
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.7550902527629937, -2.3985768332253947), 5, False, False))
         
     def test_49(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (-0.9453121190692979, 2.940378868389919), 4, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (4.803680687982904, 2.19774205857375), 1, False, False)
             
-            var_4 = obj_0.move((4.129262454870105, -2.0289765438135543), 2, True)
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.move((3.2195517699612672, -0.021187452847897248), 12, False)
+            var_1 = obj_0.is_in_house()
+            var_4 = obj_0.distance_to_center()
+            var_0 = obj_0.distance_to_center()
         
     def test_50(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            var_5 = obj_1.red_won()
+            var_3 = obj_1.done()
+            var_2 = obj_1.drawn()
+            var_0 = obj_1.score()
+            var_4 = obj_1.overlaps_any_stone(Stone(False, (3.6002571543181237, -4.966308852757109), -1, False, True))
+            var_1 = obj_1.drawn()
         
     def test_51(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (6.16401779071405, -4.494452704546308), 8, True, False)
+            
+            obj_0.burn()
         
     def test_52(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-6.579282571227706, -0.7880439916069601), 2, False, True)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((5.148005496546498, 1.0104209369783614), 8, True)
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
+        obj_1 = End(False)
+        
+        var_4 = obj_1.__str__()
+        var_2 = obj_1.drawn()
+        var_3 = obj_1.__str__()
+        var_6 = obj_1.done()
+        var_5 = obj_1.overlaps_any_stone(Stone(False, (-4.266743151994968, 5.510492482706351), 9, True, True))
+        var_0 = obj_1.drawn()
+        var_1 = obj_1.__str__()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_4, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_5, False)
+        self.assertEqual(var_6, False)
         
     def test_53(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (7.543349994594324, -7.363055905364877), 5, True, True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (3.864170756633916, -3.4924517335213263), 12, True, False)
             
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.move((-0.16236509081447004, 3.079839346024139), -2, False)
             obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((2.767090585380865, -7.358825988563924), 11, True)
             obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
+            var_5 = obj_0.is_in_house()
+            var_4 = obj_0.distance_to_center()
+            var_6 = obj_0.is_out_of_play()
+            var_7 = obj_0.__str__()
+            var_0 = obj_0.is_out_of_play()
+            var_1 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
         
     def test_54(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            var_2 = obj_1.done()
+            obj_1.add_stone(Stone(False, (-5.914156033799527, -1.6959033866012572), 9, True, False))
+            var_0 = obj_1.done()
+            var_3 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (3.1131092182786446, 6.055252637284466), 8, False, False))
         
     def test_55(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-7.82047595346468, 0.5243093036909414), 3, False, False)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-7.233116049843778, -7.372589869803953), -2, True)
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
+        obj_2 = Game()
+        
+        var_2 = obj_2.score()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.score()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, (0, 0))
         
     def test_56(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+            obj_0 = Stone(False, (-7.816350062852614, 2.4784166763151063), 10, True, False)
             
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.2547777211302726, 5.670492986954754), 1, True, False))
-            obj_1.add_stone(Stone(True, (-0.3263420918884474, -4.381692791669819), 10, False, False))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
+            var_4 = obj_0.is_in_house()
+            var_2 = obj_0.distance_to_center()
+            var_6 = obj_0.is_out_of_play()
+            var_1 = obj_0.move((1.34199827101647, -0.9362919777028402), -1, True)
+            var_3 = obj_0.move((1.9544706830296317, 7.001187371996352), 2, True)
+            var_0 = obj_0.is_guard()
+            var_5 = obj_0.is_in_house()
         
     def test_57(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.display_scoreboard()
+        var_2 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'Game with 0 ends')
         
     def test_58(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            var_0 = obj_1.red_won()
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (-1.6155457414292762, 6.940532893275421), 2, True, False))
         
     def test_59(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (-6.754342471948185, 2.8827862171160206), 8, False, True)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_4 = obj_0.move((4.432598882450522, 0.14576689662346176), 5, False)
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        obj_2.add_end(End(True))
+        var_1 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'Game with 1 ends')
         
     def test_60(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-3.910782239105721, 0.4508553517716418), -1, True, True)
-            
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((3.11706029249593, 5.659252035465766), 4, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
+        obj_1 = End(False)
+        
+        var_1 = obj_1.overlaps_any_stone(Stone(True, (-6.769806980565649, -7.3075769166601106), 4, True, True))
+        var_0 = obj_1.score()
+        var_2 = obj_1.__str__()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, 'End with Yellow hammer and 0 stones')
         
     def test_61(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
         
     def test_62(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (5.674061708867409, 1.6682907250769006), 3, True, True)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-5.661257477850308, -3.049441866611625), 2, False)
-            var_10 = obj_0.__str__()
+        obj_2 = Game()
+        
+        var_2 = obj_2.display_scoreboard()
+        obj_2.add_end(End(False))
+        obj_2.add_end(End(False))
+        obj_2.add_end(End(False))
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |    1 |    2 |    3 | Total\n----|------|------|------|------\nRed |    0 |    0 |    0 |     0\nYel | h  0 | h  0 | h  0 |     0\n')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_63(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-3.796523870208633, 7.4986516115752515), -1, False, False)
+            obj_1 = End(True)
             
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((3.2886753272867377, -6.18378598818571), 10, False)
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-        
-    def test_64(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
+            var_0 = obj_1.red_won()
             var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (-1.4139237332155705, 1.3185713273900053), 8, True, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-1.9988425587493097, 3.3500083532181257), 10, True, False))
+            obj_1.add_stone(Stone(True, (5.646598125300033, -4.229483396336036), 11, True, False))
+            var_3 = obj_1.done()
+            var_1 = obj_1.red_won()
+            var_4 = obj_1.drawn()
             var_6 = obj_1.score()
         
+    def test_64(self):
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        
     def test_65(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (5.074609711640489, -5.898928512663742), 12, True, True)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-6.569217001406432, 0.9954902826911916), 4, True)
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
+        obj_2 = Game()
+        
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.score()
+        var_3 = obj_2.display_scoreboard()
+        var_2 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_66(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.display_scoreboard()
         obj_2.add_end(End(False))
-        var_2 = obj_2.score()
+        var_2 = obj_2.display_scoreboard()
+        var_4 = obj_2.score()
+        var_3 = obj_2.score()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, (0, 0))
         
     def test_67(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (6.94183336812584, -3.9352398941260027), 7, False, True)
-            
-            var_4 = obj_0.move((-0.729609640703675, -3.798257800308786), 12, False)
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-        
-    def test_68(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.score()
+        var_1 = obj_2.__str__()
         var_2 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, (0, 0))
+        
+    def test_68(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (4.136440728919171, 6.941391586672312), 8, False, False)
+            
+            var_1 = obj_0.is_passed_hogline()
+            var_0 = obj_0.distance_to_center()
+            var_2 = obj_0.move((3.8718873977575985, 4.182205385403954), 11, True)
         
     def test_69(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
+        var_0 = obj_2.display_scoreboard()
+        obj_2.add_end(End(False))
+        var_3 = obj_2.score()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, (0, 0))
         
     def test_70(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-6.066073991616477, 5.518671979311986), 11, True, True)
+            
+            var_2 = obj_0.move((0.4929193749402625, -7.8243973867955745), 11, True)
+            var_4 = obj_0.is_in_house()
+            var_0 = obj_0.move((-6.2105553225235255, -7.660413507432009), 8, False)
+            obj_0.move_out_of_play()
+            var_1 = obj_0.__str__()
         
     def test_71(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (6.482792120091624, 5.46206447466996), 9, False, False)
-            
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((5.794664945498484, -7.8527497497212995), 4, True)
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_3 = obj_2.__str__()
+        var_0 = obj_2.score()
+        var_2 = obj_2.__str__()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, 'Game with 0 ends')
         
     def test_72(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (-0.8132532059456512, 6.520911374831774), 9, True, False))
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-5.0224484607441315, 2.7813613798799555), 1, False, False))
+            var_3 = obj_1.drawn()
+            var_5 = obj_1.__str__()
+            obj_1.add_stone(Stone(False, (4.419951516299104, 6.798507932523108), 9, False, False))
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (1.2627413529652447, -7.4959371871116165), 6, True, True))
+            var_4 = obj_1.score()
+            var_1 = obj_1.__str__()
+            var_2 = obj_1.red_won()
         
     def test_73(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (1.7950152188886541, -5.100179686199784), 7, True, False))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (1.0065098882343992, -3.699605296565178), 8, True, True))
+        obj_1 = End(True)
+        
+        var_3 = obj_1.score()
+        var_2 = obj_1.red_won()
+        var_0 = obj_1.red_won()
+        var_1 = obj_1.__str__()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, 0)
         
     def test_74(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            obj_1.add_stone(Stone(False, (-3.1688683863049523, 0.15309243281499718), -2, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (2.3675157568828027, 6.939011591064494), 6, False, False))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
         
     def test_75(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (1.5563630219977753, 0.3554175805955442), 2, False, True))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.374006717996364, -5.525890845180175), 10, True, False))
+        obj_1 = End(True)
+        
+        var_1 = obj_1.done()
+        var_2 = obj_1.done()
+        var_0 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, False)
         
     def test_76(self):
         with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (1.2543051063561403, -5.255204012680032), 9, True, False)
+            obj_0 = Stone(True, (-5.403637757837613, -6.413203045112139), 5, True, True)
             
             obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-1.2350124179367175, 6.071866687363128), 7, False)
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.move((3.8602431210488835, -4.593063553650548), 7, False)
         
     def test_77(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-6.330727131434424, -5.059966235887783), 8, True, False)
+            
+            var_6 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.distance_to_center()
+            var_0 = obj_0.move((-3.2368238828591167, -2.1886418229884494), 3, True)
+            var_2 = obj_0.move((4.991955043072098, -7.249267342940163), 0, False)
+            obj_0.burn()
+            var_1 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.__str__()
         
     def test_78(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-4.5387524370404915, -4.630148998184186), -2, False, True)
-            
-            var_4 = obj_0.move((-5.796241695254668, -6.323634468087381), 8, True)
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.__str__()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_79(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-2.952864601161954, 0.3622402436291896), 5, False, False)
+            obj_0 = Stone(True, (-7.934746685511335, 1.119788231672958), 2, True, False)
             
-            var_4 = obj_0.move((0.4024467596307595, -2.7282350178937236), 12, False)
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
+            var_6 = obj_0.is_out_of_play()
+            var_3 = obj_0.distance_to_center()
+            var_4 = obj_0.is_in_house()
+            var_2 = obj_0.is_guard()
+            var_5 = obj_0.is_passed_hogline()
+            var_0 = obj_0.is_guard()
             obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
+            var_1 = obj_0.is_in_house()
         
     def test_80(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-2.522436646209977, 7.719559138455105), -2, True, True)
             
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-6.547209254797231, -5.666401931630695), 3, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-0.24639533393080448, 6.942594373409898), 11, False, True))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
+            var_2 = obj_0.__str__()
+            var_4 = obj_0.is_in_house()
+            var_8 = obj_0.is_out_of_play()
+            var_0 = obj_0.is_passed_hogline()
+            var_7 = obj_0.is_guard()
+            var_3 = obj_0.move((0.9222647202144962, -6.069635646563388), 11, False)
+            obj_0.burn()
+            obj_0.burn()
+            var_1 = obj_0.is_out_of_play()
+            var_6 = obj_0.is_guard()
         
     def test_81(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-4.001359269404658, -0.8771090716097429), 0, True, False)
+            
+            var_7 = obj_0.is_passed_hogline()
+            var_6 = obj_0.distance_to_center()
+            var_5 = obj_0.__str__()
+            var_2 = obj_0.move((-3.6277969935462924, 7.954746703402854), 5, True)
+            obj_0.move_out_of_play()
+            var_4 = obj_0.is_guard()
+            var_0 = obj_0.is_passed_hogline()
+            obj_0.move_out_of_play()
         
     def test_82(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (6.996479163229456, 3.5151205942593435), 3, False, True)
-            
-            var_4 = obj_0.move((0.1385250871467214, -5.741017310860753), 0, True)
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
+        obj_2 = Game()
+        
+        obj_2.add_end(End(True))
+        
         
     def test_83(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (6.66981929344062, 4.8898884815514805), 4, True, False))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-1.327765485558146, -5.459536596004201), 2, False, False))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
+        obj_2 = Game()
+        
+        var_1 = obj_2.display_scoreboard()
+        var_4 = obj_2.__str__()
+        obj_2.add_end(End(False))
+        obj_2.add_end(End(False))
+        var_2 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'End |    1 |    2 | Total\n----|------|------|------\nRed |    0 |    0 |     0\nYel | h  0 | h  0 |     0\n')
+        self.assertEqual(var_4, 'Game with 0 ends')
         
     def test_84(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
             obj_1 = End(False)
             
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (-3.7062107355076748, 5.191663573513578), 6, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (2.0714232254864022, 6.692091545802185), 8, False, False))
-            var_6 = obj_1.score()
+            obj_1.add_stone(Stone(True, (-1.5550301189440692, 1.447999107830828), 2, False, False))
+            var_1 = obj_1.score()
+            var_2 = obj_1.done()
         
     def test_85(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-3.4533361716311113, -2.0462827334439933), 7, True, False)
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(False)
             
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((6.678671391929477, 0.16498180163718068), 10, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
+            var_2 = obj_1.done()
+            obj_1.add_stone(Stone(False, (4.907509760550861, -5.715764249471301), 7, False, True))
+            obj_1.add_stone(Stone(False, (-2.362217849241956, 7.43917427509273), 9, False, True))
+            var_1 = obj_1.red_won()
         
     def test_86(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-4.849094342373192, 4.7472825727093895), 1, True, True))
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (2.527145739170024, 4.706547979094914), 6, False, True))
+            var_0 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (4.134686135726751, 1.3823631633874687), 11, True, True))
         
     def test_87(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-1.2073244348735983, -3.349406721714109), 12, True, True)
+            
+            var_6 = obj_0.is_guard()
+            obj_0.burn()
+            var_7 = obj_0.is_out_of_play()
+            var_4 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.is_passed_hogline()
+            var_2 = obj_0.is_in_house()
+            var_1 = obj_0.distance_to_center()
+            var_3 = obj_0.is_in_house()
         
     def test_88(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
             
-            var_5 = obj_1.drawn()
             var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.6711782459427695, 3.8096766884606925), 3, True, False))
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (2.6063718251638424, -4.265815883807621), 2, False, False))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
+            var_4 = obj_1.overlaps_any_stone(Stone(False, (2.74239221551767, 1.8489526114406836), 2, True, True))
+            obj_1.add_stone(Stone(False, (-3.2479809952907264, -4.0709934471364715), 0, True, False))
+            var_0 = obj_1.__str__()
+            var_1 = obj_1.__str__()
         
     def test_89(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-2.894846415008548, 1.5297597428247407), 2, True, False)
+            
+            obj_0.move_out_of_play()
+            var_0 = obj_0.is_guard()
         
     def test_90(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (4.01560776449873, 0.4195448596091964), 3, False, True)
+            
+            var_8 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.__str__()
+            obj_0.burn()
+            obj_0.burn()
+            var_3 = obj_0.is_out_of_play()
+            var_1 = obj_0.is_passed_hogline()
+            obj_0.move_out_of_play()
+            var_0 = obj_0.is_in_house()
+            var_6 = obj_0.is_passed_hogline()
         
     def test_91(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
+        var_2 = obj_2.display_scoreboard()
+        var_1 = obj_2.score()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_92(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(False)
             
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (4.6220751610603426, 4.985082627576514), 3, True, False))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.3947528169558723, 1.3432681848064032), 5, True, False))
             var_6 = obj_1.score()
+            var_4 = obj_1.drawn()
+            var_3 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (5.8530511769502365, -0.6760366445407691), 3, False, True))
+            var_1 = obj_1.drawn()
+            var_0 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (-1.7738949598813978, 4.323909095120079), 11, False, False))
         
     def test_93(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+            obj_1 = End(False)
             
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-4.635836928843551, 7.717151013525164), 4, True, False))
-            obj_1.add_stone(Stone(True, (-2.103253703372914, 1.3547563091291686), 12, True, True))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
+            var_3 = obj_1.done()
+            var_0 = obj_1.red_won()
+            var_2 = obj_1.drawn()
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (5.818367952168117, -6.456957167234426), 7, False, False))
         
     def test_94(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
+            
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (4.3635483554187715, -6.4405438304492595), -2, True, False))
+            obj_1.add_stone(Stone(True, (5.425726087443902, -2.625643756775723), 1, False, True))
+            obj_1.add_stone(Stone(False, (-3.402289240938382, -3.63785194913736), 12, True, False))
+            var_3 = obj_1.score()
         
     def test_95(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (5.510809612783493, -6.452274620783541), 12, False, False)
-            
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-1.693784416677122, 0.1307987473503207), 10, True)
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
+        obj_2 = Game()
+        
+        obj_2.add_end(End(True))
+        var_2 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
+        var_3 = obj_2.score()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_2, 'Game with 1 ends')
+        self.assertEqual(var_3, (0, 0))
         
     def test_96(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (3.2704705152697073, 1.8612158737833813), 7, True, False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.394514119302352, -5.356808251411815), 11, False, True))
-            obj_1.add_stone(Stone(False, (2.639005256214201, -6.505690058423902), 0, True, False))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
+            var_0 = obj_0.is_guard()
+            obj_0.burn()
+            var_9 = obj_0.is_in_house()
+            var_7 = obj_0.distance_to_center()
+            var_1 = obj_0.is_guard()
+            var_8 = obj_0.move((-4.265103538058463, 4.336775838511995), 4, False)
+            var_6 = obj_0.distance_to_center()
+            var_3 = obj_0.is_out_of_play()
+            var_5 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
         
     def test_97(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (3.3951160440342996, -2.219406052051454), 3, False, False)
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(True, (6.043570161866047, -2.1856715672377405), 10, True, True)
             
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_4 = obj_0.move((-7.158736431285478, -7.068402364779047), -1, True)
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
+            var_0 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.is_passed_hogline()
+            var_7 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.distance_to_center()
+            var_4 = obj_0.move((6.535984721807619, -1.308757692090511), -2, True)
+            var_3 = obj_0.is_in_house()
+            var_5 = obj_0.is_passed_hogline()
+            var_6 = obj_0.move((3.4244482922275896, 3.544744301207311), -1, True)
         
     def test_98(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-2.828055030085995, 2.6228133045415927), 6, True, True)
-            
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-1.4076378204611384, 4.372627713630038), 6, False)
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
+        obj_1 = End(True)
+        
+        var_2 = obj_1.red_won()
+        var_4 = obj_1.red_won()
+        var_0 = obj_1.overlaps_any_stone(Stone(True, (0.4853118861218171, 5.5609292978350275), 5, False, True))
+        var_3 = obj_1.done()
+        var_1 = obj_1.red_won()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, None)
         
     def test_99(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
+        obj_2.add_end(End(False))
         
         
     def test_100(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (7.102596509266769, -2.215314087583927), 7, True, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.873919243833134, -0.4584857616858269), 8, False, False))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
+        obj_2 = Game()
+        
+        var_3 = obj_2.display_scoreboard()
+        obj_2.add_end(End(False))
+        var_0 = obj_2.score()
+        obj_2.add_end(End(False))
+        var_2 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_2, 'End |    1 |    2 | Total\n----|------|------|------\nRed |    0 |    0 |     0\nYel | h  0 | h  0 |     0\n')
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_101(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (2.2094293861882477, 2.703873290646216), 11, True, False)
-            
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((4.857961127449295, -6.843344874306217), 9, True)
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
         
     def test_102(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (7.194510683873636, 7.214913240490306), -1, False, True)
-            
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((6.039643503378432, -4.833017471364714), 8, False)
+        obj_1 = End(False)
+        
+        var_0 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
         
     def test_103(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-0.8578579602874399, 0.12343819823331792), -2, False, True)
+            obj_1 = End(False)
             
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((4.9071692197692975, 4.775733017693048), 4, True)
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
+            var_4 = obj_1.overlaps_any_stone(Stone(False, (-7.774934462809725, -4.871442326613147), -1, False, True))
+            var_5 = obj_1.done()
+            var_2 = obj_1.score()
+            var_1 = obj_1.red_won()
+            var_0 = obj_1.score()
+            var_3 = obj_1.overlaps_any_stone(Stone(False, (4.042180676428313, 6.976256391389667), 2, False, True))
         
     def test_104(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.49707530328293, 0.3898478792409463), 11, False, True))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (-3.997115985529989, -7.191144020276001), 12, True, False))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_0, None)
         
     def test_105(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(True)
+            
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.5736462180414037, -0.9524883887868132), 4, False, True))
+            var_1 = obj_1.done()
+            obj_1.add_stone(Stone(True, (-1.7556430218330945, 0.4877004309782187), 1, False, True))
+            var_0 = obj_1.done()
+            var_4 = obj_1.overlaps_any_stone(Stone(True, (0.6307546565785902, 0.5891319270888022), 4, True, False))
         
     def test_106(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-2.9616601019399873, -6.2575936593093555), 4, True, False)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((6.196977136439829, 3.545910322187389), 4, True)
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.__str__()
+        var_2 = obj_1.drawn()
+        var_1 = obj_1.score()
+        var_5 = obj_1.score()
+        var_3 = obj_1.done()
+        var_4 = obj_1.red_won()
+        
+        self.assertEqual(var_0, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, None)
+        self.assertEqual(var_5, 0)
         
     def test_107(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (0.4280344930580906, 2.8289163722311343), 0, True, True)
+            
+            var_1 = obj_0.is_in_house()
+            var_2 = obj_0.is_guard()
+            obj_0.burn()
+            var_3 = obj_0.is_passed_hogline()
+            obj_0.burn()
         
     def test_108(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-3.6501496931075827, -0.6971036875359999), 9, False, False)
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(True, (-4.351158051458812, 7.374865546391282), 9, False, True)
             
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((7.111739469589125, -7.398664268124403), 4, True)
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
+            var_3 = obj_0.__str__()
+            var_0 = obj_0.is_guard()
+            var_1 = obj_0.move((3.154555794659599, -7.762095863691988), -1, True)
+            var_2 = obj_0.is_out_of_bounds()
         
     def test_109(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (3.2142019278273803, 0.3241440044508117), 5, False, True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (6.909083357098709, -6.660806688857541), -2, True, True)
             
-            var_4 = obj_0.move((-4.524983581778631, -0.5926818304694894), 10, False)
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
+            var_2 = obj_0.is_out_of_play()
+            var_1 = obj_0.move((-4.339766473266607, 7.2460982807056045), 1, True)
+            var_4 = obj_0.is_guard()
             obj_0.burn()
             var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
             obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
+            obj_0.burn()
         
     def test_110(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (6.885552250616987, 6.282113943276348), -1, False, False)
-            
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((2.5825054756007706, -1.3627462417467893), 7, False)
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.red_won()
+        var_3 = obj_1.score()
+        var_2 = obj_1.score()
+        var_1 = obj_1.score()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, 0)
+        self.assertEqual(var_3, 0)
         
     def test_111(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        
-        
-    def test_112(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (2.9544135499870308, -7.630349567781366), 2, True, False)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-2.427596866838215, 3.5790185605254514), 1, False)
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-        
-    def test_113(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (4.681665508939922, -1.9544958400119175), 11, True, False)
-            
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((-2.183261590592588, -7.2199572647661086), 6, True)
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-        
-    def test_114(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-3.705039378862132, 6.398440004835637), 11, False, True))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (4.746424993505942, -6.874173928949492), 7, True, True))
-        
-    def test_115(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-3.631396506853468, -6.4832327903097795), 10, True, True))
-            obj_1.add_stone(Stone(True, (-6.943732563756292, -5.816486216994221), -2, False, False))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
+            var_1 = obj_1.drawn()
+            var_0 = obj_1.red_won()
+            var_4 = obj_1.__str__()
+            var_3 = obj_1.__str__()
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.801543616351397, 1.548179959501443), 0, True, False))
+            var_5 = obj_1.overlaps_any_stone(Stone(False, (-3.8955326302153903, 0.218934587606892), 3, False, True))
+        
+    def test_112(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            var_4 = obj_1.overlaps_any_stone(Stone(True, (0.4471229244567638, -6.701313462445993), 12, False, False))
+            var_2 = obj_1.done()
+            var_1 = obj_1.score()
+            var_3 = obj_1.drawn()
+            var_0 = obj_1.red_won()
+        
+    def test_113(self):
+        obj_1 = End(False)
+        
+        var_2 = obj_1.overlaps_any_stone(Stone(True, (-2.3030008090306335, -7.236711835707505), 4, False, True))
+        var_3 = obj_1.score()
+        var_6 = obj_1.score()
+        var_0 = obj_1.score()
+        var_4 = obj_1.red_won()
+        var_5 = obj_1.__str__()
+        var_1 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, 0)
+        self.assertEqual(var_4, None)
+        self.assertEqual(var_5, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_6, 0)
+        
+    def test_114(self):
+        obj_1 = End(True)
+        
+        var_0 = obj_1.drawn()
+        
+        self.assertEqual(var_0, True)
+        
+    def test_115(self):
+        obj_1 = End(True)
+        
+        var_1 = obj_1.red_won()
+        var_0 = obj_1.overlaps_any_stone(Stone(False, (1.418331535400661, 0.2165735896115546), 8, False, True))
+        var_5 = obj_1.done()
+        var_4 = obj_1.drawn()
+        var_3 = obj_1.drawn()
+        var_2 = obj_1.done()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, True)
+        self.assertEqual(var_5, False)
         
     def test_116(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(False, (0.5777203613974358, 0.6438924692381267), 2, True, False)
             
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-3.0923104988769676, 4.500092507012232), 3, False, True))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.056893869753791, 3.4054209075529815), 12, False, False))
+            var_5 = obj_0.is_in_house()
+            var_0 = obj_0.move((-1.9906654357270774, 6.420035491229811), 1, True)
+            var_3 = obj_0.move((-0.9526772794245222, -2.476461275252298), 3, True)
+            var_2 = obj_0.is_in_house()
+            var_1 = obj_0.move((1.984081371368001, 4.282373511506949), 3, False)
+            var_4 = obj_0.is_in_house()
+            obj_0.burn()
+            var_7 = obj_0.is_out_of_play()
+            var_6 = obj_0.is_passed_hogline()
         
     def test_117(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.score()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_118(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-7.389748280829192, -7.523832441235294), 8, True, False)
+            
+            obj_0.move_out_of_play()
+            var_1 = obj_0.is_passed_hogline()
+            var_7 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.is_passed_hogline()
+            var_6 = obj_0.distance_to_center()
+            var_3 = obj_0.is_out_of_play()
+            var_4 = obj_0.is_in_house()
+            var_2 = obj_0.move((0.06582174754313108, 1.0237375836731974), 3, False)
         
     def test_119(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (1.4309242379568374, -2.9634834791005904), 5, True, True))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (4.2070248996768775, -0.47967695013085354), -2, True, True))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        obj_2.add_end(End(False))
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 1 ends')
+        self.assertEqual(var_1, (0, 0))
         
     def test_120(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.score()
+        var_1 = obj_2.__str__()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_121(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (-1.2968514692905497, 0.1728969999973753), 2, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (3.071554279174915, 0.3592189820255989), 9, False, False)
             
-            var_4 = obj_0.move((-5.647522973643248, -0.4469239392503237), -2, False)
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
+            var_2 = obj_0.distance_to_center()
+            var_6 = obj_0.distance_to_center()
+            var_8 = obj_0.__str__()
+            var_1 = obj_0.is_in_house()
             obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
+            var_0 = obj_0.move((6.257336292640057, 2.67699517021698), -2, True)
+            var_4 = obj_0.move((5.370722570066995, 0.9122569918854229), 0, True)
+            var_3 = obj_0.is_out_of_bounds()
+            obj_0.move_out_of_play()
         
     def test_122(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        
-        
-    def test_123(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (5.119152986356228, 3.8412261316348033), 8, False, False))
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (-5.040454514370918, -6.1625358237080174), 10, False, True))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (-5.753260165224912, 6.115760292213768), 5, True, False))
+            var_3 = obj_1.__str__()
+            var_4 = obj_1.__str__()
+            var_2 = obj_1.done()
+            var_1 = obj_1.__str__()
+        
+    def test_123(self):
+        obj_1 = End(False)
+        
+        var_1 = obj_1.red_won()
+        var_3 = obj_1.score()
+        var_0 = obj_1.score()
+        var_2 = obj_1.__str__()
+        var_4 = obj_1.red_won()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_3, 0)
+        self.assertEqual(var_4, None)
         
     def test_124(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (0.26581375073063995, 7.914037281361168), 2, True, True)
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(True, (-1.8085135418674643, -0.9959517452637989), 4, True, False)
             
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
             var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_4 = obj_0.move((0.541412214873775, -4.832259820640507), 4, False)
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
+            var_3 = obj_0.distance_to_center()
+            var_0 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.is_out_of_bounds()
+            var_6 = obj_0.move((7.393121675515401, -7.478069330338123), 8, True)
+            var_4 = obj_0.is_in_house()
+            var_1 = obj_0.move((-5.828993902257901, 2.14181126109653), 8, True)
         
     def test_125(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        
-        
-    def test_126(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        
-        
-    def test_127(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (-1.7249215525485084, -3.66801268327613), 1, True, False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (4.5665571679579156, 3.234964157442997), 12, False, False)
             
             var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
             obj_0.burn()
-            var_4 = obj_0.move((2.345768864206354, -1.8956752668380847), 4, False)
+            var_3 = obj_0.is_guard()
+            obj_0.move_out_of_play()
+            var_2 = obj_0.is_out_of_bounds()
+            var_7 = obj_0.is_out_of_play()
+            obj_0.burn()
+            var_0 = obj_0.is_out_of_play()
+            var_1 = obj_0.move((-7.503788417093542, -6.5314920522166755), 5, False)
+            var_4 = obj_0.distance_to_center()
+        
+    def test_126(self):
+        obj_0 = Stone(True, (-2.0624244391213935, 5.424775194616357), 8, False, False)
+        
+        var_1 = obj_0.__str__()
+        var_6 = obj_0.is_out_of_play()
+        var_5 = obj_0.is_guard()
+        var_0 = obj_0.distance_to_center()
+        var_4 = obj_0.is_passed_hogline()
+        var_2 = obj_0.is_out_of_bounds()
+        var_3 = obj_0.move((-3.870982235550759, -1.4740436085378406), 9, True)
+        
+        self.assertEqual(var_0, 5.803600647805648)
+        self.assertEqual(var_1, 'Red stone at (-2.06, 5.42), round 8, active')
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, True)
+        self.assertEqual(var_5, True)
+        self.assertEqual(var_6, False)
+        
+    def test_127(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-3.0423838848576796, 4.717880783923345), 3, False, False)
+            
+            var_9 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.is_guard()
+            var_6 = obj_0.is_passed_hogline()
+            var_5 = obj_0.__str__()
+            var_0 = obj_0.__str__()
+            var_3 = obj_0.is_in_house()
+            var_1 = obj_0.is_guard()
+            var_2 = obj_0.is_guard()
+            var_8 = obj_0.is_out_of_bounds()
+            obj_0.move_out_of_play()
         
     def test_128(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (5.576679248713734, 2.989533113599963), 11, True, False)
+            obj_0 = Stone(True, (-1.9534536683526387, -4.560054226677748), 0, False, False)
             
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((5.441329940605012, 5.685935141103437), 3, True)
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
+            var_3 = obj_0.move((-4.944882760811062, 3.1468585433418745), 12, True)
+            var_2 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.__str__()
+            var_7 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.distance_to_center()
             obj_0.burn()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.move((6.5626779757165945, -2.263465118463298), 4, True)
         
     def test_129(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (5.106811781627645, 1.562348115996775), 9, True, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.142479732963729, 5.8915696400035085), 3, False, False))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
+        obj_2 = Game()
+        
+        var_2 = obj_2.red_winner()
+        var_1 = obj_2.score()
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, None)
         
     def test_130(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
+        var_1 = obj_2.display_scoreboard()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_131(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (0.4088865399765904, 7.007377325061173), -2, True, False))
-            obj_1.add_stone(Stone(True, (-0.844771601720641, 6.83731265924693), 0, True, False))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        var_2 = obj_2.display_scoreboard()
+        var_1 = obj_2.__str__()
+        obj_2.add_end(End(True))
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_132(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (0.4001455215962366, -1.3195954016478773), 7, False, True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-5.331402271655998, 3.5556677617158385), 12, True, False)
             
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-4.211256917570765, -6.739770691231611), 1, True)
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
+            var_0 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.is_guard()
+            var_1 = obj_0.move((0.7206605265383352, -4.906650125526717), -2, False)
+            var_4 = obj_0.is_in_house()
+            var_2 = obj_0.is_out_of_play()
         
     def test_133(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.62052658411047, 0.7936983689841313), 7, False, False))
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-1.5708877383756459, 2.2386416239486717), 3, True, True))
-            var_4 = obj_1.done()
+        obj_2 = Game()
+        
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.score()
+        var_3 = obj_2.red_winner()
+        var_2 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, None)
         
     def test_134(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-3.1469176267748153, 4.691922522425589), 8, False, False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (7.7788563406033955, -7.988428906478923), 6, True, True))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (1.9538034939604358, -2.2431097481085303), 6, True, True))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
+            var_7 = obj_0.move((2.909625108160217, 5.181683115555577), -1, False)
+            var_3 = obj_0.move((0.3276566810343944, 6.588728767371608), 3, False)
+            var_9 = obj_0.distance_to_center()
+            var_4 = obj_0.distance_to_center()
+            var_6 = obj_0.is_guard()
+            obj_0.burn()
+            var_5 = obj_0.is_out_of_play()
+            var_2 = obj_0.is_out_of_play()
+            var_1 = obj_0.move((-6.251320717649445, 0.21802887632386714), 9, True)
+            var_8 = obj_0.distance_to_center()
         
     def test_135(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-3.4523013796634228, 6.5481613959037315), 3, False, False)
+            obj_0 = Stone(True, (7.061205128721662, 2.179478288907184), 7, False, False)
             
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((1.581173584982622, 5.783234440414962), 9, True)
-            obj_0.move_out_of_play()
+            var_1 = obj_0.distance_to_center()
+            var_0 = obj_0.__str__()
         
     def test_136(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+            obj_1 = End(True)
             
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-5.8296338169049395, -3.4413389808662487), 11, False, True))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-5.619729024381478, -4.805590483998582), 10, False, True))
+            var_0 = obj_1.__str__()
+            var_2 = obj_1.done()
+            var_1 = obj_1.score()
+            var_3 = obj_1.overlaps_any_stone(Stone(False, (-5.460664190945057, -7.845212859527326), 12, True, True))
         
     def test_137(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (7.34744290324797, -3.0852081070465793), -2, True, True))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-2.2531066052195623, 7.655275926192035), 9, True, False))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        var_3 = obj_2.display_scoreboard()
+        var_2 = obj_2.display_scoreboard()
+        var_1 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_138(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(True, (0.1771692357781003, 2.8677666637396495), 1, True, True))
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (2.458054425778066, 5.131533474052437), 11, False, False))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
+        obj_0 = Stone(False, (1.3114671219152516, 6.93407451726689), 5, False, True)
+        
+        var_0 = obj_0.is_passed_hogline()
+        var_1 = obj_0.is_out_of_bounds()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
         
     def test_139(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.206986403842286, 1.7677084658743496), 2, False, True))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (4.84897493416112, 0.05928747087671837), 0, False, True))
+        obj_0 = Stone(True, (4.946355422565821, -1.5161565844366294), 8, True, True)
+        
+        var_0 = obj_0.is_out_of_bounds()
+        
+        self.assertEqual(var_0, False)
         
     def test_140(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-3.9588253886568197, 3.303832170450846), 0, False, False)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-1.3982552952278127, 4.057747174374914), 2, True)
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
+        obj_1 = End(False)
+        
+        var_3 = obj_1.overlaps_any_stone(Stone(False, (7.9787648555637105, 4.824240807010357), 9, True, True))
+        var_2 = obj_1.score()
+        var_0 = obj_1.score()
+        var_1 = obj_1.overlaps_any_stone(Stone(True, (1.2811295422371263, 0.8814705444662607), 4, False, False))
+        var_4 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, 0)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, 0)
         
     def test_141(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (7.2693732824723085, -5.889936520502564), 4, False, True)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.2595605714733598, 6.8874728183416245), 6, True, True))
-            obj_1.add_stone(Stone(True, (3.555199538802576, -0.49145049987257217), 2, False, True))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.is_out_of_play()
         
     def test_142(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (1.6599811760733711, 0.4860849715351456), 1, True, False)
+        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
+            obj_1 = End(True)
             
-            var_4 = obj_0.move((-6.358824722116985, -3.3609960196393374), 12, True)
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
+            var_0 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (0.6538149289434028, -1.917245746758704), 3, True, True))
+            var_5 = obj_1.overlaps_any_stone(Stone(False, (1.8723232847237412, -2.357912140531541), 10, True, False))
+            var_4 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (-0.19071928213820577, -1.3050754717593218), 9, True, True))
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (-3.7795437217914998, -6.406198191837786), 8, False, False))
         
     def test_143(self):
         obj_2 = Game()
         
         var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_1 = obj_2.red_winner()
+        obj_2.add_end(End(True))
         obj_2.add_end(End(True))
         
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, (0, 0))
         
     def test_144(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
+            
+            var_2 = obj_1.drawn()
+            var_3 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (7.576807823093906, 2.559373213974242), -1, True, True))
+            var_4 = obj_1.done()
+            var_5 = obj_1.drawn()
+            var_1 = obj_1.done()
         
     def test_145(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-2.4728994968378064, -0.14925395125231944), 5, True, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((0.25855762412546923, 5.008158161557025), 2, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-        
-    def test_146(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (2.2306758534238718, -5.473050916222807), 5, False, True)
-            
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((-6.13707928843329, -7.196134243018042), 0, True)
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-        
-    def test_147(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-6.876445730228092, -1.4802640218334524), 2, False, True))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-7.775283551946361, -7.892282833490533), -1, False, False))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-        
-    def test_148(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
-        
-    def test_149(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (4.057515038427113, 6.931649100472674), 10, True, True))
-            obj_1.add_stone(Stone(False, (-3.4633414022872344, -0.5106812044889377), 8, True, True))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-        
-    def test_150(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        
-        
-    def test_151(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (2.506098360018184, 2.2068781484243267), 4, True, True))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.083834844531719, -1.3166582476531374), -1, False, False))
-            var_3 = obj_1.red_won()
-        
-    def test_152(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        
-        
-    def test_153(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (-5.398793168672745, 4.6424270667439576), 3, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.76829312666252, -0.11125662603587827), -2, False, True))
-            var_6 = obj_1.score()
-        
-    def test_154(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
-        
-    def test_155(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-1.5735923004768608, 3.7645400616460822), 11, True, True)
-            
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-6.06769180780368, -7.19261792606229), 2, False)
-        
-    def test_156(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
-        
-    def test_157(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        
-        
-    def test_158(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-2.5097617849416842, -7.189627700710698), -1, False, True)
-            
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-0.05963332213970318, 3.8075037170772568), 2, True)
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-        
-    def test_159(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
-        
-    def test_160(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-2.570112731421693, 2.130677153425129), -2, True, True)
-            
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((1.745873268235103, -6.540958437051058), 12, True)
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-        
-    def test_161(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        
-        
-    def test_162(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-4.13727796479864, -4.852870325132983), 3, False, True))
-            obj_1.add_stone(Stone(True, (2.108626477374287, 2.6953546955325525), 11, True, True))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-        
-    def test_163(self):
         with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
             obj_1 = End(True)
             
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (0.46307762131151087, -0.23893649556944574), 8, False, True))
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (2.0684868107725816, 0.35698337868874574), 7, True, False))
+            var_3 = obj_1.done()
+            var_0 = obj_1.__str__()
+            obj_1.add_stone(Stone(False, (7.175257079167666, 5.389229766671466), 8, True, True))
+            obj_1.add_stone(Stone(True, (-5.124479592285738, 7.383513492044788), 11, False, True))
+            var_2 = obj_1.score()
+        
+    def test_146(self):
+        obj_1 = End(False)
+        
+        var_0 = obj_1.overlaps_any_stone(Stone(False, (-0.7643382910371592, -3.5150424944500998), 5, False, True))
+        var_2 = obj_1.__str__()
+        var_1 = obj_1.done()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, 'End with Yellow hammer and 0 stones')
+        
+    def test_147(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
+            
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (-2.374062188820906, 5.7891965802174905), 10, False, False))
+            obj_1.add_stone(Stone(True, (7.9319555226448735, 0.3568579646029537), 8, False, False))
+            var_3 = obj_1.score()
+            var_0 = obj_1.__str__()
+        
+    def test_148(self):
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(True, (-3.9982199018250224, 4.621172534028391), 2, False, True)
+            
+            var_1 = obj_0.__str__()
+            var_0 = obj_0.is_in_house()
+            var_3 = obj_0.is_in_house()
+            var_2 = obj_0.move((-7.054352682693672, 1.8123202038928028), 2, False)
+            var_4 = obj_0.is_in_house()
+        
+    def test_149(self):
+        obj_2 = Game()
+        
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
+        var_2 = obj_2.score()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, (0, 0))
+        
+    def test_150(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-6.952456559559211, 3.17668950928252), -1, True, True)
+            
+            var_5 = obj_0.is_out_of_play()
+            var_6 = obj_0.is_passed_hogline()
+            obj_0.move_out_of_play()
+            var_3 = obj_0.is_in_house()
+            var_7 = obj_0.is_passed_hogline()
+            obj_0.burn()
+            var_0 = obj_0.move((-3.913662857177334, -5.802061443800174), 4, False)
+            var_2 = obj_0.move((4.7246498363644385, -7.912515037284281), 12, True)
+        
+    def test_151(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-7.061878804427369, 4.433833760719304), 4, False, True)
+            
+            var_7 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.is_guard()
+            var_0 = obj_0.is_guard()
+            var_5 = obj_0.is_guard()
+            var_3 = obj_0.is_guard()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.is_in_house()
+            var_6 = obj_0.is_guard()
+            obj_0.move_out_of_play()
+        
+    def test_152(self):
+        obj_1 = End(False)
+        
+        var_1 = obj_1.red_won()
+        var_0 = obj_1.__str__()
+        
+        self.assertEqual(var_0, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_1, None)
+        
+    def test_153(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (0.7125452732882476, 2.596621439834685), -2, False, False))
+            var_2 = obj_1.score()
+            var_3 = obj_1.score()
+            obj_1.add_stone(Stone(True, (7.637612347222776, 2.6062499511256796), -2, True, True))
+            var_0 = obj_1.done()
+        
+    def test_154(self):
+        obj_0 = Stone(False, (-2.1813600965857276, -1.6574012415093904), 5, True, True)
+        
+        var_1 = obj_0.is_out_of_bounds()
+        var_0 = obj_0.is_in_house()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
+        
+    def test_155(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
+            
             var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
+            var_0 = obj_1.done()
+            var_4 = obj_1.__str__()
+            var_6 = obj_1.overlaps_any_stone(Stone(True, (-2.196504776901799, 4.925171620568614), 10, True, False))
+            var_2 = obj_1.done()
+            obj_1.add_stone(Stone(False, (-6.232488820149928, 1.2787852459483808), 5, False, False))
+            var_1 = obj_1.red_won()
+        
+    def test_156(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            var_4 = obj_1.score()
+            var_1 = obj_1.drawn()
+            var_2 = obj_1.red_won()
+            obj_1.add_stone(Stone(True, (7.073876674420497, -1.9091320977338473), 5, True, False))
+            obj_1.add_stone(Stone(False, (-2.8037357358836594, -7.509321744176011), 3, False, True))
+        
+    def test_157(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-5.440735223814423, -3.4736777810311423), -1, True, True)
+            
+            obj_0.burn()
+        
+    def test_158(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-2.5891947858720314, 5.639736960617498), 9, False, False)
+            
+            var_0 = obj_0.is_guard()
+            var_2 = obj_0.is_out_of_play()
+            var_1 = obj_0.is_out_of_play()
+        
+    def test_159(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (3.601974607699299, 5.374549236654486), 5, False, True)
+            
+            obj_0.move_out_of_play()
+            obj_0.burn()
+            var_6 = obj_0.distance_to_center()
+            var_5 = obj_0.move((-0.6889107555920138, -2.5534041085283725), 12, False)
+            obj_0.burn()
+            var_2 = obj_0.__str__()
+            var_1 = obj_0.is_in_house()
+            var_7 = obj_0.distance_to_center()
+            var_4 = obj_0.move((-3.6772148062234695, 4.451928322340308), 4, True)
+        
+    def test_160(self):
+        obj_2 = Game()
+        
+        var_2 = obj_2.red_winner()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, None)
+        
+    def test_161(self):
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(True, (-1.521173649223238, 6.874762622080734), 4, True, True)
+            
+            var_2 = obj_0.is_passed_hogline()
+            var_8 = obj_0.distance_to_center()
+            obj_0.burn()
+            obj_0.move_out_of_play()
+            var_7 = obj_0.is_guard()
+            var_3 = obj_0.is_out_of_play()
+            obj_0.burn()
+            var_5 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.is_passed_hogline()
+        
+    def test_162(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (7.70294013969003, -3.487648046202489), -1, True, False)
+            
+            var_4 = obj_0.is_guard()
+            var_1 = obj_0.move((3.1081188374160273, 1.8007900338011638), 8, False)
+            var_3 = obj_0.__str__()
+            var_2 = obj_0.is_passed_hogline()
+            var_0 = obj_0.is_in_house()
+        
+    def test_163(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
         
     def test_164(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
         
     def test_165(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (-1.5753331603033942, -7.7285651078491995), 9, False, True)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((5.378872741057034, -5.45267296945187), 10, True)
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
+        obj_2 = Game()
+        
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.red_winner()
+        var_4 = obj_2.score()
+        var_1 = obj_2.display_scoreboard()
+        var_3 = obj_2.score()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, (0, 0))
         
     def test_166(self):
+        obj_1 = End(True)
+        
+        var_3 = obj_1.score()
+        var_1 = obj_1.done()
+        var_2 = obj_1.score()
+        var_0 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, 0)
+        self.assertEqual(var_3, 0)
+        
+    def test_167(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-1.6997364763725642, -5.0145458788505), -2, False, False))
-            var_3 = obj_1.red_won()
             var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (5.512341925837308, -7.0499979150163465), 4, True, True))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-        
-    def test_167(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (-6.4727674963393405, -1.198087321705719), 6, False, False))
-            var_6 = obj_1.score()
+            obj_1.add_stone(Stone(True, (-1.4503984435051862, -2.950124283796425), 11, False, False))
+            var_2 = obj_1.red_won()
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (1.3371643645330291, 5.906550440564898), 9, True, False))
+            var_5 = obj_1.__str__()
             var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (1.2515728682046916, -6.084937196863143), 4, True, False))
         
     def test_168(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+            obj_0 = Stone(True, (4.085920645727876, 5.682453522492892), -2, True, True)
             
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (2.07982612822083, 1.7604929907452416), 6, False, True))
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (6.763235754657236, -1.6437232190522373), -2, False, True))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
+            var_2 = obj_0.is_out_of_bounds()
+            var_7 = obj_0.is_passed_hogline()
+            obj_0.burn()
+            var_1 = obj_0.is_out_of_bounds()
+            var_0 = obj_0.is_out_of_play()
+            var_5 = obj_0.distance_to_center()
+            var_3 = obj_0.distance_to_center()
+            var_6 = obj_0.is_guard()
         
     def test_169(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-2.8149925368747066, 4.989849246788902), -2, True, False)
-            
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-3.696035857264251, -5.920292193621901), 5, True)
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
+        obj_1 = End(True)
+        
+        var_3 = obj_1.__str__()
+        var_2 = obj_1.score()
+        var_1 = obj_1.red_won()
+        var_0 = obj_1.red_won()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 0)
+        self.assertEqual(var_3, 'End with Red hammer and 0 stones')
         
     def test_170(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-7.218386230427475, 2.641336167436533), 7, False, True)
+        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
+            obj_1 = End(True)
             
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((1.0593918715835766, 4.283616639228265), 12, True)
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
+            obj_1.add_stone(Stone(False, (-1.8602438688991771, -6.541497332467747), 7, False, True))
+            var_2 = obj_1.__str__()
+            var_1 = obj_1.done()
         
     def test_171(self):
         obj_2 = Game()
         
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.score()
+        var_2 = obj_2.red_winner()
         obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, None)
         
     def test_172(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_3 = obj_2.score()
+        var_1 = obj_2.score()
+        obj_2.add_end(End(False))
+        var_4 = obj_2.__str__()
+        var_2 = obj_2.__str__()
         
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 1 ends')
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, 'Game with 1 ends')
         
     def test_173(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-1.4795416019241703, -1.4864677138876807), 0, False, False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-6.397898403835212, -6.032163183693459), 3, True, False)
             
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((1.7373375045028503, 2.2535760296361484), 1, False)
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
+            var_0 = obj_0.is_guard()
+            var_2 = obj_0.distance_to_center()
+            var_1 = obj_0.is_in_house()
         
     def test_174(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (0.7002028790958494, 3.974577498889756), 11, True, True)
+            
+            var_8 = obj_0.is_passed_hogline()
+            obj_0.burn()
+            var_9 = obj_0.is_out_of_bounds()
+            obj_0.burn()
+            var_4 = obj_0.is_out_of_play()
+            var_3 = obj_0.is_passed_hogline()
+            var_0 = obj_0.__str__()
+            var_2 = obj_0.is_passed_hogline()
+            obj_0.move_out_of_play()
+            obj_0.burn()
         
     def test_175(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-7.128762026812835, -2.744020756924984), -2, False, False)
+            obj_0 = Stone(False, (2.318221030017771, -1.303406228592321), 12, False, False)
             
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-4.078660370042291, -7.108423391551842), 11, True)
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
+            var_1 = obj_0.__str__()
+            var_2 = obj_0.move((3.9454484191501233, 1.7330851772096771), 1, False)
+            var_5 = obj_0.is_out_of_play()
+            var_8 = obj_0.distance_to_center()
+            var_7 = obj_0.is_out_of_play()
+            var_3 = obj_0.is_in_house()
+            var_4 = obj_0.is_guard()
             obj_0.burn()
+            var_0 = obj_0.is_in_house()
+            var_6 = obj_0.__str__()
         
     def test_176(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(True, (6.697968426829844, -7.128014195888344), 6, True, True))
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-1.0325879388412282, 5.819489121211191), -2, False, False))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        var_3 = obj_2.__str__()
+        obj_2.add_end(End(False))
+        var_2 = obj_2.red_winner()
+        obj_2.add_end(End(False))
+        var_4 = obj_2.red_winner()
+        
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, 'Game with 0 ends')
+        self.assertEqual(var_4, None)
         
     def test_177(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_178(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-6.26362359614491, -6.0986747166472774), -1, True, True)
+            
+            var_0 = obj_0.is_passed_hogline()
         
     def test_179(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-7.382152612229291, -5.649231635341412), 1, False, True)
+            
+            obj_0.burn()
+            var_4 = obj_0.distance_to_center()
+            var_6 = obj_0.is_out_of_bounds()
+            var_0 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_5 = obj_0.is_passed_hogline()
+            var_3 = obj_0.move((-1.3380693294522814, -2.146561472155639), -2, True)
         
     def test_180(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
+        var_0 = obj_1.drawn()
+        var_4 = obj_1.__str__()
+        var_3 = obj_1.done()
+        var_2 = obj_1.score()
+        var_1 = obj_1.drawn()
         
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, 0)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, 'End with Red hammer and 0 stones')
         
     def test_181(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
+        var_1 = obj_1.score()
+        var_2 = obj_1.__str__()
+        var_0 = obj_1.red_won()
+        var_5 = obj_1.drawn()
+        var_3 = obj_1.done()
+        var_4 = obj_1.score()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, 0)
+        self.assertEqual(var_5, True)
         
     def test_182(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (2.738384979090222, 4.130629134285721), 2, True, True)
-            
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((7.852300031306157, 5.052062587529283), 9, False)
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-        
-    def test_183(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (3.5338808608124594, 7.3477427282895995), 1, True, True)
-            
-            var_4 = obj_0.move((-4.5604474353286975, 7.941599095338537), 12, True)
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-        
-    def test_184(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            obj_1.add_stone(Stone(False, (2.7898387819692037, 4.081373668126481), 4, False, True))
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-4.7443320672616185, -7.525421039024623), 11, False, True))
-            var_5 = obj_1.drawn()
+            var_0 = obj_1.red_won()
+            var_5 = obj_1.__str__()
+            var_3 = obj_1.score()
+            obj_1.add_stone(Stone(False, (-2.492065761872892, 7.79401701598289), 8, True, False))
+            var_2 = obj_1.red_won()
+            var_4 = obj_1.drawn()
+        
+    def test_183(self):
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(True, (0.2683771237534529, -4.5722093530713295), 8, True, False)
+            
+            var_0 = obj_0.is_passed_hogline()
+            var_1 = obj_0.is_out_of_play()
+            var_2 = obj_0.distance_to_center()
+            var_5 = obj_0.is_passed_hogline()
+            obj_0.move_out_of_play()
+            var_6 = obj_0.distance_to_center()
+            var_4 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.is_passed_hogline()
+            var_8 = obj_0.move((-2.756947075622641, 4.182920467197567), 7, False)
+        
+    def test_184(self):
+        obj_0 = Stone(False, (0.041471473503468914, 6.947899960732302), 7, True, True)
+        
+        var_0 = obj_0.is_passed_hogline()
+        
+        self.assertEqual(var_0, False)
         
     def test_185(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        
+    def test_186(self):
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
+        
+    def test_187(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (4.7843848201424795, -2.4713866814123886), 6, True, False)
+            
+            obj_0.move_out_of_play()
+            var_2 = obj_0.move((4.45733282505544, 4.776739817439321), -2, False)
+            obj_0.burn()
+            var_5 = obj_0.__str__()
+            var_8 = obj_0.is_passed_hogline()
+            var_1 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.is_guard()
+            var_4 = obj_0.__str__()
+            var_0 = obj_0.is_in_house()
+        
+    def test_188(self):
+        obj_0 = Stone(True, (2.164168037654921, 5.481975322675545), 5, False, False)
+        
+        var_0 = obj_0.is_out_of_bounds()
+        var_1 = obj_0.is_guard()
+        var_4 = obj_0.is_out_of_play()
+        var_6 = obj_0.is_out_of_play()
+        var_3 = obj_0.is_guard()
+        var_2 = obj_0.__str__()
+        var_5 = obj_0.distance_to_center()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, 'Red stone at (2.16, 5.48), round 5, active')
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, False)
+        self.assertEqual(var_5, 5.893698052465091)
+        self.assertEqual(var_6, False)
+        
+    def test_189(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (4.025416925373992, 7.091286234526791), 7, False, False))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (2.509966659624224, -3.805538595632868), 11, True, False))
-            var_6 = obj_1.score()
+            var_5 = obj_1.score()
+            var_3 = obj_1.overlaps_any_stone(Stone(False, (2.8967831119424954, 7.621519269208912), 9, False, True))
+            var_1 = obj_1.done()
+            var_4 = obj_1.overlaps_any_stone(Stone(True, (2.68360442600207, -1.5004464605985195), 1, True, True))
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (-2.3596873637965494, -7.977989751129048), 5, True, False))
+            obj_1.add_stone(Stone(False, (4.5978778782920084, 4.007662051573119), 11, True, False))
         
-    def test_186(self):
+    def test_190(self):
+        obj_1 = End(False)
+        
+        var_1 = obj_1.score()
+        var_0 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, 0)
+        
+    def test_191(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            obj_1.add_stone(Stone(False, (1.2883427723336958, -5.762153768158299), -2, True, False))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-1.6950384190177754, 3.359144587127494), -1, True, True))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-        
-    def test_187(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (0.8551244955476758, 1.1809129247189745), 7, True, False)
-            
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((2.979583829130176, 2.4213958505175857), 1, True)
-        
-    def test_188(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (-1.497426771400649, -6.939648911539171), 4, True, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.101529492216745, 4.582865100558994), 8, False, True))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-        
-    def test_189(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
-        
-    def test_190(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
-        
-    def test_191(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (7.260100342239211, -3.986014357145624), 3, True, False)
-            
-            var_4 = obj_0.move((-2.507917255426614, 1.037369991004308), -1, True)
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (-2.3681532043992384, 7.502742566339791), 0, False, True))
         
     def test_192(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
+        var_0 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
         
     def test_193(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (3.602081363694314, -3.6122237869609606), 0, False, True)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-6.737701664161369, -5.705440248347099), -2, True)
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-        
-    def test_194(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        
-        
-    def test_195(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (3.40361751767529, 2.174606917019794), 5, False, False)
-            
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((2.258910617433582, -0.38207373934156763), 5, False)
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-        
-    def test_196(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-5.042850667734655, 2.6052658077631943), 12, True, False)
-            
-            var_4 = obj_0.move((-2.7018834631883397, -1.1701866541679635), 12, False)
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-        
-    def test_197(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (-3.2140057013827157, 6.2655909508543495), 4, True, False))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-2.269201157977813, -6.68501218755979), -2, False, False))
-            var_5 = obj_1.drawn()
+            var_2 = obj_1.red_won()
+            var_3 = obj_1.done()
+            var_6 = obj_1.done()
+            obj_1.add_stone(Stone(False, (7.59319665590407, 1.6963081701670362), 7, False, False))
+            obj_1.add_stone(Stone(True, (5.538235401446787, -5.513234863948323), 9, True, False))
+            var_0 = obj_1.red_won()
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (6.406783764589706, -5.783353124231159), 6, True, True))
+        
+    def test_194(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-4.203886269752161, 7.913507661980782), 12, True, True)
+            
+            var_4 = obj_0.is_in_house()
+            var_2 = obj_0.is_guard()
+            var_3 = obj_0.is_passed_hogline()
+            var_0 = obj_0.is_out_of_play()
+            var_1 = obj_0.move((0.41570548694291887, -7.8520639167676), -2, False)
+            var_5 = obj_0.is_guard()
+        
+    def test_195(self):
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(False, (-4.956243328772143, -7.454125868997341), 1, False, True)
+            
+            var_0 = obj_0.is_in_house()
+            var_2 = obj_0.is_guard()
+            var_1 = obj_0.is_guard()
+            var_3 = obj_0.move((5.750912883433436, -6.816213204742443), 10, True)
+            var_4 = obj_0.is_guard()
+            var_5 = obj_0.__str__()
+        
+    def test_196(self):
+        obj_2 = Game()
+        
+        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.red_winner()
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        
+    def test_197(self):
+        obj_2 = Game()
+        
+        var_3 = obj_2.red_winner()
+        obj_2.add_end(End(True))
+        var_1 = obj_2.score()
+        var_2 = obj_2.__str__()
+        var_4 = obj_2.score()
+        
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 1 ends')
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, (0, 0))
         
     def test_198(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_199(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(True, (-3.0225473632732136, 6.911065550034882), 4, False, True)
             
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (3.603811138837484, -7.022738183401152), 3, True, False))
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.84396544064232, -1.2815938894227248), 10, True, True))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
+            var_0 = obj_0.distance_to_center()
+            var_5 = obj_0.is_in_house()
+            obj_0.burn()
+            var_1 = obj_0.is_passed_hogline()
+            var_3 = obj_0.is_passed_hogline()
+            obj_0.burn()
         
     def test_200(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
         obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
         
     def test_201(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (2.671772604999328, -0.1599295715568001), -2, True, True)
-            
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-6.263524039558554, -1.664418685960996), 2, False)
-        
-    def test_202(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.385577045383224, 7.147610150026436), 1, True, False))
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (-6.034075088180325, 6.882216420952696), 3, True, False))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
+            var_2 = obj_1.red_won()
+            obj_1.add_stone(Stone(True, (-6.962384333952603, -1.079572387975622), 10, True, False))
+            obj_1.add_stone(Stone(False, (2.895314375723041, -0.4758221548377861), 6, True, False))
+            var_0 = obj_1.score()
+        
+    def test_202(self):
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, (0, 0))
         
     def test_203(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (5.702371174335321, 5.231299207883849), 1, False, False)
-            
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((6.959638647296863, -7.924537403325344), 0, True)
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-        
-    def test_204(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (-6.464712315313724, -1.067431257517427), 6, False, False))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-3.60783126750748, -1.9675287547493099), 5, False, True))
+            var_0 = obj_1.__str__()
+            var_3 = obj_1.done()
+            var_2 = obj_1.score()
+            var_1 = obj_1.drawn()
+            obj_1.add_stone(Stone(True, (-5.1409231452410875, 6.092845443073898), 0, False, False))
+        
+    def test_204(self):
+        obj_2 = Game()
+        
+        var_4 = obj_2.score()
+        var_3 = obj_2.red_winner()
+        var_2 = obj_2.score()
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.__str__()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, (0, 0))
         
     def test_205(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_1.overlaps_any_stone(Stone(True, (-1.525603029152256, 4.428303256222788), 8, False, True))
+        var_1 = obj_1.score()
+        var_3 = obj_1.score()
+        var_2 = obj_1.drawn()
         
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, 0)
         
     def test_206(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_1.__str__()
+        var_3 = obj_1.score()
+        var_4 = obj_1.__str__()
+        var_2 = obj_1.done()
+        var_1 = obj_1.done()
         
+        self.assertEqual(var_0, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, 0)
+        self.assertEqual(var_4, 'End with Red hammer and 0 stones')
         
     def test_207(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_208(self):
         with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (4.97194795905572, -6.381127902851949), 1, True, True)
+            obj_0 = Stone(True, (-6.995287752722058, -0.5100877648768627), 1, True, True)
             
-            var_4 = obj_0.move((-0.7497007788000403, 0.48018087762590866), 0, False)
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
+            var_6 = obj_0.__str__()
+            var_5 = obj_0.is_passed_hogline()
+            var_2 = obj_0.is_out_of_play()
+            var_1 = obj_0.move((-7.476315678967339, -1.4229534425003934), 5, True)
+            var_3 = obj_0.is_out_of_bounds()
+            var_8 = obj_0.is_out_of_play()
+            var_4 = obj_0.__str__()
+            var_7 = obj_0.distance_to_center()
             obj_0.move_out_of_play()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
         
     def test_209(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-1.7243375613139698, 1.547208280879513), -2, False, False)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((6.729374594772423, -2.2002036580179105), 11, True)
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
+            var_0 = obj_2.display_scoreboard()
+            obj_2.add_end(End(True))
+            obj_2.add_end(End(False))
         
     def test_210(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (6.487230820464438, -2.0803331970335837), 7, False, False)
-            
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((1.7355728810636943, 6.666764416221332), 4, False)
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
+        obj_2 = Game()
+        
+        var_2 = obj_2.__str__()
+        var_0 = obj_2.display_scoreboard()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'Game with 0 ends')
         
     def test_211(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            obj_1.add_stone(Stone(True, (-6.92256645916218, 0.5037343730683883), 2, True, False))
+            var_1 = obj_1.drawn()
         
     def test_212(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (1.116510370416389, 3.3646888097841554), 3, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.998749706672861, 6.2222641232602705), 9, True, True))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-        
-    def test_213(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
+        obj_2.add_end(End(True))
+        var_2 = obj_2.red_winner()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_2, None)
+        
+    def test_213(self):
+        obj_1 = End(True)
+        
+        var_0 = obj_1.done()
+        var_1 = obj_1.red_won()
+        var_2 = obj_1.__str__()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'End with Red hammer and 0 stones')
         
     def test_214(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
+        var_2 = obj_2.display_scoreboard()
+        var_3 = obj_2.red_winner()
         obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
+        var_1 = obj_2.score()
         
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, None)
         
     def test_215(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_3 = obj_1.overlaps_any_stone(Stone(True, (4.467687801598762, -6.2536693331166955), 9, False, True))
+        var_2 = obj_1.done()
+        var_1 = obj_1.overlaps_any_stone(Stone(False, (2.347263838061142, 2.899288825829961), 1, False, True))
+        var_4 = obj_1.score()
+        var_0 = obj_1.score()
         
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, 0)
         
     def test_216(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
+        var_2 = obj_2.red_winner()
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, None)
         
     def test_217(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
+        var_2 = obj_2.display_scoreboard()
+        var_1 = obj_2.__str__()
         obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_3 = obj_2.red_winner()
         
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, None)
         
     def test_218(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (2.1940010084027257, -5.781155783732052), 9, False, False)
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(False)
             
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-7.6168123547770605, -7.722278458698414), -2, True)
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
+            var_4 = obj_1.drawn()
+            var_2 = obj_1.score()
+            obj_1.add_stone(Stone(False, (3.700703430274416, 7.520395434750341), 2, True, True))
+            obj_1.add_stone(Stone(False, (-4.151996057401153, -5.319194096554478), 4, False, True))
+            var_0 = obj_1.red_won()
         
     def test_219(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+            obj_1 = End(True)
             
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-4.339622327874755, 3.7193462320465223), 12, True, True))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (3.663728748272005, -6.726780767654649), 6, False, True))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
+            var_0 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (0.49158848011578726, -1.2227169821018027), 0, False, True))
+            var_3 = obj_1.done()
+            var_2 = obj_1.drawn()
         
     def test_220(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
+        var_3 = obj_1.__str__()
+        var_6 = obj_1.overlaps_any_stone(Stone(True, (0.12737467512794964, 5.284568357257783), 8, True, True))
+        var_1 = obj_1.drawn()
+        var_5 = obj_1.drawn()
+        var_4 = obj_1.red_won()
+        var_2 = obj_1.__str__()
+        var_0 = obj_1.score()
         
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_3, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_4, None)
+        self.assertEqual(var_5, True)
+        self.assertEqual(var_6, False)
         
     def test_221(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
+        var_0 = obj_2.display_scoreboard()
+        var_2 = obj_2.display_scoreboard()
+        var_1 = obj_2.red_winner()
         var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_222(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (4.796990556781326, -5.155800439480689), 1, True, False))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (5.302301605565955, 2.5827317432231407), 8, False, True))
-            var_7 = obj_1.__str__()
-        
-    def test_223(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-7.205912614057995, 6.765438821589722), 11, True, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-0.3401290464253073, -5.1839740274592145), 11, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-        
-    def test_224(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
+        var_0 = obj_2.__str__()
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
+        var_3 = obj_2.score()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, (0, 0))
+        
+    def test_223(self):
+        obj_2 = Game()
+        
+        var_2 = obj_2.__str__()
+        obj_2.add_end(End(False))
+        var_1 = obj_2.score()
+        
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
+        
+    def test_224(self):
+        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
+            obj_1 = End(True)
+            
+            var_4 = obj_1.__str__()
+            var_2 = obj_1.__str__()
+            var_5 = obj_1.__str__()
+            var_0 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (-7.619768485308828, 0.5043367069697045), 3, False, True))
+            var_3 = obj_1.__str__()
         
     def test_225(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (-2.927514605955441, 6.101623365897149), -1, True, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.318774126740429, 3.423816051473578), 2, True, True))
+        obj_1 = End(True)
+        
+        var_5 = obj_1.drawn()
+        var_4 = obj_1.score()
+        var_1 = obj_1.score()
+        var_2 = obj_1.done()
+        var_0 = obj_1.done()
+        var_3 = obj_1.drawn()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, 0)
+        self.assertEqual(var_5, True)
         
     def test_226(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(False, (-3.8724291038761223, -4.435189206139206), 1, False, True)
             
-            obj_1.add_stone(Stone(True, (4.682472212128447, -5.23748640642518), 4, True, True))
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.8167223654640097, 1.1904415090028415), 10, False, False))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
+            var_0 = obj_0.is_in_house()
+            var_1 = obj_0.__str__()
+            var_2 = obj_0.distance_to_center()
         
     def test_227(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
+        var_2 = obj_2.red_winner()
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.score()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, None)
         
     def test_228(self):
         obj_2 = Game()
         
+        var_2 = obj_2.display_scoreboard()
         obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
+        var_1 = obj_2.red_winner()
         
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_229(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (5.678346892585015, -5.782834849624548), 1, False, False)
+            
+            var_9 = obj_0.move((-1.6275715267295414, -3.7721144263428084), 12, True)
+            var_7 = obj_0.__str__()
+            var_4 = obj_0.is_out_of_play()
+            var_1 = obj_0.is_in_house()
+            var_8 = obj_0.is_passed_hogline()
+            var_5 = obj_0.is_out_of_play()
+            var_0 = obj_0.is_guard()
+            var_3 = obj_0.is_guard()
+            var_2 = obj_0.move((6.716085080637768, -5.823035748846479), 4, False)
+            obj_0.burn()
         
     def test_230(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (1.3367373127770836, 3.037600323025085), 11, False, False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.175792094408848, -3.4918572070297422), 9, True, True))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (6.0123337343649474, 4.101735055133529), 9, False, False))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
+            obj_0.burn()
+            obj_0.burn()
         
     def test_231(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (6.900293800797492, 7.314119861682489), 4, True, False)
+            
+            var_1 = obj_0.is_out_of_bounds()
+            var_0 = obj_0.__str__()
         
     def test_232(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.569947721936883, 6.027148038081975), 11, False, False))
-            obj_1.add_stone(Stone(True, (5.0500578983478395, -2.386612112963359), 3, True, False))
-            var_6 = obj_1.score()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.done()
+        var_1 = obj_1.red_won()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, None)
         
     def test_233(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-5.6724375367325806, -4.074882160122158), 9, True, False)
+            obj_1 = End(True)
             
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((5.6333393261690325, 2.2735574163950165), -2, False)
+            obj_1.add_stone(Stone(False, (-5.185410764404711, 5.86026329354846), 9, True, False))
+            obj_1.add_stone(Stone(True, (1.6604477891090212, -1.0772528036486744), 9, False, False))
+            var_2 = obj_1.red_won()
+            var_3 = obj_1.__str__()
+            var_1 = obj_1.done()
         
     def test_234(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (-2.1958588846345464, 5.009872573488012), 1, True, True)
-            
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-4.303926351800904, -0.41222107082364623), 11, False)
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
+        obj_2 = Game()
+        
+        var_2 = obj_2.red_winner()
+        var_3 = obj_2.score()
+        var_1 = obj_2.red_winner()
+        obj_2.add_end(End(False))
+        
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, (0, 0))
         
     def test_235(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
             obj_1 = End(False)
             
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-6.261017053624988, 4.930321932475449), 2, True, True))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (5.692997437297068, -4.100855353231186), 5, False, False))
+            obj_1.add_stone(Stone(True, (-7.1106019514382695, -2.2485252537369824), 8, True, True))
+            obj_1.add_stone(Stone(False, (2.2751513084294874, -4.550940932747981), 9, False, True))
         
     def test_236(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (1.8462359967888489, 7.308940517828546), 12, False, False)
-            
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_4 = obj_0.move((-0.8411255636100385, -0.8510663553468572), -2, False)
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
+        obj_2 = Game()
+        
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.score()
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
         
     def test_237(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.score()
+        var_1 = obj_2.score()
         obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_3 = obj_2.red_winner()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_3, None)
         
     def test_238(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (-5.613179736467529, 7.176974356659462), 7, True, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-6.432916589246709, -4.550439267125151), 2, True)
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-        
-    def test_239(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-3.763077974697838, 1.998394540381108), 0, True, True)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-2.5414483079896097, -4.936425070129836), 1, False)
-            var_6 = obj_0.is_out_of_bounds()
-        
-    def test_240(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(False, (1.1475718939358899, 2.6507840583022926), -2, True, True))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.6514688711569825, -0.5780753417474642), 10, True, True))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-        
-    def test_241(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (7.1009742124046085, -4.946701250119048), 4, True, False)
-            
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((-1.8796409611979534, 6.890682888103687), 3, True)
-            var_7 = obj_0.is_in_house()
-        
-    def test_242(self):
         with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
             obj_1 = End(True)
             
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (0.07753330224171684, 2.727120020866778), 1, True, True))
+            obj_1.add_stone(Stone(False, (5.712019429274761, 6.180545446904205), 9, True, True))
+            var_0 = obj_1.done()
             var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (-2.982426468499689, 5.103613419665299), 5, True, True))
+            var_4 = obj_1.score()
+            var_1 = obj_1.__str__()
+            var_6 = obj_1.red_won()
+            obj_1.add_stone(Stone(True, (3.408134269059371, 1.5374995105914575), 10, False, True))
         
-    def test_243(self):
+    def test_239(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
+            
+            var_0 = obj_1.score()
+            obj_1.add_stone(Stone(True, (6.416436431255873, 1.9989692967239332), -1, True, False))
+        
+    def test_240(self):
+        obj_2 = Game()
+        
+        obj_2.add_end(End(True))
+        var_0 = obj_2.__str__()
+        var_2 = obj_2.__str__()
+        var_3 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, 'Game with 1 ends')
+        self.assertEqual(var_2, 'Game with 1 ends')
+        self.assertEqual(var_3, None)
+        
+    def test_241(self):
         with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (5.2006035203625895, -4.399564502469849), 2, True, True)
+            obj_0 = Stone(False, (-0.570269004837602, 5.253208170284196), 1, False, True)
             
             obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((2.052149960108798, -4.242442443519693), 8, False)
+            var_2 = obj_0.is_out_of_play()
+            var_4 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.move((0.4387161583667236, -4.935366109275462), 2, True)
+            var_0 = obj_0.is_out_of_play()
+            var_1 = obj_0.is_in_house()
+            var_3 = obj_0.is_guard()
+        
+    def test_242(self):
+        obj_1 = End(True)
+        
+        var_1 = obj_1.__str__()
+        var_0 = obj_1.red_won()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End with Red hammer and 0 stones')
+        
+    def test_243(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
         
     def test_244(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (5.749428517831447, 2.940340161136298), 8, True, False)
+            obj_0 = Stone(False, (7.084746277229916, -0.043307630057041635), 10, True, False)
             
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-4.212943093375406, 3.0281383785105778), 4, True)
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
+            var_0 = obj_0.is_out_of_play()
+            var_1 = obj_0.is_in_house()
         
     def test_245(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-2.886357424854692, 0.04689685787671394), 2, False, False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-5.528769670695549, -0.8429759869252855), 9, True, True))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (6.16008081150002, -7.476352758911634), 8, True, True))
+            var_4 = obj_0.distance_to_center()
+            var_1 = obj_0.is_passed_hogline()
+            var_3 = obj_0.is_out_of_play()
+            var_5 = obj_0.move((6.991098606393214, 5.404699920486369), 6, False)
+            var_6 = obj_0.__str__()
+            var_7 = obj_0.is_out_of_play()
+            var_0 = obj_0.__str__()
+            obj_0.burn()
         
     def test_246(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
+        var_0 = obj_1.red_won()
+        var_1 = obj_1.drawn()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, True)
         
     def test_247(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
         obj_2.add_end(End(False))
         
         
     def test_248(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (7.48911725705937, 4.31825952923905), 10, False, True)
+            
+            obj_0.move_out_of_play()
+            var_0 = obj_0.is_out_of_play()
+            var_1 = obj_0.move((-6.156893658250846, -3.05330338373124), 11, False)
         
     def test_249(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-3.871508530864851, -4.821507254515264), 8, True, False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (5.823081173030907, -1.8345762367814462), -2, False, True)
             
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((6.738313492950642, 2.0002330813095117), -2, False)
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
+            var_0 = obj_0.is_passed_hogline()
+            var_1 = obj_0.distance_to_center()
         
     def test_250(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
         
     def test_251(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (6.692898928664405, -1.208276782831387), 1, True, True)
-            
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((5.330187155689973, -4.596625702329664), -1, True)
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
+        obj_2 = Game()
+        
+        obj_2.add_end(End(True))
+        var_2 = obj_2.__str__()
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_2, 'Game with 1 ends')
         
     def test_252(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (6.119128264138865, -6.485507481213967), 0, True, True)
-            
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((0.6304750473163132, -3.2662668889491417), -2, False)
+        obj_1 = End(True)
+        
+        var_0 = obj_1.overlaps_any_stone(Stone(False, (-0.43853197820213374, -7.287986397588538), 10, True, True))
+        
+        self.assertEqual(var_0, False)
         
     def test_253(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.822848486915436, 4.763899863336228), 10, True, True))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (4.634399818115149, -7.740429812884816), 9, False, False))
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (6.804014672168208, 0.4428099247265447), 2, True, True))
+            obj_1.add_stone(Stone(True, (-3.4237316543808127, 6.7038465055196), 2, False, False))
         
     def test_254(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-5.56988196053679, -4.102847216750829), 10, False, False)
             
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (0.16199966500542118, -3.8654325708089896), 6, False, False))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (4.454820666652065, 2.910015364229027), -2, True, False))
+            var_3 = obj_0.is_out_of_bounds()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.is_passed_hogline()
+            obj_0.move_out_of_play()
+            var_4 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.is_out_of_play()
+            var_8 = obj_0.is_out_of_bounds()
+            var_6 = obj_0.__str__()
+            var_7 = obj_0.distance_to_center()
         
     def test_255(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            obj_1.add_stone(Stone(True, (-3.042686959540397, 6.1521874771779395), -2, True, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.985493667749976, -4.604230832277931), 12, True, True))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (2.5590346514170914, -1.9065427065789997), 8, True, False))
+            var_0 = obj_1.score()
         
     def test_256(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-0.35984973631019557, 5.763070130567513), 3, True, True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (7.418717496283273, 1.6650175516833468), 0, False, False)
             
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
+            var_2 = obj_0.is_guard()
             obj_0.burn()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((5.3059786594826495, 1.4875217205209275), -1, False)
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
+            var_4 = obj_0.distance_to_center()
+            obj_0.burn()
+            var_1 = obj_0.move((-2.5845939282929127, 6.634298205469197), 9, True)
+            var_0 = obj_0.is_out_of_play()
         
     def test_257(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (4.0361993895170265, -1.2887361635219836), 3, False, True)
             
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.918503298194986, 1.638057677061262), 7, True, False))
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (-3.174702695006758, 1.9183595797187198), 4, True, True))
-            var_3 = obj_1.red_won()
+            var_2 = obj_0.is_out_of_bounds()
+            obj_0.burn()
+            var_0 = obj_0.__str__()
+            obj_0.move_out_of_play()
         
     def test_258(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-7.910281837224819, 3.494907994556195), 8, False, False)
-            
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((2.170238431423005, 2.2973444943861043), 1, False)
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
+        obj_2 = Game()
+        
+        var_3 = obj_2.score()
+        var_1 = obj_2.red_winner()
+        obj_2.add_end(End(True))
+        var_2 = obj_2.score()
+        
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, (0, 0))
         
     def test_259(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-5.0142735136937056, -7.4161629964954425), 6, True, False)
+            
+            obj_0.burn()
+            var_1 = obj_0.__str__()
+            var_2 = obj_0.is_in_house()
         
     def test_260(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        
-        
-    def test_261(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        
-        
-    def test_262(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
+            var_0 = obj_1.__str__()
             var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-5.145125151060915, 2.7798517001652314), 2, True, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-4.2223378215676455, -0.4581069425992723), 2, False, False))
-            var_7 = obj_1.__str__()
+            var_3 = obj_1.overlaps_any_stone(Stone(False, (-4.721519776634189, 1.0517857428483417), 8, False, False))
+            obj_1.add_stone(Stone(True, (2.3434527050722735, -3.907566076402997), 7, False, True))
+            var_5 = obj_1.__str__()
+            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.840682699575407, -6.335135660456881), 4, False, False))
         
-    def test_263(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+    def test_261(self):
+        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
             obj_1 = End(True)
             
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
+            var_0 = obj_1.red_won()
+            var_3 = obj_1.done()
+            var_2 = obj_1.red_won()
+            var_4 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (5.643666062210718, 3.1861472290625965), 10, True, True))
             var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (5.490986858562058, -5.159848119776656), -2, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.503512828247501, 1.3478836554692855), 8, False, False))
+        
+    def test_262(self):
+        obj_1 = End(False)
+        
+        var_0 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
+        
+    def test_263(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            var_2 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (2.2676185553195687, 7.086166651340889), 10, False, False))
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (-3.5562845467875572, -6.574580966229602), 12, True, False))
+            var_4 = obj_1.done()
+            var_0 = obj_1.red_won()
         
     def test_264(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
+        var_1 = obj_2.__str__()
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_265(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(False)
-            
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.016641833997943, -6.4896709105563595), 9, False, True))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-2.5659089121377363, 0.8771118001554044), 10, False, True))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        obj_2.add_end(End(True))
+        var_1 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_1, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
         
     def test_266(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-6.774438174485788, -4.134734857346933), -1, True, False)
+            obj_0 = Stone(True, (-7.125568661384497, 2.291634219581322), -1, True, True)
             
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-1.173780921119933, -5.613915864558852), 12, True)
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
             obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
+            var_0 = obj_0.is_out_of_play()
+            var_2 = obj_0.is_passed_hogline()
         
     def test_267(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-5.383184813988239, 3.9509967351576556), 3, False, False)
             
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-0.8955314604033067, -2.839965566120787), 7, False, True))
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-5.4611266187045295, 0.4621189141025983), 12, True, False))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
+            var_0 = obj_0.__str__()
         
     def test_268(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (2.4165864676520723, -0.21027519979375953), 3, True, False))
-            obj_1.add_stone(Stone(True, (5.023541462530778, 7.660160146474233), 5, True, False))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
         
     def test_269(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+            obj_1 = End(False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-6.919349448084866, -7.707351585497012), 6, False, False))
-            obj_1.add_stone(Stone(True, (5.287255222614625, -0.8566876319717345), 12, True, False))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
+            var_2 = obj_1.done()
+            var_0 = obj_1.red_won()
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (-3.717676606834205, 2.131225090136777), 10, True, False))
         
     def test_270(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-0.06931556915712456, -4.828375970266054), 9, False, False)
             
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (-1.3338014912481153, -1.6275362810325795), 1, True, True))
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-2.975265473951069, -0.7572468201104847), 10, True, False))
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
+            var_2 = obj_0.is_in_house()
+            var_0 = obj_0.__str__()
+            var_5 = obj_0.move((7.599007238651385, -0.926933111278915), 3, True)
+            obj_0.burn()
+            var_3 = obj_0.is_passed_hogline()
+            var_1 = obj_0.move((-6.9932699691002895, 0.5454141224636277), 6, True)
         
     def test_271(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (-0.2770131534229403, 6.6276562448731315), 1, True, True)
-            
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_4 = obj_0.move((-7.314961157495734, 1.2577893716624065), 5, True)
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
+        obj_0 = Stone(False, (0.426377511779787, 2.4043161172782206), 5, True, False)
+        
+        var_0 = obj_0.is_passed_hogline()
+        var_7 = obj_0.move((-2.0208104766186743, 0.11260581190220265), 1, True)
+        var_5 = obj_0.distance_to_center()
+        var_1 = obj_0.is_guard()
+        var_3 = obj_0.is_in_house()
+        var_2 = obj_0.is_out_of_play()
+        obj_0.burn()
+        var_6 = obj_0.is_out_of_play()
+        var_8 = obj_0.__str__()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_5, 2.9794483511137138)
+        self.assertEqual(var_6, True)
+        self.assertEqual(var_7, True)
+        self.assertEqual(var_8, 'Yellow stone at (2.50, 5.49), round 5, burned')
         
     def test_272(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (6.821009124828338, -4.080869065902643), 3, False, False)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            var_4 = obj_0.move((6.001825212852378, -7.583247207900548), 7, False)
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
+            var_3 = obj_2.red_winner()
+            var_1 = obj_2.score()
+            obj_2.add_end(End(False))
+            var_4 = obj_2.display_scoreboard()
+            obj_2.add_end(End(True))
         
     def test_273(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (1.1597821172022869, -7.183238821416467), 11, True, False)
-            
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-2.860467008957791, -3.6683051558677366), 10, False)
-            var_5 = obj_0.is_guard()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
         
     def test_274(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
         obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
+        var_2 = obj_2.red_winner()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_2, None)
         
     def test_275(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+            obj_1 = End(True)
             
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (4.592188828194564, 7.431651236402448), 0, True, True))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
             var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-6.77847510612583, 7.271052485436561), 11, False, True))
+            var_1 = obj_1.__str__()
+            var_2 = obj_1.overlaps_any_stone(Stone(False, (-5.289210624520802, 7.822863935854485), 12, False, True))
+            var_0 = obj_1.__str__()
+            var_5 = obj_1.__str__()
+            var_4 = obj_1.overlaps_any_stone(Stone(False, (2.1603039535979978, 2.9308906333454434), 10, False, False))
         
     def test_276(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
+        obj_2.add_end(End(False))
         
         
     def test_277(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (3.7731045815837128, 3.755000462017076), 9, False, False)
             
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.670014760501898, -7.705274451231462), 1, True, True))
-            obj_1.add_stone(Stone(False, (0.668121603269844, -1.4299271298122225), -2, True, True))
-            var_3 = obj_1.red_won()
+            var_8 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.is_out_of_play()
+            obj_0.burn()
+            var_7 = obj_0.is_in_house()
+            var_0 = obj_0.is_passed_hogline()
+            var_9 = obj_0.__str__()
+            var_5 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_6 = obj_0.move((7.166443907059014, -1.2964429585169075), 4, False)
         
     def test_278(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_0 = obj_1.drawn()
         
+        self.assertEqual(var_0, True)
         
     def test_279(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-1.6967636191391762, 4.19953870848372), 1, True, False)
-            
-            var_4 = obj_0.move((-0.733118754148796, 2.254666248125071), 9, False)
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
+        obj_2 = Game()
+        
+        obj_2.add_end(End(True))
+        obj_2.add_end(End(True))
+        
         
     def test_280(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (7.598006969386654, -6.729837380018088), 8, True, False)
-            
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-2.9860939394511714, 1.3711641207262577), 6, True)
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-        
-    def test_281(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-5.792658537758577, -2.0271418875690355), 4, False, False))
-            obj_1.add_stone(Stone(True, (0.927827468030852, 6.231614404258249), -2, False, False))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
+            var_1 = obj_1.drawn()
+            var_0 = obj_1.done()
+            var_3 = obj_1.drawn()
+            var_2 = obj_1.overlaps_any_stone(Stone(False, (-3.9761257362231763, -1.0367095718749706), 9, True, False))
             var_4 = obj_1.done()
+            var_5 = obj_1.overlaps_any_stone(Stone(False, (-5.720985760392548, -5.649604969728735), -1, False, True))
+        
+    def test_281(self):
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
+            
+            obj_2.add_end(End(True))
+            obj_2.add_end(End(False))
+            var_0 = obj_2.display_scoreboard()
         
     def test_282(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (0.11248039611246163, 0.3785091953343471), -1, False, False)
+        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
+            obj_1 = End(True)
             
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((1.6635835376991768, -5.680774926962384), 4, False)
+            obj_1.add_stone(Stone(False, (-3.301459360944996, -6.537183292381201), 2, True, True))
+            var_2 = obj_1.__str__()
+            var_3 = obj_1.__str__()
+            var_0 = obj_1.score()
         
     def test_283(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-5.6437344826200455, 7.654346729637034), 4, False, True)
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(False, (2.1761849154645745, -0.2718602159714365), 4, False, False)
             
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
+            var_0 = obj_0.is_out_of_play()
+            var_4 = obj_0.is_passed_hogline()
             var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-5.1850871621585295, 1.5383846727085295), 5, False)
+            obj_0.burn()
+            var_3 = obj_0.distance_to_center()
+            var_1 = obj_0.is_out_of_play()
+            var_2 = obj_0.is_guard()
         
     def test_284(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (-2.7648498346811934, -6.0446014246018525), 7, False, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (3.4240349803181456, -2.1061155113942878), 1, True, False)
             
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((0.7513675495433514, 3.6783866650310593), 5, True)
+            var_0 = obj_0.distance_to_center()
         
     def test_285(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-5.141551878817678, -2.782548839980766), -1, False, False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-2.148717313952126, -1.3053340773019677), 2, True, False)
             
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
+            var_6 = obj_0.move((-0.12021255282932408, 3.9775191365877056), 9, False)
+            var_4 = obj_0.move((-1.7026989382528424, 7.5749257603592), 10, True)
             obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((3.827215516320532, -6.673199972529053), -1, False)
+            var_3 = obj_0.is_out_of_bounds()
+            obj_0.burn()
+            var_7 = obj_0.distance_to_center()
+            var_2 = obj_0.is_guard()
+            var_1 = obj_0.is_in_house()
         
     def test_286(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (4.251005091977429, 0.6402292463530124), 3, False, True))
-            obj_1.add_stone(Stone(False, (-6.404364769038754, 5.7180396599403185), 6, False, False))
-            var_5 = obj_1.drawn()
+            obj_1.add_stone(Stone(True, (2.023369689800182, -6.922616574898097), 1, True, False))
+            var_0 = obj_1.red_won()
             var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (-4.69859692737394, 0.4374567274159382), 4, False, True))
+            var_2 = obj_1.red_won()
         
     def test_287(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
+        obj_2.add_end(End(True))
         
         
     def test_288(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (0.2513257963397759, -3.6054751527070117), 6, False, True))
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.912726267175726, -3.2742240894556343), 7, False, False))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
+        obj_1 = End(False)
+        
+        var_5 = obj_1.score()
+        var_2 = obj_1.red_won()
+        var_1 = obj_1.red_won()
+        var_4 = obj_1.__str__()
+        var_0 = obj_1.done()
+        var_3 = obj_1.red_won()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_5, 0)
         
     def test_289(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (1.3997505398813281, 0.3093206214554076), -2, False, False))
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-1.5237132000369975, 1.9297416588873073), -1, False, False))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-        
-    def test_290(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-3.889126423330426, 0.7710773178310095), 4, False, False)
-            
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((3.846408150295236, -3.1218695462906947), 7, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-        
-    def test_291(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(True, (-1.9793195085377082, -1.1262889076622233), 8, False, True))
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (5.915098335357399, 5.104243663357577), 4, False, False))
-        
-    def test_292(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (-4.616128007485633, 3.8458578985356198), 10, True, True)
-            
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-4.760388967392242, -2.9301360790590945), 6, True)
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-        
-    def test_293(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_1 = obj_2.display_scoreboard()
+        obj_2.add_end(End(True))
         
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
-    def test_294(self):
+    def test_290(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
+            
+            var_3 = obj_1.done()
+            obj_1.add_stone(Stone(True, (1.6933206505636313, -1.6795791571124337), 11, True, True))
+            obj_1.add_stone(Stone(False, (-7.775038809727468, 0.8083874391680528), 6, True, True))
+            var_4 = obj_1.__str__()
+            var_0 = obj_1.red_won()
+            var_1 = obj_1.done()
+            var_6 = obj_1.drawn()
+        
+    def test_291(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
+            var_0 = obj_1.__str__()
+            obj_1.add_stone(Stone(False, (3.703179405186619, -0.26676061672319307), 2, False, False))
+            var_2 = obj_1.done()
+        
+    def test_292(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            var_2 = obj_1.drawn()
+            obj_1.add_stone(Stone(True, (-3.143757477282101, -0.08518409337429489), 4, False, False))
             var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.642613426775121, 6.5156180036377), 9, True, False))
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (-2.0451731001632893, -7.019943143065696), 2, False, True))
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (-1.7840361407170882, 4.13395834568294), 10, False, False))
+            obj_1.add_stone(Stone(True, (1.4495886613575006, 4.1849793156661175), 9, True, True))
+        
+    def test_293(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (0.10226824169487259, -7.629815296682272), 9, True, False)
+            
+            var_5 = obj_0.is_out_of_play()
+            obj_0.burn()
+            var_0 = obj_0.move((1.2855529511921144, 4.567015559370494), -2, True)
+            var_4 = obj_0.is_in_house()
+            var_3 = obj_0.is_in_house()
+            var_2 = obj_0.__str__()
+            obj_0.burn()
+            obj_0.move_out_of_play()
+        
+    def test_294(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-6.312658757668583, -7.728301382423174), -1, True, True)
+            
+            var_3 = obj_0.distance_to_center()
+            var_2 = obj_0.distance_to_center()
+            var_1 = obj_0.is_passed_hogline()
+            var_0 = obj_0.is_guard()
         
     def test_295(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-6.78489679449115, 7.942730307304526), -2, True, False)
+            obj_1 = End(False)
             
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((7.211719545628725, -1.2568516215326948), 4, False)
+            var_1 = obj_1.__str__()
+            var_2 = obj_1.score()
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (5.321748697885585, 4.657808572679251), -1, True, False))
+            var_5 = obj_1.__str__()
+            var_3 = obj_1.done()
+            var_6 = obj_1.__str__()
+            var_4 = obj_1.score()
         
     def test_296(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        
-        
-    def test_297(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-3.175306025305316, 6.6041332271719195), 3, False, True)
-            
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((2.693415695162402, 0.06924768459454711), 0, True)
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-        
-    def test_298(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (4.382037943402745, -1.3888163834735199), 8, True, True))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (-1.5170253490479535, 0.017644703546181972), -1, True, False))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
+            var_0 = obj_1.red_won()
+            var_3 = obj_1.done()
+            var_1 = obj_1.score()
+            var_5 = obj_1.overlaps_any_stone(Stone(False, (-4.825171632642274, 4.959821718411279), 9, True, False))
+            obj_1.add_stone(Stone(False, (3.64335302586632, 3.5514722336399185), 5, False, True))
+            var_2 = obj_1.red_won()
+            var_6 = obj_1.__str__()
+        
+    def test_297(self):
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(False, (-1.9306775232084945, -4.478439724903927), 1, True, True)
+            
+            var_3 = obj_0.distance_to_center()
+            var_4 = obj_0.is_in_house()
+            var_0 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.is_out_of_bounds()
+            obj_0.move_out_of_play()
+            obj_0.burn()
+        
+    def test_298(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (0.07976681868783864, -0.600370806320198), 3, False, True)
+            
+            var_3 = obj_0.is_in_house()
+            obj_0.burn()
+            var_2 = obj_0.is_out_of_play()
+            var_5 = obj_0.is_passed_hogline()
+            var_6 = obj_0.is_guard()
+            var_1 = obj_0.distance_to_center()
+            obj_0.burn()
         
     def test_299(self):
         with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (3.8221448175195416, 2.4802004345497597), 2, False, True)
+            obj_0 = Stone(True, (-5.922208570584296, -0.8973811531103699), 2, False, True)
             
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
+            var_7 = obj_0.is_passed_hogline()
+            var_4 = obj_0.__str__()
             obj_0.move_out_of_play()
-            var_4 = obj_0.move((-6.410814185336349, -6.581483749200357), 3, True)
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
+            var_6 = obj_0.is_passed_hogline()
+            var_1 = obj_0.move((-6.948829877194838, -1.1508489720656705), 6, False)
             obj_0.burn()
+            var_5 = obj_0.is_out_of_bounds()
+            var_0 = obj_0.is_passed_hogline()
         
     def test_300(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (3.333473598060424, -1.020483487979778), 9, True, False)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((1.8661420741161976, 0.7607476872711985), 6, True)
-            obj_0.move_out_of_play()
+        obj_1 = End(False)
+        
+        var_1 = obj_1.red_won()
+        var_0 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, None)
         
     def test_301(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (1.559639042990204, 5.969219446830483), 0, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.2659499864891472, -4.237889365016709), -2, True, False))
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        var_1 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, None)
         
     def test_302(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (6.538887072587153, 3.332587415086744), 12, False, True)
+            obj_0 = Stone(False, (-2.7747399286703676, -0.7992468158937811), -1, False, True)
             
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-4.911691597378278, -7.622076246199736), 1, False)
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
+            var_0 = obj_0.move((7.186295397839574, 7.814186481851202), 10, True)
+            var_2 = obj_0.move((-7.651162753609583, -1.213904586305901), 11, True)
+            var_1 = obj_0.distance_to_center()
+            var_6 = obj_0.move((4.317980933123749, 1.7610589858239614), 12, False)
+            var_5 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.move((-2.5188618149474973, -5.6449035167826125), 12, False)
+            var_4 = obj_0.is_out_of_bounds()
         
     def test_303(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (5.6190691201049905, -0.5568550358039257), 0, False, True)
+            
+            var_2 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.__str__()
+            var_5 = obj_0.move((5.704416739937191, 4.327812571522703), -1, False)
+            obj_0.burn()
+            var_1 = obj_0.is_passed_hogline()
+            var_0 = obj_0.is_out_of_bounds()
+            var_7 = obj_0.__str__()
+            var_6 = obj_0.is_in_house()
         
     def test_304(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-5.385472945885617, 1.1088164348924128), 1, True, True))
-            obj_1.add_stone(Stone(True, (-2.5206547759738935, 2.3495169764357815), 6, False, True))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
+            obj_2.add_end(End(True))
+            obj_2.add_end(End(False))
         
     def test_305(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (1.0337624881081826, -6.021969144748162), 7, True, True)
-            
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((1.4079798710795899, -1.113950662133096), 1, True)
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.done()
+        
+        self.assertEqual(var_0, False)
         
     def test_306(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-3.625312109407904, 5.570489918457545), 9, True, False)
             
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (6.474000878466972, -0.3918100512525946), -2, False, False))
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (4.672507309269564, -5.153415057516421), 0, False, False))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
+            var_3 = obj_0.is_in_house()
+            var_0 = obj_0.is_out_of_play()
+            var_2 = obj_0.is_out_of_play()
+            var_1 = obj_0.__str__()
         
     def test_307(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (2.6921094481778116, -3.81226820597481), 10, False, False)
+            
+            var_3 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.__str__()
+            var_2 = obj_0.__str__()
+            var_0 = obj_0.__str__()
+            obj_0.burn()
         
     def test_308(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-1.6603573733528876, -7.3304564890279025), 10, False, True)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((0.6531810966817062, -7.075373858843497), 8, True)
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-        
-    def test_309(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (2.0581922023984625, -3.0297428542705642), 8, True, True))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-6.131537548968939, -5.1430973445613635), 3, False, True))
-            var_4 = obj_1.done()
-        
-    def test_310(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
         obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        obj_2.add_end(End(False))
+        var_0 = obj_2.score()
+        var_4 = obj_2.score()
+        var_3 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_3, 'End |    1 |    2 | Total\n----|------|------|------\nRed |    0 |    0 |     0\nYel | h  0 | h  0 |     0\n')
+        self.assertEqual(var_4, (0, 0))
         
-    def test_311(self):
+    def test_309(self):
+        obj_2 = Game()
+        
+        var_2 = obj_2.__str__()
+        obj_2.add_end(End(False))
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_2, 'Game with 0 ends')
+        
+    def test_310(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            obj_1.add_stone(Stone(True, (6.083997946804923, 2.3841487845047986), -2, False, True))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.4596563664380469, -5.3236617841144), 6, False, True))
+            obj_1.add_stone(Stone(False, (-6.290905246102078, 5.420348600772543), -1, False, True))
+            var_2 = obj_1.drawn()
+            var_0 = obj_1.done()
+            obj_1.add_stone(Stone(True, (6.734443604585239, -0.6662091482464252), 10, False, True))
+            var_4 = obj_1.overlaps_any_stone(Stone(False, (-5.232855191584843, 1.8711645297329635), 7, True, True))
+            obj_1.add_stone(Stone(True, (4.997425876850844, 6.8324083293129885), 1, False, False))
+        
+    def test_311(self):
+        obj_1 = End(True)
+        
+        var_4 = obj_1.red_won()
+        var_1 = obj_1.__str__()
+        var_0 = obj_1.done()
+        var_3 = obj_1.__str__()
+        var_2 = obj_1.__str__()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_2, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_3, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_4, None)
         
     def test_312(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-3.6124931552655895, 7.595676748349247), 1, True, True)
             
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (5.190520866457495, -6.7497345692094175), 6, True, False))
-            obj_1.add_stone(Stone(False, (2.594171285132102, -6.177110998695161), 7, True, True))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
+            obj_0.burn()
+            var_1 = obj_0.is_guard()
         
     def test_313(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(False)
             
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-0.6550342217942795, 0.018879526955775106), 10, False, False))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (-4.443839167764574, 0.18322344334285923), 11, True, False))
-            var_6 = obj_1.score()
+            var_4 = obj_1.__str__()
+            var_1 = obj_1.drawn()
+            var_0 = obj_1.red_won()
+            var_3 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (2.354456185513378, -0.7476437498444639), 9, False, True))
         
     def test_314(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (0.9634460016749475, 2.9443110078096204), 5, False, False))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (4.446381851359263, 1.8638668810410781), 7, False, False))
+        obj_2 = Game()
+        
+        obj_2.add_end(End(False))
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
         
     def test_315(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-2.995098784606098, 7.0686508760466715), 11, True, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_4 = obj_0.move((-7.067972158532264, 2.615344352048556), 4, True)
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
+        obj_2 = Game()
+        
+        var_1 = obj_2.__str__()
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_316(self):
         obj_2 = Game()
         
         var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, (0, 0))
         
     def test_317(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_2 = obj_1.__str__()
+        var_0 = obj_1.overlaps_any_stone(Stone(False, (-7.000933479695675, 1.0031650067184508), 7, False, True))
+        var_1 = obj_1.score()
         
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, 'End with Red hammer and 0 stones')
         
     def test_318(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.290099517667542, 3.4970959783177005), 4, True, True))
-            obj_1.add_stone(Stone(True, (7.811481595670083, 0.3010957785887669), -1, False, True))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
+        obj_1 = End(False)
+        
+        var_1 = obj_1.__str__()
+        var_0 = obj_1.__str__()
+        
+        self.assertEqual(var_0, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_1, 'End with Yellow hammer and 0 stones')
         
     def test_319(self):
-        obj_2 = Game()
+        obj_0 = Stone(False, (-7.528398823924547, 4.708820401076528), 4, True, True)
         
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
+        var_0 = obj_0.is_passed_hogline()
+        var_2 = obj_0.is_out_of_bounds()
+        var_1 = obj_0.is_out_of_bounds()
         
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, False)
         
     def test_320(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-1.392466416270782, 6.032662456471712), 7, True, False)
-            
-            var_4 = obj_0.move((0.11107941488154083, -5.639531893372464), -2, True)
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
+        obj_2 = Game()
+        
+        var_2 = obj_2.red_winner()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
+        var_3 = obj_2.score()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, (0, 0))
         
     def test_321(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            var_5 = obj_1.done()
+            var_4 = obj_1.red_won()
+            var_3 = obj_1.red_won()
+            var_2 = obj_1.__str__()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (2.3770863661263117, -3.573820091539382), 11, True, False))
+            var_0 = obj_1.drawn()
         
     def test_322(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (2.991486956691036, -5.437759792828633), 2, False, True))
-            obj_1.add_stone(Stone(True, (-5.789824317177105, -7.645853001187083), 3, False, True))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-        
-    def test_323(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (6.666056530594936, 0.27369378874377404), 8, True, False)
-            
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((2.353158549295115, 1.4033178193734983), -2, False)
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-        
-    def test_324(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(True, (1.0544795267589269, -3.959666644310275), 3, False, False))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-2.5706940516340033, -0.8679087949217426), 11, False, True))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-        
-    def test_325(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.red_winner()
+        obj_2.add_end(End(False))
         
+        self.assertEqual(var_0, None)
+        
+    def test_323(self):
+        obj_1 = End(True)
+        
+        var_0 = obj_1.__str__()
+        
+        self.assertEqual(var_0, 'End with Red hammer and 0 stones')
+        
+    def test_324(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            obj_1.add_stone(Stone(True, (-5.750758050847956, 1.3796215005560821), -2, False, False))
+            obj_1.add_stone(Stone(True, (-6.129650088959464, 2.95279393175948), 4, False, False))
+            var_2 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (6.180232374378173, -7.052814158043395), 1, False, True))
+        
+    def test_325(self):
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(False, (6.309032831594996, -3.2406795134515924), 5, True, True)
+            
+            var_0 = obj_0.is_guard()
+            var_1 = obj_0.is_out_of_play()
+            var_2 = obj_0.distance_to_center()
         
     def test_326(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
+        var_1 = obj_2.display_scoreboard()
+        var_4 = obj_2.score()
+        var_0 = obj_2.__str__()
+        var_2 = obj_2.red_winner()
+        var_3 = obj_2.score()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, (0, 0))
         
     def test_327(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (7.998208857215181, -0.2047029058153207), 12, True, True)
             
-            obj_1.add_stone(Stone(False, (5.2292245159354, -0.15558894624940756), 4, True, True))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.8651960051380048, -7.742066238792113), 0, False, True))
+            var_1 = obj_0.distance_to_center()
+            var_2 = obj_0.distance_to_center()
+            var_0 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.distance_to_center()
+            var_3 = obj_0.is_in_house()
+            var_7 = obj_0.distance_to_center()
+            var_6 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.is_out_of_play()
         
     def test_328(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (6.321429075732757, -4.048475931797899), -2, True, False)
-            
-            var_4 = obj_0.move((-6.196660530784943, -7.931756871052338), 1, True)
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.score()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, (0, 0))
         
     def test_329(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-4.023320485704934, -4.50755545681562), 0, True, True)
-            
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((2.671100919197409, 1.2280165839791568), 9, True)
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
+        obj_0 = Stone(True, (1.2678451948781362, -1.3092694992403668), 5, True, True)
+        
+        var_0 = obj_0.is_in_house()
+        
+        self.assertEqual(var_0, False)
         
     def test_330(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-2.929218214658423, -2.1057832878141056), 8, True, False))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (0.5744786399086639, 7.249442957679012), 3, True, True))
-            var_6 = obj_1.score()
+        obj_0 = Stone(False, (-2.730998892149554, -7.467816663898626), 7, False, True)
+        
+        var_0 = obj_0.is_passed_hogline()
+        
+        self.assertEqual(var_0, False)
         
     def test_331(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (7.914735367237302, 5.0135194151130555), 1, False, True)
+            
+            var_3 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_6 = obj_0.is_out_of_play()
+            obj_0.burn()
+            var_2 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.is_out_of_play()
+            obj_0.burn()
+            var_1 = obj_0.is_in_house()
+        
+    def test_332(self):
+        obj_0 = Stone(True, (-7.919129602546391, -6.972443197677297), 9, True, True)
+        
+        var_0 = obj_0.is_out_of_bounds()
+        
+        self.assertEqual(var_0, False)
+        
+    def test_333(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-7.963569259142224, -3.582342139389292), 6, False, False)
+            
+            var_5 = obj_0.is_passed_hogline()
+            var_6 = obj_0.distance_to_center()
+            obj_0.burn()
+            var_1 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            var_4 = obj_0.move((4.797690177052182, 2.096378112878714), 11, True)
+            var_3 = obj_0.is_out_of_bounds()
+        
+    def test_334(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (-1.3317887906351302, -7.455372831165047), 6, True, False))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
             var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.963382157359543, -1.7610356402941623), -2, True, True))
-        
-    def test_332(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        
-        
-    def test_333(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        
-        
-    def test_334(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-5.407237563619667, -3.628120878863962), 11, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-5.3380894326016435, 1.5706453250141603), 4, True, True))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
+            var_1 = obj_1.drawn()
+            var_5 = obj_1.done()
+            var_6 = obj_1.overlaps_any_stone(Stone(True, (-1.5003783451722263, -0.027874525105673342), 6, False, False))
+            var_2 = obj_1.drawn()
+            var_3 = obj_1.overlaps_any_stone(Stone(True, (-5.550935135374633, 1.7497512804361879), 3, True, False))
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (3.246006920999694, 1.1000684341966238), 12, True, False))
         
     def test_335(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-2.5877003334648556, 5.504188410008313), -2, False, True)
-            
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((3.4147402725670766, -0.030119702271724336), 2, True)
-            var_5 = obj_0.is_guard()
+        obj_1 = End(True)
+        
+        var_1 = obj_1.__str__()
+        var_2 = obj_1.score()
+        var_0 = obj_1.__str__()
+        
+        self.assertEqual(var_0, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_1, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_2, 0)
         
     def test_336(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (6.447141378776662, 0.8646439492869558), 10, True, False)
+            
+            var_0 = obj_0.distance_to_center()
+            var_1 = obj_0.is_guard()
         
     def test_337(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-1.2991407436647595, -0.010547280944731341), 5, True, False)
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(True)
             
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((3.163624375253228, 7.993053327288363), 0, True)
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
+            obj_1.add_stone(Stone(True, (0.7294682573715292, -2.021773648652065), 2, True, True))
+            var_2 = obj_1.__str__()
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (0.027708217065848473, 7.1136633018797255), 3, True, False))
         
     def test_338(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+            obj_0 = Stone(False, (7.152009191620374, 0.2377697817922506), 12, True, False)
             
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (-7.484005006049845, 6.1947367567256215), -2, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.1454386045981177, 2.680441121670407), 5, True, True))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
+            obj_0.burn()
+            var_3 = obj_0.move((-1.154185477433522, -3.5344327279973644), 6, True)
+            obj_0.burn()
+            var_1 = obj_0.is_guard()
         
     def test_339(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-7.064531078248285, -1.2827297386447132), 8, True, False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (7.4943424672997985, 2.1186484089029296), 11, False, True)
             
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((7.043242357769035, 7.122050726800138), 4, False)
-            var_6 = obj_0.is_out_of_bounds()
             var_1 = obj_0.is_out_of_play()
             obj_0.burn()
-            var_7 = obj_0.is_in_house()
         
     def test_340(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (6.880408998451085, 6.0572174745468335), -2, False, True)
+            obj_0 = Stone(True, (0.2678952363833549, 4.307749888019959), -2, True, True)
             
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-6.93252498932719, 7.64231771852663), 0, False)
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
+            var_2 = obj_0.is_guard()
+            var_3 = obj_0.is_guard()
+            var_1 = obj_0.is_in_house()
+            var_4 = obj_0.is_guard()
+            var_0 = obj_0.__str__()
         
     def test_341(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
+        var_2 = obj_2.display_scoreboard()
+        obj_2.add_end(End(True))
+        var_1 = obj_2.display_scoreboard()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
+        self.assertEqual(var_1, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_342(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (0.6597772664217558, -3.7112384673872505), -1, True, True)
+            obj_1 = End(True)
             
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((4.072562071137213, 5.259279357599189), 11, True)
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
+            var_5 = obj_1.red_won()
+            var_6 = obj_1.overlaps_any_stone(Stone(False, (6.3042495508834016, -7.369528572244974), -1, True, True))
+            var_1 = obj_1.score()
+            var_0 = obj_1.red_won()
+            var_2 = obj_1.overlaps_any_stone(Stone(False, (-0.7118624073436415, 0.9392605709037838), 12, True, False))
+            var_4 = obj_1.red_won()
+            var_3 = obj_1.red_won()
         
     def test_343(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (2.848531482963848, -5.015860639790786), 12, False, True)
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(False)
             
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((2.9103607352496415, 0.12764329685388098), 3, True)
+            var_1 = obj_1.red_won()
+            var_4 = obj_1.score()
+            var_0 = obj_1.__str__()
+            var_3 = obj_1.done()
+            obj_1.add_stone(Stone(False, (4.885121007178258, -3.7116801198774407), 8, True, True))
         
     def test_344(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-7.079318300526355, -6.00634791567202), 5, False, True)
             
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-2.3105769323887664, -1.925513101749699), 0, True, True))
-            obj_1.add_stone(Stone(True, (5.256868550917172, 6.134612040939221), 10, True, False))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
+            var_6 = obj_0.is_passed_hogline()
+            obj_0.move_out_of_play()
+            var_0 = obj_0.move((2.26237192690221, 2.2180700957032755), 2, True)
+            obj_0.move_out_of_play()
+            var_5 = obj_0.move((7.37402518126931, 0.19563353360221036), 1, True)
+            var_1 = obj_0.is_passed_hogline()
+            var_2 = obj_0.is_guard()
+            var_7 = obj_0.is_out_of_bounds()
         
     def test_345(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-2.7293871186946745, -3.043567742807996), 12, False, True)
-            
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-4.050500636509062, 3.2839733105391478), 10, False)
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
+        obj_1 = End(False)
+        
+        var_5 = obj_1.done()
+        var_2 = obj_1.red_won()
+        var_0 = obj_1.red_won()
+        var_1 = obj_1.__str__()
+        var_3 = obj_1.score()
+        var_6 = obj_1.drawn()
+        var_4 = obj_1.__str__()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, 0)
+        self.assertEqual(var_4, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_5, False)
+        self.assertEqual(var_6, True)
         
     def test_346(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-3.12163634987375, 7.644672374941075), 9, False, True))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (1.8439539715369602, -7.247657913181019), 9, True, False))
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_347(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
         obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
         
         
     def test_348(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
+        var_2 = obj_1.done()
+        var_0 = obj_1.drawn()
+        var_1 = obj_1.drawn()
         
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, False)
         
     def test_349(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-0.38791800170649005, 0.7972038426218901), 12, False, False)
+            
+            var_0 = obj_0.move((-5.506953175885537, 5.2074454005962885), 3, True)
         
     def test_350(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (7.305264440192934, 7.919278307601859), 1, False, False)
+            obj_0 = Stone(False, (4.086766684442132, 2.4853839890510354), 6, True, False)
             
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.distance_to_center()
             obj_0.burn()
-            var_4 = obj_0.move((-4.305540251342013, -3.985302654689148), 1, True)
-            var_8 = obj_0.is_passed_hogline()
+            var_3 = obj_0.distance_to_center()
+            var_0 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            var_5 = obj_0.distance_to_center()
         
     def test_351(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (1.3820410228676323, -5.984566528857469), 3, False, False))
-            obj_1.add_stone(Stone(False, (0.22296979514843862, 5.749005853379742), 2, True, True))
+        obj_2 = Game()
+        
+        obj_2.add_end(End(False))
+        
         
     def test_352(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (3.4534951023919334, -0.05933099212895776), 0, True, False)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-7.502140753679376, -3.190408036020443), 11, False)
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_353(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-5.908024516018875, 3.039353839887376), 6, True, True)
             
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (4.228738680502213, -3.836768637168099), 11, False, False))
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (2.360127751184283, -3.4740678324764644), 11, True, False))
-            var_6 = obj_1.score()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.move((0.02654323135784864, 4.072281250485117), 3, True)
+            var_2 = obj_0.distance_to_center()
         
     def test_354(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (-2.136945784528084, -0.1532654287447759), 3, False, False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-7.186240516973019, 6.372648861825505), 1, True, False)
             
+            var_3 = obj_0.is_in_house()
+            var_1 = obj_0.is_in_house()
             obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-5.222586112257115, -1.7754121859011054), 8, False)
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
+            var_4 = obj_0.distance_to_center()
+            var_2 = obj_0.is_in_house()
         
     def test_355(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (4.743465310277021, 6.7524599066326925), 7, True, True))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (2.1635770105096643, 3.1169391566324194), 3, False, False))
-            var_6 = obj_1.score()
+        obj_2 = Game()
+        
+        var_2 = obj_2.red_winner()
+        var_0 = obj_2.red_winner()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_2, None)
         
     def test_356(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-0.5378997554203266, 7.40983027392749), 9, False, False)
             
-            obj_1.add_stone(Stone(False, (1.4930891569178026, -5.389145603428595), 8, True, True))
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-3.9871533405612585, -3.934657467394187), 6, True, True))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
+            var_3 = obj_0.is_out_of_play()
+            var_2 = obj_0.move((5.456589440657927, -0.33942093192647427), 4, True)
+            obj_0.move_out_of_play()
+            obj_0.move_out_of_play()
         
     def test_357(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-3.099255930322025, 2.5687481776997103), -2, False, False)
+            obj_1 = End(False)
             
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-4.944733093561645, -6.153217354555858), 9, False)
+            var_2 = obj_1.done()
+            var_0 = obj_1.red_won()
+            var_3 = obj_1.drawn()
+            var_1 = obj_1.score()
+            var_5 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (-5.133632628049515, 2.5606325040154037), -1, False, False))
+            obj_1.add_stone(Stone(False, (0.7666697156167555, 4.910554961201507), 3, True, False))
         
     def test_358(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-6.785605237939553, -0.4198375711524811), 0, True, False)
-            
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((3.3871324391426043, 4.553129947445349), 0, True)
+        obj_2 = Game()
+        
+        obj_2.add_end(End(True))
+        
         
     def test_359(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
+        var_2 = obj_2.display_scoreboard()
+        var_4 = obj_2.display_scoreboard()
+        var_0 = obj_2.display_scoreboard()
+        var_3 = obj_2.red_winner()
         obj_2.add_end(End(False))
-        var_2 = obj_2.score()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_360(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-3.361907150196844, 1.3100436781660019), 2, False, True)
-            
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((-2.66547093178934, 5.990632547878246), 11, False)
-            var_10 = obj_0.__str__()
+        obj_1 = End(False)
+        
+        var_4 = obj_1.red_won()
+        var_1 = obj_1.score()
+        var_0 = obj_1.drawn()
+        var_3 = obj_1.score()
+        var_2 = obj_1.drawn()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, 0)
+        self.assertEqual(var_4, None)
         
     def test_361(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_2 = obj_2.red_winner()
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.score()
         var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_362(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
+        var_4 = obj_2.__str__()
+        var_3 = obj_2.score()
+        var_2 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, 'Game with 0 ends')
         
     def test_363(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (6.691494423705711, 6.391790033858591), 10, False, False)
+            
+            var_5 = obj_0.is_guard()
+            var_6 = obj_0.distance_to_center()
+            obj_0.burn()
+            var_1 = obj_0.is_guard()
+            var_7 = obj_0.move((-7.963295623761857, 0.7151547368537567), 7, True)
+            var_0 = obj_0.move((5.721641828413581, -4.3299506164478405), 4, False)
+            var_8 = obj_0.is_passed_hogline()
+            var_2 = obj_0.distance_to_center()
+            var_4 = obj_0.distance_to_center()
+            var_3 = obj_0.distance_to_center()
         
     def test_364(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            obj_1.add_stone(Stone(False, (7.93677732395394, 5.460516829408531), 5, False, True))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-6.378328088356273, -4.730860086057653), 0, False, True))
-            var_3 = obj_1.red_won()
+            var_4 = obj_2.display_scoreboard()
+            var_1 = obj_2.score()
+            obj_2.add_end(End(True))
+            var_2 = obj_2.red_winner()
+            obj_2.add_end(End(False))
         
     def test_365(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (-3.5948646443739385, 3.2718768575479675), 4, False, True)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((1.4132111390948676, -4.945070355570859), 4, False)
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
+            obj_2.add_end(End(False))
+            var_2 = obj_2.display_scoreboard()
+            obj_2.add_end(End(True))
+            var_3 = obj_2.score()
         
     def test_366(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (5.846148059953917, 6.5827029562467825), 2, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
             
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-2.861151902268981, -0.17958107192940176), 1, True)
-            var_9 = obj_0.distance_to_center()
+            var_3 = obj_1.score()
+            obj_1.add_stone(Stone(True, (-2.692867793802506, 6.773631295083053), 3, False, False))
+            var_2 = obj_1.__str__()
+            obj_1.add_stone(Stone(False, (3.598842904683101, -4.605066138705222), 5, True, True))
+            var_4 = obj_1.__str__()
+            var_6 = obj_1.red_won()
+            var_5 = obj_1.done()
         
     def test_367(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-5.36007241070153, -2.7159658153110513), 6, False, False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
             
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((-1.628353566766224, 7.977185198376187), 8, False)
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
+            obj_1.add_stone(Stone(False, (3.605271904030202, -6.893554320906977), -1, True, True))
         
     def test_368(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
         
     def test_369(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+            obj_0 = Stone(False, (-2.7163467633580733, 5.727237571626274), 12, False, False)
             
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (1.5451458294328173, 0.47361965189832667), 12, True, False))
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (5.4047256368952805, -7.543159516607966), -1, False, True))
+            var_3 = obj_0.is_passed_hogline()
+            var_2 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            var_0 = obj_0.move((3.2198219876218506, 7.203644610993068), 3, False)
         
     def test_370(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+            obj_0 = Stone(True, (3.341765503681316, 4.630202655290066), -2, False, False)
             
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (7.863604708218864, 6.434306173404851), 12, False, True))
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (1.2381136452290242, 6.396787715161098), 3, True, False))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
+            var_0 = obj_0.is_guard()
+            var_1 = obj_0.distance_to_center()
+            var_3 = obj_0.__str__()
+            var_2 = obj_0.is_guard()
         
     def test_371(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-2.6371627214221967, -1.294519285470944), 6, False, False))
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (0.03716053522910556, -4.390116275733057), 0, True, False))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.red_won()
+        
+        self.assertEqual(var_0, None)
         
     def test_372(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_1 = obj_2.__str__()
+        var_2 = obj_2.__str__()
+        obj_2.add_end(End(False))
         
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, 'Game with 0 ends')
         
     def test_373(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
+            
+            var_2 = obj_1.overlaps_any_stone(Stone(False, (-5.215380962803643, -1.113167297518876), 0, True, False))
+            var_1 = obj_1.score()
+            var_0 = obj_1.score()
         
     def test_374(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
         var_2 = obj_2.score()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, (0, 0))
         
     def test_375(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
+        var_3 = obj_2.red_winner()
+        var_2 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
+        obj_2.add_end(End(False))
+        var_4 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
         
     def test_376(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (1.490668616082953, 4.654072111333852), 7, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (7.420544168170798, -1.641494457408232), 9, False, False)
             
+            var_2 = obj_0.is_out_of_play()
+            var_4 = obj_0.is_in_house()
+            var_5 = obj_0.is_in_house()
+            var_0 = obj_0.is_out_of_bounds()
+            var_7 = obj_0.move((-1.44990695792084, -3.4258728766650357), 12, False)
             obj_0.burn()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-1.9666885672084646, -7.513544027216524), 11, True)
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
+            var_6 = obj_0.is_passed_hogline()
+            var_1 = obj_0.is_out_of_bounds()
         
     def test_377(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (0.15176294195975437, 2.720248642525421), 5, False, True)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((1.0555263324587632, 6.033400973787703), 6, False)
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-        
-    def test_378(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-4.162367751157767, -4.514684765717648), 5, False, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_4 = obj_0.move((5.6693975445462, 7.861900049656402), 0, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-        
-    def test_379(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-4.323350852180321, 0.37414747549414784), 9, False, False))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (5.850005657599853, 4.47333784908882), 0, False, True))
-            var_5 = obj_1.drawn()
-        
-    def test_380(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (-2.7937251855213976, 2.363418411553406), 7, False, False))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-5.739122741549846, -7.144291730940642), 1, True, False))
-            var_6 = obj_1.score()
+            var_0 = obj_1.score()
+            var_1 = obj_1.__str__()
+            var_4 = obj_1.score()
+            var_6 = obj_1.overlaps_any_stone(Stone(True, (-6.885895043330976, -7.704679568263174), 3, False, True))
+            var_3 = obj_1.overlaps_any_stone(Stone(False, (-3.789776182031469, -1.232734217272025), 6, True, False))
+            var_5 = obj_1.red_won()
+            var_2 = obj_1.red_won()
         
-    def test_381(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-4.1678608268411175, 1.5094442760751416), 4, True, True)
+    def test_378(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-4.63714778175717, -4.015574373941895), -2, True, True)
             
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((-7.851441189965485, -1.3503939918057188), -1, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
+            var_0 = obj_0.is_guard()
         
-    def test_382(self):
+    def test_379(self):
+        obj_1 = End(True)
+        
+        var_0 = obj_1.__str__()
+        
+        self.assertEqual(var_0, 'End with Red hammer and 0 stones')
+        
+    def test_380(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-4.413169704966654, -6.211636633313384), 11, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.156942953933717, 3.5838591033743903), 4, False, False))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
+            var_0 = obj_1.__str__()
+            var_4 = obj_1.drawn()
+            var_1 = obj_1.__str__()
+            var_2 = obj_1.done()
+            obj_1.add_stone(Stone(True, (0.0323946934233188, 1.3680647570245679), -1, True, True))
         
-    def test_383(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (1.9329210587683985, -7.568203830098971), 3, True, True)
-            
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((4.202959837096994, 3.9384322818727533), 0, True)
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-        
-    def test_384(self):
+    def test_381(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
         var_4 = obj_2.red_winner()
+        var_0 = obj_2.score()
+        var_3 = obj_2.__str__()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, 'Game with 0 ends')
+        self.assertEqual(var_4, None)
+        
+    def test_382(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
+            
+            obj_1.add_stone(Stone(False, (-1.4860333881556596, 7.562775363365848), 5, True, False))
+            var_0 = obj_1.drawn()
+        
+    def test_383(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (0.28084588647969966, 0.900407660171135), 11, True, True)
+            
+            var_4 = obj_0.move((-6.952845554594456, -3.0597561766540515), 5, False)
+            var_0 = obj_0.move((-0.30659109093841685, -4.540976491997105), 6, True)
+            obj_0.burn()
+            var_2 = obj_0.distance_to_center()
+            var_3 = obj_0.is_out_of_play()
+        
+    def test_384(self):
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(True, (-6.849789702824593, -3.233523154120091), 1, True, True)
+            
+            var_2 = obj_0.is_in_house()
+            var_0 = obj_0.move((-7.443049704698947, -7.412412801307038), 5, True)
+            var_1 = obj_0.is_out_of_play()
         
     def test_385(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-6.482889535783871, -7.995531592025417), 2, False, True)
-            
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-3.2512808644891766, -6.212398411283319), 1, False)
-            obj_0.move_out_of_play()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.score()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, (0, 0))
         
     def test_386(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-6.650426788854363, -2.6900715089491953), 12, False, True)
+            obj_0 = Stone(False, (-6.874642645721488, -2.3324871526045214), -1, True, True)
             
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-1.6292382594715527, 7.267840495185789), 0, False)
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
+            var_1 = obj_0.__str__()
+            var_2 = obj_0.is_in_house()
+            var_3 = obj_0.distance_to_center()
+            var_0 = obj_0.is_in_house()
         
     def test_387(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (4.50862317958245, -5.048033194150239), 5, True, True)
-            
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-6.2581967495311925, -6.118577756380516), 4, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
         
     def test_388(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
+        var_1 = obj_1.__str__()
+        var_0 = obj_1.done()
         
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, 'End with Red hammer and 0 stones')
         
     def test_389(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
+        var_0 = obj_1.done()
         
+        self.assertEqual(var_0, False)
         
     def test_390(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(False, (-0.4688588929922215, -2.841333991316718), 1, True, False)
             
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-6.167207030727431, -4.683458666046397), 0, True, True))
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (-1.9151023225124888, 4.240163822118236), 0, False, True))
+            var_1 = obj_0.distance_to_center()
+            obj_0.burn()
+            var_6 = obj_0.is_in_house()
+            var_5 = obj_0.move((3.685117570033702, 5.35319883972814), 1, True)
+            var_0 = obj_0.is_out_of_bounds()
+            obj_0.move_out_of_play()
+            var_2 = obj_0.is_guard()
+            var_7 = obj_0.is_in_house()
         
     def test_391(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            var_1 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (5.22788597430975, -2.6011619868966385), 2, False, False))
+            var_3 = obj_1.drawn()
+            var_4 = obj_1.overlaps_any_stone(Stone(False, (-3.7290142082587927, -5.569741978477023), 2, True, False))
+            var_6 = obj_1.done()
+            var_5 = obj_1.overlaps_any_stone(Stone(True, (7.14254195895289, 5.281068431018284), 1, False, False))
+            var_0 = obj_1.__str__()
         
     def test_392(self):
         obj_2 = Game()
         
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.__str__()
         var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, (0, 0))
         
     def test_393(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.425820839340515, -3.311082150787712), 1, False, True))
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (-5.259423137811403, -1.9486497717768536), 2, False, True))
-            var_6 = obj_1.score()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_394(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (-0.38702112626552143, -1.6330937671804957), 7, True, True)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-6.420980654947298, 1.6270996523623342), 12, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
+            obj_2.add_end(End(False))
+            obj_2.add_end(End(True))
+            var_3 = obj_2.red_winner()
+            var_2 = obj_2.red_winner()
+            obj_2.add_end(End(True))
         
     def test_395(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
+        obj_2.add_end(End(False))
         
         
     def test_396(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            obj_1.add_stone(Stone(True, (7.223090836247961, 1.0897634070990208), 0, True, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (2.2185978482132622, -5.061428213545751), 5, False, False))
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
+        obj_2 = Game()
+        
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'Game with 0 ends')
         
     def test_397(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-2.0403649515833653, -3.4297531871646942), 12, True, False)
-            
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((3.6219770061286845, -2.24128175419934), 12, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
+        obj_1 = End(True)
+        
+        var_1 = obj_1.__str__()
+        var_0 = obj_1.score()
+        var_2 = obj_1.__str__()
+        var_4 = obj_1.done()
+        var_3 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_2, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_3, 0)
+        self.assertEqual(var_4, False)
         
     def test_398(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-7.857428647384513, 5.473659880098474), -1, False, False)
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(True)
             
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((3.336379984794956, -5.290419115615194), 12, True)
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
+            var_1 = obj_1.drawn()
+            var_3 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (3.9084323815228803, 2.2425331784078626), 8, False, True))
+            var_2 = obj_1.drawn()
         
     def test_399(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (3.285490215337898, 0.5997288863451384), 2, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
             
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_4 = obj_0.move((-1.4124854675976906, -0.7896801497503496), 9, False)
-            var_1 = obj_0.is_out_of_play()
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (7.770431605422255, -4.132156709290392), 8, False, False))
         
     def test_400(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+            obj_0 = Stone(True, (-0.2872240969308777, -2.334188949365746), -1, True, True)
             
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-2.2113616487308168, -7.033409646395084), -2, True, True))
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (1.5394532325037975, 1.1118963295410982), 2, True, True))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
+            var_7 = obj_0.is_passed_hogline()
+            var_4 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.move((6.837894242667447, -5.083127103926824), 1, True)
+            var_9 = obj_0.distance_to_center()
+            var_3 = obj_0.is_in_house()
+            var_6 = obj_0.is_in_house()
+            var_0 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            var_8 = obj_0.__str__()
+            var_2 = obj_0.is_passed_hogline()
         
     def test_401(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
         
     def test_402(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-1.5934473265561575, -5.664379573635436), -1, False, False)
             
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (2.9717484760858284, 0.9835156047595781), 10, True, False))
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (2.9532335945171564, -0.44963111107298914), 0, True, False))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
+            var_2 = obj_0.is_guard()
+            var_0 = obj_0.is_in_house()
+            obj_0.burn()
+            var_3 = obj_0.is_out_of_bounds()
+            var_7 = obj_0.is_passed_hogline()
+            var_4 = obj_0.is_guard()
+            var_1 = obj_0.__str__()
+            var_5 = obj_0.move((-3.9465617837675104, -3.6686402889889376), 1, False)
         
     def test_403(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (6.070516574485174, 5.32987660386018), 9, False, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-3.737774016857486, 4.640791611661614), 6, False, False)
             
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((-3.380420299627655, -7.347664850585984), 8, False)
-            var_10 = obj_0.__str__()
+            var_1 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.move((-0.5783413142547325, 1.6435304611237846), 8, True)
             obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
         
     def test_404(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-7.361618462433084, 4.952110246244995), 12, False, True)
             
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-3.855606952392204, -3.065888078041901), 10, True, False))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (-4.1322402374260765, -2.972714755798849), 2, True, False))
+            var_4 = obj_0.__str__()
+            var_0 = obj_0.move((3.9864629913433998, 7.2743335648068115), 1, True)
+            var_3 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.move((-4.346790219768666, -5.207516299910845), 7, False)
         
     def test_405(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.564784661878685, 3.2962373205901656), 4, True, False))
-            obj_1.add_stone(Stone(True, (-6.424268528334981, 3.6469640994008135), 8, True, True))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-        
-    def test_406(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        
-        
-    def test_407(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(False)
-            
-            obj_1.add_stone(Stone(True, (5.999901577097422, 1.5310200617706364), 6, True, True))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-0.26478579890506104, -4.496961730292776), -2, True, False))
-            var_3 = obj_1.red_won()
-        
-    def test_408(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (4.418745387193869, 2.35887216370128), 10, True, True))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-3.0933651940387925, -5.002855928614373), 6, False, False))
-        
-    def test_409(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        
-        
-    def test_410(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (2.928647907730058, -2.7787846147529116), 4, True, False)
-            
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((-6.735592854450022, -6.656225094495044), 9, False)
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-        
-    def test_411(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        
-        
-    def test_412(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (-2.008667215841479, -0.8000566218208665), 6, False, True))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (4.4630999051963265, -2.67660169839413), 1, False, False))
-        
-    def test_413(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (0.528933825857905, 7.068986992801019), 0, False, True))
-            obj_1.add_stone(Stone(True, (-1.1117367777923821, -1.722339078047428), 1, False, True))
-            var_5 = obj_1.drawn()
+            var_4 = obj_1.drawn()
+            var_1 = obj_1.score()
+            var_3 = obj_1.done()
+            var_0 = obj_1.drawn()
+            obj_1.add_stone(Stone(True, (-0.6456089462948924, 0.332769067581312), -1, False, False))
         
-    def test_414(self):
-        obj_2 = Game()
+    def test_406(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            var_1 = obj_1.drawn()
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (-5.796831650340563, -2.503188630820521), 11, True, True))
         
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        
-        
-    def test_415(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
+    def test_407(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            obj_1.add_stone(Stone(True, (-6.006497520549049, 6.816062253330923), 5, True, True))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-0.906524881164712, -4.758595404630082), 1, False, True))
+            var_2 = obj_1.red_won()
+            var_1 = obj_1.__str__()
+            obj_1.add_stone(Stone(False, (5.520071442588302, 5.4990376565215), -1, False, True))
+        
+    def test_408(self):
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(True, (-7.312890664651693, 5.188491974380462), 7, False, True)
+            
+            var_2 = obj_0.__str__()
+            var_0 = obj_0.move((-2.2193333806532625, 6.7261402296803645), 12, False)
+            var_3 = obj_0.is_in_house()
+            obj_0.move_out_of_play()
+            var_4 = obj_0.distance_to_center()
+        
+    def test_409(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
+            
+            var_0 = obj_1.drawn()
+            obj_1.add_stone(Stone(True, (4.469270146846927, -0.5265958195760696), 3, False, False))
+            var_5 = obj_1.score()
+            var_1 = obj_1.red_won()
+            var_3 = obj_1.__str__()
             var_4 = obj_1.done()
+        
+    def test_410(self):
+        obj_2 = Game()
+        
+        obj_2.add_end(End(True))
+        var_2 = obj_2.red_winner()
+        var_4 = obj_2.score()
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_4, (0, 0))
+        
+    def test_411(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (1.0304470885599741, 2.615779718094714), 12, False, True))
+            obj_1.add_stone(Stone(False, (-4.337622990639963, -3.3776507585669364), 11, True, False))
+            var_0 = obj_1.drawn()
+            var_3 = obj_1.done()
+        
+    def test_412(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            obj_1.add_stone(Stone(True, (-2.9740907956597287, -2.2598135511749113), 4, False, False))
+            var_2 = obj_1.score()
+            var_0 = obj_1.drawn()
+        
+    def test_413(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.display_scoreboard()
+        var_2 = obj_2.score()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, (0, 0))
+        
+    def test_414(self):
+        obj_1 = End(False)
+        
+        var_0 = obj_1.drawn()
+        var_1 = obj_1.drawn()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, True)
+        
+    def test_415(self):
+        obj_2 = Game()
+        
+        var_4 = obj_2.display_scoreboard()
+        var_0 = obj_2.score()
+        var_2 = obj_2.display_scoreboard()
+        var_3 = obj_2.score()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_416(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.__str__()
         var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
+        var_1 = obj_2.score()
+        var_2 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_417(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (5.82532756803835, -0.24202651456190338), 2, False, False)
+            
+            var_8 = obj_0.move((5.545875004591016, 0.5935276726327885), 12, False)
+            var_1 = obj_0.is_out_of_bounds()
+            var_6 = obj_0.is_out_of_bounds()
+            obj_0.burn()
+            obj_0.move_out_of_play()
+            var_7 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.is_guard()
+            var_4 = obj_0.is_out_of_bounds()
+            obj_0.move_out_of_play()
         
     def test_418(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (1.3426456195002654, 7.419461143858458), 6, False, False))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
+            var_4 = obj_1.overlaps_any_stone(Stone(False, (-7.147461506954409, -7.063344941980439), 7, False, False))
+            obj_1.add_stone(Stone(True, (6.569697848330673, 2.5649236574694765), 10, False, True))
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (7.078777945638167, -7.338954451075148), -2, False, False))
+            obj_1.add_stone(Stone(False, (-1.7874299685142798, -4.5840375983653825), 4, True, False))
+            obj_1.add_stone(Stone(False, (5.150336327899513, 3.8621295135552334), 4, True, False))
+            var_3 = obj_1.done()
             var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (5.730210577850199, -5.159028546188537), 0, False, False))
         
     def test_419(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (6.605968391388396, 5.4513063213617325), 10, True, True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-7.078609544009252, -4.361041664551127), 12, True, True)
             
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-1.4186108979271825, -2.9940906719593166), 10, True)
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
+            var_0 = obj_0.is_in_house()
+            var_1 = obj_0.is_guard()
+            var_2 = obj_0.__str__()
         
     def test_420(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-5.8237806399183505, -1.5114626955489783), 10, True, True)
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(True)
             
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((7.096348683264349, 7.12012147505048), 9, True)
-            var_9 = obj_0.distance_to_center()
+            var_1 = obj_1.done()
+            obj_1.add_stone(Stone(True, (7.081788796590617, 5.46425191449322), 6, False, True))
+            var_3 = obj_1.__str__()
+            var_2 = obj_1.score()
+            obj_1.add_stone(Stone(True, (6.096974452718305, 2.9736053678047494), 5, True, True))
+            obj_1.add_stone(Stone(True, (0.9825754680390411, -1.795011018054442), 3, False, False))
+            obj_1.add_stone(Stone(True, (7.2149109771511295, 4.290862972282374), 2, True, False))
         
     def test_421(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
         
     def test_422(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(False, (-5.531397038433916, 3.5720622368582653), 2, True, True)
+            
+            var_2 = obj_0.move((-5.038561876695885, -1.5260508640439863), 12, False)
+            var_0 = obj_0.is_out_of_bounds()
+            obj_0.move_out_of_play()
         
     def test_423(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
         obj_2.add_end(End(True))
+        var_1 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_1, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
         
     def test_424(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
         
     def test_425(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-3.2960558550582846, -3.913759326092972), -1, True, True)
-            
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((-1.7644683825140017, 7.086958539100992), -2, False)
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
+        obj_2 = Game()
+        
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'Game with 0 ends')
         
     def test_426(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-4.378087571674065, -5.940671056753182), 12, False, True))
-            obj_1.add_stone(Stone(True, (-3.2300949350193235, -4.447290365705779), 11, True, True))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
+            obj_2.add_end(End(False))
+            var_2 = obj_2.__str__()
+            var_1 = obj_2.score()
+            obj_2.add_end(End(True))
+            var_3 = obj_2.red_winner()
         
     def test_427(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (1.9307699745223115, -6.568866476529614), -1, False, True))
-            obj_1.add_stone(Stone(True, (2.20466727409552, 1.9585991058215484), -2, False, True))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.red_won()
+        
+        self.assertEqual(var_0, None)
         
     def test_428(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
         var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, (0, 0))
         
     def test_429(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.7643616387021055, -1.064778449552385), 4, False, True))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (4.944547175222203, -4.237933644517081), 5, True, False))
+        obj_1 = End(False)
+        
+        var_0 = obj_1.__str__()
+        var_1 = obj_1.red_won()
+        
+        self.assertEqual(var_0, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_1, None)
         
     def test_430(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+            obj_0 = Stone(False, (2.989241987645567, -3.4555581317613075), 6, False, False)
             
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-6.311803625210308, -6.201549930590907), 5, False, False))
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (1.27206517062503, 7.279324355603679), 2, False, True))
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
+            var_0 = obj_0.distance_to_center()
+            var_1 = obj_0.is_out_of_bounds()
         
     def test_431(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
+            obj_1.add_stone(Stone(True, (6.915545422437578, 0.8389850550764972), 2, False, False))
+            var_4 = obj_1.overlaps_any_stone(Stone(False, (2.8729104652475126, 7.270056857677677), 10, True, False))
+            var_3 = obj_1.score()
             var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (5.0956715189673325, -0.9564250569097776), 12, False, True))
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-2.122892152147644, 2.5010694360420302), 2, True, True))
+            var_2 = obj_1.score()
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (0.8071398212819165, -6.154965674981563), 3, False, True))
         
     def test_432(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(False, (-3.4031738804069427, -2.468464683473014), 6, True, False))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-2.973341875920596, -6.066591706582976), 6, False, True))
-            var_3 = obj_1.red_won()
+        obj_2 = Game()
+        
+        var_3 = obj_2.red_winner()
+        var_1 = obj_2.__str__()
+        var_2 = obj_2.__str__()
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, None)
         
     def test_433(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.259387441891791, 1.9206776398784466), 4, False, True))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (-5.97831119896226, -3.1267092453298737), 9, False, False))
-            var_4 = obj_1.done()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.display_scoreboard()
+        var_3 = obj_2.score()
+        var_2 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, (0, 0))
         
     def test_434(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.display_scoreboard()
         var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, (0, 0))
         
     def test_435(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.0709655909367495, 2.8723344098944263), 4, False, True))
-            obj_1.add_stone(Stone(True, (6.17465366695253, -6.476151341414889), 4, True, False))
+        obj_2 = Game()
+        
+        var_2 = obj_2.display_scoreboard()
+        var_1 = obj_2.red_winner()
+        var_3 = obj_2.red_winner()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, None)
         
     def test_436(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (6.036488273450654, -1.8980626695496312), 3, False, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((5.788043578698954, -2.309641572888859), 0, True)
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
+        obj_0 = Stone(False, (-0.1512413766256202, -1.6461507917757956), 7, True, True)
+        
+        var_0 = obj_0.is_out_of_bounds()
+        
+        self.assertEqual(var_0, False)
         
     def test_437(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.016693865704175, 1.7780435681125706), 2, False, True))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-4.057669888362428, -5.716738718763979), 10, True, False))
-            var_5 = obj_1.drawn()
+        obj_0 = Stone(False, (2.683522104068997, -6.87623543045102), 5, False, True)
+        
+        var_0 = obj_0.is_passed_hogline()
+        
+        self.assertEqual(var_0, False)
         
     def test_438(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-5.1390987612801755, 5.437110278091275), 4, True, True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-0.941634110807005, -1.1490616527636508), -2, False, False)
             
+            var_0 = obj_0.distance_to_center()
             obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-6.613998694078525, 2.294359344753895), 4, True)
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
+            var_1 = obj_0.__str__()
         
     def test_439(self):
-        obj_2 = Game()
+        obj_0 = Stone(False, (0.07897143538240137, -4.912974924021848), 1, False, False)
         
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_0.is_out_of_bounds()
         
+        self.assertEqual(var_0, False)
         
     def test_440(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (6.720851790038555, 7.352853026644208), 5, True, True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-7.630247798152734, 7.073887289105052), 12, False, True)
             
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
             obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((-5.754686878836196, -7.78256678991227), 12, False)
+            var_2 = obj_0.is_passed_hogline()
             obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
+            var_4 = obj_0.move((-6.2108210219586315, -3.8187010841185796), 7, False)
+            var_1 = obj_0.move((0.38051056513349124, -5.935729300663295), 9, True)
+            var_5 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.distance_to_center()
         
     def test_441(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_1 = obj_1.done()
+        var_0 = obj_1.drawn()
         
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, False)
         
     def test_442(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-0.41213002249536856, -0.6708338298180205), 11, True, False)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-7.583131300036657, 0.45665438253390356), 4, False)
+        obj_2 = Game()
+        
+        var_1 = obj_2.display_scoreboard()
+        var_3 = obj_2.__str__()
+        var_2 = obj_2.__str__()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, 'Game with 0 ends')
         
     def test_443(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (1.986481535168533, 5.573234680345875), 11, False, False))
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (0.622947288706845, 7.390881173068843), 0, False, True))
-            var_3 = obj_1.red_won()
+        obj_1 = End(False)
+        
+        var_0 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
         
     def test_444(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
         
     def test_445(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
         var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.score()
+        var_1 = obj_2.display_scoreboard()
+        var_3 = obj_2.red_winner()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, None)
         
     def test_446(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
         obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
         
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_447(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (-0.2807283158132954, -6.078385746087333), 4, True, True)
-            
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-7.267557054414139, -5.48374786856184), 6, True)
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
+        obj_2 = Game()
+        
+        var_2 = obj_2.red_winner()
+        var_0 = obj_2.score()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_2, None)
         
     def test_448(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (7.261615507188841, -7.445011808556485), 1, False, False)
-            
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-7.196210440666409, 6.888432951359828), -1, True)
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
+        obj_2 = Game()
+        
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.score()
+        var_2 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
         
     def test_449(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (4.88339155108882, -5.8978971070181085), 9, True, False)
             
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (-5.109063148921297, 6.357167943284155), -1, True, True))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-4.693511818194901, -1.386702297804284), 3, True, True))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
+            var_5 = obj_0.is_passed_hogline()
+            var_4 = obj_0.is_passed_hogline()
+            var_6 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.is_in_house()
+            var_8 = obj_0.is_out_of_play()
+            var_3 = obj_0.is_out_of_play()
+            var_7 = obj_0.is_guard()
+            obj_0.move_out_of_play()
+            obj_0.move_out_of_play()
         
     def test_450(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
         
     def test_451(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (-2.9578555307741965, 1.3058113907921118), 6, False, True)
-            
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((2.6358801428851404, -5.69765505259177), 1, True)
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-        
-    def test_452(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
+            var_2 = obj_1.score()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (-7.564589175772008, 2.7356479185641174), 6, True, False))
+            var_5 = obj_1.score()
+            var_6 = obj_1.overlaps_any_stone(Stone(False, (-7.886504209350305, 6.221820208141018), -1, True, True))
+            var_4 = obj_1.drawn()
             var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (0.11403302394045056, 3.669526528755693), 3, True, True))
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-4.972045252486684, -1.1101606748860124), 5, False, False))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
+            var_0 = obj_1.score()
+        
+    def test_452(self):
+        obj_1 = End(True)
+        
+        var_1 = obj_1.red_won()
+        var_0 = obj_1.red_won()
+        var_5 = obj_1.score()
+        var_3 = obj_1.score()
+        var_2 = obj_1.red_won()
+        var_4 = obj_1.done()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, 0)
+        self.assertEqual(var_4, False)
+        self.assertEqual(var_5, 0)
         
     def test_453(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (3.3096675108765865, -7.249279698953584), 1, True, True)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-4.011957070704762, 1.4942066305767643), 8, True)
+        obj_1 = End(False)
+        
+        var_0 = obj_1.done()
+        
+        self.assertEqual(var_0, False)
         
     def test_454(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-7.639325902098609, 3.0029884158598374), 8, False, False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-6.7285425773226315, 3.0486987968532), -1, False, True)
             
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-1.8472639649651157, 2.8480327495361415), 5, False)
-            var_9 = obj_0.distance_to_center()
+            var_1 = obj_0.is_guard()
+            var_0 = obj_0.distance_to_center()
         
     def test_455(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
+        var_2 = obj_2.__str__()
         obj_2.add_end(End(False))
+        var_4 = obj_2.red_winner()
+        var_1 = obj_2.display_scoreboard()
+        var_3 = obj_2.__str__()
         
+        self.assertEqual(var_1, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, 'Game with 1 ends')
+        self.assertEqual(var_4, None)
         
     def test_456(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (-5.019112108680167, 2.4721289549470153), 8, False, True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (4.70351088763892, 6.624303992433811), 12, True, True)
             
-            var_4 = obj_0.move((-4.966744014785494, -3.6593800824812224), 11, True)
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
+            var_3 = obj_0.is_in_house()
+            var_4 = obj_0.is_in_house()
+            var_0 = obj_0.is_passed_hogline()
+            var_1 = obj_0.__str__()
+            var_5 = obj_0.is_out_of_play()
+            var_2 = obj_0.__str__()
         
     def test_457(self):
+        obj_2 = Game()
+        
+        var_3 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
+        var_4 = obj_2.display_scoreboard()
+        var_0 = obj_2.score()
+        var_2 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        
+    def test_458(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-5.695033463938772, 3.9834287884120876), 10, False, False)
+            
+            obj_0.move_out_of_play()
+            var_6 = obj_0.__str__()
+            var_3 = obj_0.__str__()
+            var_4 = obj_0.move((-0.7326340607112378, 0.594717711546485), 10, False)
+            var_2 = obj_0.__str__()
+            var_0 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.is_out_of_bounds()
+        
+    def test_459(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (-2.2838427716880485, -0.25434699061383803), 11, True, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.794996563483712, 6.753505869516092), 2, True, False))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-        
-    def test_458(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        
-        
-    def test_459(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-4.759984453041259, -3.196312648013599), 10, True, False))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-5.176278831565444, 2.969403884748127), 4, True, False))
-            var_5 = obj_1.drawn()
+            var_4 = obj_1.__str__()
+            var_2 = obj_1.overlaps_any_stone(Stone(False, (-0.4327478800601341, -6.127229255211063), 9, False, False))
+            var_5 = obj_1.overlaps_any_stone(Stone(True, (6.211465670581488, 1.21030898991531), -2, False, True))
+            var_1 = obj_1.__str__()
+            var_3 = obj_1.score()
+            obj_1.add_stone(Stone(False, (0.3808138925167537, 0.7341929681024268), -2, True, True))
+            var_6 = obj_1.red_won()
         
     def test_460(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-2.9728138985348895, 0.7777023006759105), 10, False, True)
             
-            obj_1.add_stone(Stone(False, (4.549749062811051, 6.925021580424506), 2, True, False))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-6.300310638808881, 7.012326951261603), -2, False, False))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
+            obj_0.move_out_of_play()
+            var_2 = obj_0.is_in_house()
+            obj_0.move_out_of_play()
         
     def test_461(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
         
     def test_462(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.288533260291764, 6.051347155019519), 4, False, True))
-            obj_1.add_stone(Stone(True, (-7.730529314233973, 7.697762947931437), 6, False, False))
-            var_5 = obj_1.drawn()
+        obj_1 = End(False)
+        
+        var_1 = obj_1.done()
+        var_3 = obj_1.drawn()
+        var_0 = obj_1.red_won()
+        var_2 = obj_1.red_won()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, True)
         
     def test_463(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-7.4158029296099635, 6.294565567358228), 8, True, False)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_4 = obj_0.move((-5.95327215176221, -7.542067731152331), 3, True)
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
+        obj_2 = Game()
+        
+        var_2 = obj_2.score()
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.score()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, (0, 0))
         
     def test_464(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-4.3196881971501, 7.309349053345683), 11, False, True)
-            
-            var_4 = obj_0.move((5.575293391692613, 1.0661856995227907), 8, False)
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-        
-    def test_465(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            obj_1.add_stone(Stone(False, (4.119805615974991, 3.6791269891611336), 2, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (4.691544638693573, -1.7964896735393356), 2, False, True))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
+            var_5 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (2.7373241675013045, -0.31322523086358167), 4, False, False))
+            var_6 = obj_1.drawn()
+            var_1 = obj_1.__str__()
+            var_2 = obj_1.drawn()
+            var_4 = obj_1.overlaps_any_stone(Stone(True, (7.593910515150549, -6.493330584727758), 10, False, False))
+            var_0 = obj_1.__str__()
+        
+    def test_465(self):
+        obj_1 = End(False)
+        
+        var_2 = obj_1.red_won()
+        var_0 = obj_1.__str__()
+        var_1 = obj_1.done()
+        
+        self.assertEqual(var_0, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, None)
         
     def test_466(self):
         with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-7.108739928626196, -5.445790242790704), 4, False, True)
+            obj_0 = Stone(True, (-6.9622164272510165, 7.676277056977312), 6, True, True)
             
+            var_4 = obj_0.is_passed_hogline()
+            var_3 = obj_0.is_passed_hogline()
+            var_2 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.is_passed_hogline()
+            var_0 = obj_0.is_in_house()
             obj_0.burn()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((6.143427508015483, -6.119874195438175), 11, False)
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
         
     def test_467(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.897682344026336, 3.9641014666666603), 4, False, True))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (3.319747191722737, -1.8939272225652264), 12, False, True))
-            var_7 = obj_1.__str__()
-        
-    def test_468(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(False, (-7.68292733881113, -5.870222447012715), 9, True, False))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (1.388157585034925, 2.849641175623592), 5, False, True))
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-        
-    def test_469(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-6.807358144944605, 6.675792230622916), 6, False, False))
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (2.9368744344596163, -1.900457084588993), -2, True, False))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-        
-    def test_470(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-5.3318236653980975, -2.6289428289534076), 5, True, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (0.2367459151278677, 5.958078013131988), -2, False, True))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-        
-    def test_471(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.__str__()
+        obj_2.add_end(End(True))
+        var_3 = obj_2.__str__()
+        var_2 = obj_2.display_scoreboard()
+        obj_2.add_end(End(True))
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_2, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
+        self.assertEqual(var_3, 'Game with 1 ends')
+        
+    def test_468(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (0.14381702170158484, -1.5157375528584183), 5, True, False)
+            
+            var_4 = obj_0.move((7.654891226283947, -1.45023017619285), 5, False)
+            obj_0.move_out_of_play()
+            var_3 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_2 = obj_0.move((-6.7155811349438395, -2.767260897684274), 10, True)
+            var_5 = obj_0.is_passed_hogline()
+        
+    def test_469(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        
+    def test_470(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-6.204768406550338, -5.47012732906644), 6, True, False)
+            
+            var_5 = obj_0.distance_to_center()
+            var_4 = obj_0.move((-4.135366515481481, 3.5346063824159657), 2, False)
+            obj_0.burn()
+            var_2 = obj_0.is_guard()
+            var_3 = obj_0.move((-2.878958197418367, 3.1271930607195095), 0, False)
+            var_1 = obj_0.move((-5.218757291277338, -5.896099046081876), 2, True)
+        
+    def test_471(self):
+        obj_0 = Stone(True, (2.3722106129592895, -3.6426090001716993), 1, True, True)
+        
+        var_1 = obj_0.is_guard()
+        var_2 = obj_0.is_passed_hogline()
+        var_0 = obj_0.__str__()
+        
+        self.assertEqual(var_0, 'Red stone at (-2.50, 5.49), round 1, burned')
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, False)
         
     def test_472(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.score()
+        var_1 = obj_2.score()
         obj_2.add_end(End(True))
+        var_3 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_3, (0, 0))
         
     def test_473(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_1.done()
         
+        self.assertEqual(var_0, False)
         
     def test_474(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(True)
-            
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-2.5096172247004844, -1.8840296421623375), 1, True, True))
-            obj_1.add_stone(Stone(False, (-6.021187547582429, -5.708487761830744), 2, True, True))
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_475(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+            obj_1 = End(True)
             
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (4.346322754969405, 5.495248343999016), 7, False, False))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (2.6140703688425173, 6.465048389916268), 10, True, True))
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (-2.937191311069693, 7.037996285986917), 8, False, False))
+            var_2 = obj_1.drawn()
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (0.4725663975219412, 2.5735701584881348), 4, False, True))
         
     def test_476(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
+            
+            obj_1.add_stone(Stone(False, (4.461913858402646, -7.9381767072980125), 10, True, False))
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (5.799392439460091, -4.164304378427856), 0, False, False))
+            var_2 = obj_1.drawn()
         
     def test_477(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-1.9215968203724199, -2.662273663204317), -2, True, False)
-            
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((2.8665028695448704, -6.106030259291542), 8, False)
+        obj_1 = End(True)
+        
+        var_0 = obj_1.done()
+        
+        self.assertEqual(var_0, False)
         
     def test_478(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (3.462051094132157, 5.372089469847593), -1, True, True)
+            obj_0 = Stone(True, (5.928498678680242, -6.209104582568527), 0, True, False)
             
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((7.1351644687850015, 0.8549766827099212), 0, True)
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
+            var_7 = obj_0.is_out_of_play()
+            var_3 = obj_0.move((4.914905274203919, 0.513753409204174), 1, False)
+            var_6 = obj_0.is_out_of_play()
             obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
+            var_0 = obj_0.is_out_of_play()
+            var_2 = obj_0.__str__()
+            obj_0.burn()
+            var_4 = obj_0.is_in_house()
+            var_8 = obj_0.distance_to_center()
+            var_9 = obj_0.is_out_of_play()
         
     def test_479(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (5.397435272209718, -5.814336346667675), 5, True, True)
-            
-            var_4 = obj_0.move((5.256126095432073, 1.7904627547887486), 0, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
+        obj_2 = Game()
+        
+        var_2 = obj_2.red_winner()
+        var_1 = obj_2.display_scoreboard()
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, None)
         
     def test_480(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-5.018394117833923, 1.1180544907835053), 4, True, True))
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (-3.9376528539411826, -0.13949915621239128), 2, True, False))
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        obj_2.add_end(End(False))
+        var_2 = obj_2.score()
+        var_1 = obj_2.score()
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, (0, 0))
         
     def test_481(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-2.5277010080387594, 6.055799587763657), 12, True, False)
+            obj_0 = Stone(True, (-6.230918492660564, -3.744761792514373), 12, True, True)
             
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-7.122754406803379, -7.75992978149101), 5, True)
-            var_9 = obj_0.distance_to_center()
+            var_0 = obj_0.distance_to_center()
+            var_1 = obj_0.move((-1.8302853104222248, 1.8501513578324236), 5, True)
         
     def test_482(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
+        var_3 = obj_2.red_winner()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.score()
+        obj_2.add_end(End(False))
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_3, None)
         
     def test_483(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
+            obj_1 = End(False)
+            
+            var_4 = obj_1.score()
+            var_2 = obj_1.done()
+            var_3 = obj_1.overlaps_any_stone(Stone(True, (-4.347860932778712, 4.337617732747951), 6, True, True))
+            obj_1.add_stone(Stone(True, (-4.0801390823055375, 6.307422177532679), 3, False, True))
+            obj_1.add_stone(Stone(False, (7.134680950944295, 5.439172030605613), 11, False, True))
         
     def test_484(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (-2.892454402247221, -7.859967103379262), 7, True, True)
-            
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-1.9098726180973529, 5.795564993181836), 12, False)
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
+        obj_0 = Stone(False, (-4.539529544482168, -2.493829309845168), 10, False, True)
+        
+        var_0 = obj_0.is_out_of_play()
+        var_1 = obj_0.is_in_house()
+        var_2 = obj_0.is_guard()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, False)
         
     def test_485(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (2.62794955130075, 5.724344814631131), 6, False, False)
+            
+            obj_0.burn()
+            var_2 = obj_0.is_in_house()
+            var_5 = obj_0.is_guard()
+            var_3 = obj_0.__str__()
+            obj_0.move_out_of_play()
+            var_0 = obj_0.is_out_of_play()
+            var_4 = obj_0.move((6.9954235392098525, -7.766729704248103), -2, True)
+            var_8 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.is_passed_hogline()
         
     def test_486(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (1.795034054739702, 3.664239185598385), 11, True, False)
+            obj_0 = Stone(True, (-6.816055394941234, -1.4804268241338185), -2, False, False)
             
-            var_10 = obj_0.__str__()
+            var_1 = obj_0.is_guard()
             obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
             var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((-5.037299493875972, 5.171276802416251), 11, False)
-            var_7 = obj_0.is_in_house()
+            var_4 = obj_0.__str__()
+            var_3 = obj_0.is_passed_hogline()
+            var_5 = obj_0.__str__()
+            var_0 = obj_0.is_in_house()
         
     def test_487(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.336139392779954, 0.06395621223489023), 9, False, False))
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (3.386903612716246, 0.1848590081605046), -1, True, True))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
+            var_1 = obj_1.done()
+            var_2 = obj_1.red_won()
+            var_0 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (-0.3249070179262823, -5.7055200379911994), -1, True, True))
         
     def test_488(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (-7.877513350666874, 2.2380285854154174), 4, False, True)
-            
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-4.920929879733622, -2.024762980188463), 11, False)
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
+        obj_1 = End(False)
+        
+        var_3 = obj_1.drawn()
+        var_1 = obj_1.red_won()
+        var_0 = obj_1.drawn()
+        var_2 = obj_1.done()
+        var_4 = obj_1.score()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, 0)
         
     def test_489(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (1.7286766490029528, -5.837379507807572), 9, False, False)
+            
+            obj_0.burn()
+            var_2 = obj_0.is_guard()
+            var_4 = obj_0.is_passed_hogline()
+            var_5 = obj_0.is_in_house()
+            obj_0.burn()
+            var_1 = obj_0.is_guard()
         
     def test_490(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        
-        
-    def test_491(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
             obj_1 = End(True)
             
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (5.6451442956075635, 4.660235508014129), 5, True, True))
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-0.7263801677468962, -1.0129510936573727), 7, False, False))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (3.6943784627617635, 4.566068563441295), 2, False, True))
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (3.609675977339924, -2.8877650208465973), 4, False, True))
+            var_5 = obj_1.red_won()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (4.647729681621312, -1.625032306634166), 7, False, True))
+            var_2 = obj_1.drawn()
+            var_3 = obj_1.drawn()
         
-    def test_492(self):
+    def test_491(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
+        
+    def test_492(self):
+        obj_1 = End(False)
+        
+        var_0 = obj_1.drawn()
+        var_1 = obj_1.done()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, False)
         
     def test_493(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
+        var_1 = obj_2.red_winner()
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_494(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (6.294288803234895, -4.5273995207774185), 0, True, True)
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(False)
             
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-1.9600653394740277, -2.4451596858164315), 5, True)
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
+            obj_1.add_stone(Stone(False, (-0.05885104540768182, -5.00813171343232), 3, False, False))
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (6.7910539344896055, 3.726644956933299), 9, False, False))
+            var_1 = obj_1.drawn()
+            var_5 = obj_1.drawn()
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.8828016381942767, -1.1128209487208345), 1, False, True))
+            var_6 = obj_1.drawn()
+            var_3 = obj_1.drawn()
         
     def test_495(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-5.7472111005563775, 7.4565476617913475), 3, False, False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-3.6566894146974462, -7.481101032993125), 11, False, False)
             
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_4 = obj_0.move((-7.980157417826566, -1.6829819849593992), 8, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
             obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
+            var_0 = obj_0.is_passed_hogline()
+            var_6 = obj_0.distance_to_center()
+            obj_0.burn()
+            var_2 = obj_0.distance_to_center()
+            obj_0.burn()
+            var_7 = obj_0.is_passed_hogline()
+            var_3 = obj_0.is_passed_hogline()
         
     def test_496(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (2.4352441432440735, 0.4696882283933981), 4, False, True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
             
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((2.2058567048624695, -7.972378987594377), 11, False)
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
+            var_1 = obj_1.score()
+            var_2 = obj_1.__str__()
+            obj_1.add_stone(Stone(False, (-6.51858605550898, 4.697645858136603), -2, True, True))
         
     def test_497(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
+        var_1 = obj_2.display_scoreboard()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_498(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (2.433343311245391, -6.416121520478004), 11, True, False)
+            
+            obj_0.move_out_of_play()
         
     def test_499(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (3.5977788093930165, -0.23235897970581476), 0, False, False)
+            
+            var_7 = obj_0.move((-2.318472262974282, -1.7480141938719367), 9, False)
+            var_8 = obj_0.is_in_house()
+            var_4 = obj_0.move((7.406204156347766, -4.448456341410045), 3, True)
+            var_3 = obj_0.move((-5.007284811674026, -5.427610343525698), -1, True)
+            var_5 = obj_0.is_out_of_play()
+            var_6 = obj_0.__str__()
+            obj_0.move_out_of_play()
+            var_0 = obj_0.__str__()
+            var_2 = obj_0.is_out_of_bounds()
+        
+    def test_500(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
+            obj_1.add_stone(Stone(False, (-5.018464703136901, 5.68804770043362), 5, False, False))
+            var_2 = obj_1.done()
             var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-7.022855501795588, -4.094781911862341), 10, True, False))
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-2.550332200960943, -4.616433601157848), 6, False, True))
-        
-    def test_500(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        
+            var_6 = obj_1.done()
+            var_0 = obj_1.red_won()
+            var_4 = obj_1.red_won()
+            var_3 = obj_1.score()
         
     def test_501(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(False)
-            
-            obj_1.add_stone(Stone(True, (-5.956645842849257, -6.827490257617361), 10, False, True))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (4.264651458193933, 6.651584688011445), 1, False, True))
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
         
     def test_502(self):
-        obj_2 = Game()
+        obj_0 = Stone(True, (7.938248591074917, 3.572650563499842), 8, True, True)
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_0.is_out_of_bounds()
         
+        self.assertEqual(var_0, False)
         
     def test_503(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(True, (1.1104830100105119, -7.629975917549256), 10, True, True)
+            
+            var_4 = obj_0.move((2.2447410013112954, 6.997481087617594), 1, True)
+            var_8 = obj_0.distance_to_center()
+            obj_0.burn()
+            var_9 = obj_0.__str__()
+            var_1 = obj_0.is_passed_hogline()
+            var_6 = obj_0.is_out_of_bounds()
+            var_0 = obj_0.is_passed_hogline()
+            var_2 = obj_0.is_guard()
+            var_7 = obj_0.is_passed_hogline()
+            var_3 = obj_0.is_out_of_play()
         
     def test_504(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (1.3743685503731982, 0.14301831614661964), 10, False, False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
             
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((1.0003264691875184, -1.3164531597777351), 8, True)
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
+            var_2 = obj_1.done()
+            var_3 = obj_1.score()
+            var_1 = obj_1.drawn()
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (-4.320798674805445, 0.7552553414076559), 10, True, False))
         
     def test_505(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        var_4 = obj_2.display_scoreboard()
+        var_3 = obj_2.display_scoreboard()
+        var_1 = obj_2.score()
+        var_2 = obj_2.__str__()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_4, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        
+    def test_506(self):
+        obj_1 = End(False)
+        
+        var_0 = obj_1.__str__()
+        
+        self.assertEqual(var_0, 'End with Yellow hammer and 0 stones')
+        
+    def test_507(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        var_1 = obj_2.score()
+        var_2 = obj_2.__str__()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
+        
+    def test_508(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (-3.917017298308883, -7.943709927061173), -1, True, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.870002819476701, 7.38325196350214), 8, True, False))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-        
-    def test_506(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (7.768267238098012, 0.11815020091798978), 8, True, True)
-            
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-1.1447018866041425, 5.856764388245589), -1, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-        
-    def test_507(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (1.950235487063111, 2.9081548421377335), 8, True, True))
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (-5.730590254629206, 2.209324899234341), 5, True, False))
-        
-    def test_508(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (0.19083174318856955, -0.8086696600647443), 7, False, False)
-            
-            var_4 = obj_0.move((-3.3349583353278245, -0.3076149543888622), 12, True)
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
+            obj_1.add_stone(Stone(False, (-2.564830340274865, -1.1946171866875943), -2, True, False))
+            var_3 = obj_1.drawn()
+            var_4 = obj_1.drawn()
+            var_2 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (4.957620964637904, 3.40261177077336), 10, True, True))
+            obj_1.add_stone(Stone(False, (-2.7279842756202513, 5.055638731094232), 4, True, True))
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (-4.383478484008842, 4.633444907262838), -1, True, True))
         
     def test_509(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
+        var_2 = obj_1.red_won()
+        var_3 = obj_1.drawn()
+        var_1 = obj_1.overlaps_any_stone(Stone(False, (-2.2035881252297376, 6.477082253429138), 7, False, True))
+        var_0 = obj_1.done()
         
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, True)
         
     def test_510(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            var_3 = obj_1.done()
+            var_0 = obj_1.__str__()
+            obj_1.add_stone(Stone(False, (-5.708481215854036, -5.37710537698171), 0, False, False))
+            obj_1.add_stone(Stone(False, (4.671063426002872, 2.5064883651200294), 1, False, True))
+            var_1 = obj_1.score()
         
     def test_511(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (3.183825004173084, -0.2432337337422883), 3, False, False)
-            
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((1.6001190764565862, 4.8225513269673375), 10, True)
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
         
     def test_512(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (3.3371055226911164, 5.205069184941072), 10, True, False)
-            
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((7.381188383369528, 0.8311649440713502), 4, False)
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
+        obj_2 = Game()
+        
+        var_1 = obj_2.display_scoreboard()
+        obj_2.add_end(End(True))
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_513(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.score()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
         
     def test_514(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (0.12125196268831573, 0.15137237902505518), 5, True, False)
-            
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-7.365958702695147, 7.811808398686011), 8, True)
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
+        obj_0 = Stone(True, (-1.2637007053450464, 3.136988874054092), 2, True, False)
+        
+        var_4 = obj_0.is_out_of_bounds()
+        var_1 = obj_0.is_guard()
+        var_0 = obj_0.distance_to_center()
+        obj_0.burn()
+        var_3 = obj_0.is_in_house()
+        
+        self.assertEqual(var_0, 3.381957815915025)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, False)
         
     def test_515(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.890895558588605, -7.082839510625872), 2, False, False))
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (6.440078288876901, 2.747287619436525), 11, True, False))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.__str__()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_516(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-2.6220026510014502, -6.569250263855446), 12, True, False)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((2.7993610563076317, -6.217255594524069), 0, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
+            obj_2.add_end(End(True))
+            obj_2.add_end(End(False))
+            obj_2.add_end(End(True))
         
     def test_517(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (4.798082039548538, -3.7083918638387914), 0, True, True))
+            obj_1.add_stone(Stone(False, (1.0351473008135201, -5.854568168279968), 1, False, False))
+            var_4 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (6.480284893531472, -7.5969283331618165), 11, False, False))
             var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (-4.590389229041197, -6.69410031604864), 5, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-0.4743809087140729, 7.543073542235366), 5, True, True))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
+            var_3 = obj_1.__str__()
+            var_6 = obj_1.__str__()
         
     def test_518(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-6.369601141416064, 4.182082191064181), 6, True, True)
-            
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((0.8828694618501203, -0.7802978970865251), 10, True)
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
+        obj_0 = Stone(False, (-2.1578183045855024, -4.385918581424395), 10, False, False)
+        
+        obj_0.burn()
+        var_1 = obj_0.is_out_of_play()
+        var_5 = obj_0.is_passed_hogline()
+        var_4 = obj_0.is_out_of_play()
+        var_2 = obj_0.is_passed_hogline()
+        var_0 = obj_0.is_out_of_play()
+        var_3 = obj_0.is_out_of_bounds()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, True)
+        self.assertEqual(var_5, False)
         
     def test_519(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-4.206773679173104, -3.3133069910478046), 8, True, True)
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(False)
             
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((4.954027636888718, 6.840379180404343), 7, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
+            var_2 = obj_1.done()
+            obj_1.add_stone(Stone(False, (-6.349602155041936, 3.515847497092931), 6, False, True))
+            var_0 = obj_1.__str__()
         
     def test_520(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-1.016358599892154, 7.12529172703263), 6, False, True))
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (0.4836729549150185, -5.017164993687619), 6, True, False))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
+        obj_2 = Game()
+        
+        var_3 = obj_2.red_winner()
+        var_1 = obj_2.score()
+        obj_2.add_end(End(False))
+        var_0 = obj_2.display_scoreboard()
+        var_2 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, None)
         
     def test_521(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-2.5711308028117923, -6.850004718324797), 6, True, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-4.465421183129816, -4.237500700184377), 6, True, True))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
+        obj_1 = End(False)
+        
+        var_1 = obj_1.done()
+        var_0 = obj_1.red_won()
+        var_2 = obj_1.drawn()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, True)
         
     def test_522(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (-2.9460295370650478, 4.495008909250034), 5, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.0020805442426308, 6.039204619662609), 8, False, False))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
+        obj_1 = End(False)
+        
+        var_0 = obj_1.overlaps_any_stone(Stone(False, (6.678445823652229, 4.4700022717768135), 2, False, True))
+        
+        self.assertEqual(var_0, False)
         
     def test_523(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (-4.7166425121455475, 0.1593847565143136), 2, False, True)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-3.2865474644512354, 0.3304208033952243), 3, True, True)
             
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((3.7546742943182725, -7.927381479015372), 3, True)
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
             obj_0.move_out_of_play()
         
     def test_524(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.2391676893646775, -1.6443742023386836), 0, False, False))
-            obj_1.add_stone(Stone(False, (-0.05957193569705943, -6.704975623995203), 10, True, True))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        var_1 = obj_2.__str__()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_525(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (4.0633661443036235, 4.746622927585971), 0, True, True)
-            
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((-2.890115365059035, -3.161933928634303), 3, True)
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-        
-    def test_526(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-6.077324880162886, -2.499667501147208), 11, True, True)
-            
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((2.1025436141057945, -7.182836158456082), 4, False)
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-        
-    def test_527(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (4.558449861660273, 5.675555118107296), 7, True, False))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (4.714967500011376, -1.5799710257403525), 5, True, True))
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (7.581202140848939, -2.3014592041500865), -2, True, True))
+        
+    def test_526(self):
+        obj_2 = Game()
+        
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
+        
+    def test_527(self):
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(False)
+            
+            var_3 = obj_1.score()
+            var_2 = obj_1.__str__()
+            var_6 = obj_1.done()
             var_4 = obj_1.done()
+            obj_1.add_stone(Stone(False, (-5.339732455074563, 7.320839451905677), 7, False, True))
+            var_5 = obj_1.drawn()
+            var_1 = obj_1.drawn()
         
     def test_528(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
         obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.score()
+        obj_2.add_end(End(False))
+        obj_2.add_end(End(False))
         
+        self.assertEqual(var_0, (0, 0))
         
     def test_529(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-4.2264186912289485, -1.6902489500456586), 11, False, True)
             
-            obj_1.add_stone(Stone(False, (6.455395076008232, 0.008149542727165837), 1, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-5.119148077673275, 3.257738460958434), 6, True, False))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
+            var_1 = obj_0.__str__()
+            var_5 = obj_0.distance_to_center()
+            var_3 = obj_0.is_in_house()
+            var_2 = obj_0.move((-1.2518850941170996, 2.7307743897286905), 12, True)
+            var_0 = obj_0.is_in_house()
+            var_4 = obj_0.is_out_of_bounds()
         
     def test_530(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (5.447345914397729, -2.1473941947937103), -2, False, False))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (5.658497363635091, -3.487918749071566), 4, True, False))
+        obj_2 = Game()
+        
+        var_1 = obj_2.display_scoreboard()
+        var_0 = obj_2.score()
+        var_2 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, (0, 0))
         
     def test_531(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(True, (3.693184381353232, 3.782265655674811), 9, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.537409012135857, -4.607079186932731), 7, False, False))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
+        obj_1 = End(True)
+        
+        var_2 = obj_1.score()
+        var_1 = obj_1.done()
+        var_3 = obj_1.score()
+        var_0 = obj_1.done()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, 0)
+        self.assertEqual(var_3, 0)
         
     def test_532(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-5.543586209662083, 1.51696791058826), 11, False, True)
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(False, (-0.13844142963359118, 4.3294804457895495), 7, True, False)
             
-            var_8 = obj_0.is_passed_hogline()
             obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-2.845771841180097, 0.331050883085096), -2, True)
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
+            var_0 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.distance_to_center()
+            obj_0.burn()
+            var_3 = obj_0.is_guard()
         
     def test_533(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(False)
-            
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.256181663235168, -0.4014010545116804), 8, True, True))
-            obj_1.add_stone(Stone(True, (7.123212522934789, -5.91134446985634), 7, False, True))
-            var_3 = obj_1.red_won()
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
         
     def test_534(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_535(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-4.694572026456338, 0.4691160624330202), 4, False, False)
+            obj_0 = Stone(False, (5.974729958573816, 0.9249653457219154), 10, True, False)
             
-            var_4 = obj_0.move((7.562350106278554, -2.0159738840827117), 11, True)
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
+            var_4 = obj_0.distance_to_center()
+            var_0 = obj_0.distance_to_center()
+            var_1 = obj_0.is_guard()
+            var_2 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.is_guard()
         
     def test_536(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-4.208477986296868, -0.3042106564270757), 1, True, True))
-            obj_1.add_stone(Stone(True, (7.0658170963661995, -4.643560226407846), 2, True, True))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
+        obj_0 = Stone(True, (4.407781886541107, 3.2876894254508393), 9, False, True)
+        
+        var_1 = obj_0.is_out_of_bounds()
+        var_0 = obj_0.__str__()
+        
+        self.assertEqual(var_0, 'Red stone at (-2.50, 5.49), round 9, burned')
+        self.assertEqual(var_1, False)
         
     def test_537(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
         
     def test_538(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.264190235127451, -5.913714237580912), 1, False, True))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (-6.732713352087311, 4.183278937863596), 4, False, True))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
         
     def test_539(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-4.240783932032857, -0.6452078976501188), 6, False, False)
-            
-            var_4 = obj_0.move((-0.006118500412387817, -0.09758285377445297), 9, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
+        obj_1 = End(False)
+        
+        var_1 = obj_1.drawn()
+        var_0 = obj_1.drawn()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, True)
         
     def test_540(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-6.596418127323576, -5.340749996517772), 0, True, False))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (-2.005339538838763, -4.920146062753629), 3, True, False))
-            var_4 = obj_1.done()
+        obj_1 = End(False)
+        
+        var_1 = obj_1.drawn()
+        var_0 = obj_1.score()
+        var_2 = obj_1.drawn()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, True)
         
     def test_541(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (-3.7615570758352543, 5.56743643889717), 5, True, True)
-            
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((7.387898080487517, -5.154200307375511), 4, True)
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
+        obj_1 = End(False)
+        
+        var_2 = obj_1.overlaps_any_stone(Stone(False, (-1.2606997008698322, 0.07461737726778495), 1, True, True))
+        var_1 = obj_1.red_won()
+        var_0 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, False)
         
     def test_542(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-3.95516118921552, 3.502501646515153), 0, False, True)
-            
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((7.694326965884752, 3.2219404468861637), 0, False)
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
+        obj_2 = Game()
+        
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_543(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-2.90457619792236, 4.030497890848153), 0, True, False))
-            obj_1.add_stone(Stone(False, (-2.6668062714594196, 1.0991771729697977), 5, True, False))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
+            var_0 = obj_1.drawn()
+            var_3 = obj_1.overlaps_any_stone(Stone(False, (-6.394510007470826, -3.7727691070400393), -2, True, False))
+            var_1 = obj_1.__str__()
+            var_5 = obj_1.overlaps_any_stone(Stone(True, (-0.3968261385984988, -6.236340803138848), 5, False, True))
+            var_4 = obj_1.drawn()
+            var_6 = obj_1.__str__()
+            var_2 = obj_1.done()
         
     def test_544(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (2.2613513293097913, 3.0451497038006465), 0, False, False)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-4.116647162171809, 3.478209418111886), 9, False)
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-        
-    def test_545(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
+        
+    def test_545(self):
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(True)
+            
+            var_6 = obj_1.done()
+            obj_1.add_stone(Stone(True, (2.464561694788241, 6.825683349474991), 7, True, True))
+            var_0 = obj_1.done()
+            var_4 = obj_1.__str__()
+            var_3 = obj_1.done()
+            var_5 = obj_1.red_won()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (1.3577618009456334, -6.902324538167441), 11, False, False))
         
     def test_546(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_547(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-7.78905480040833, -0.07678054646483012), 6, True, False)
+            
+            obj_0.move_out_of_play()
+            obj_0.burn()
+            var_6 = obj_0.__str__()
+            var_7 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.is_guard()
+            obj_0.move_out_of_play()
+            obj_0.move_out_of_play()
         
     def test_548(self):
         with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (0.8567801172410299, -2.055910131011169), 1, False, True)
+            obj_0 = Stone(True, (6.006520177059029, 1.7436814735658341), 3, False, True)
             
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
+            var_0 = obj_0.is_in_house()
             obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-5.909944852517635, 1.857876479471555), 0, True)
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
         
     def test_549(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (5.548512436998871, -7.754648096921468), 6, False, True)
-            
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-2.706611827370873, -7.568360596950498), 11, True)
-        
-    def test_550(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-5.9083287483246885, 5.027501714696806), 9, False, True)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_4 = obj_0.move((-0.3578654107648038, 1.857627024445117), 5, False)
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-        
-    def test_551(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
-        
-    def test_552(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-3.845108180149577, -7.614428034584481), 11, True, False)
-            
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-0.326345218476618, -6.740863560797186), 9, True)
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-        
-    def test_553(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        
-        
-    def test_554(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        
-        
-    def test_555(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (-0.22127648575479597, -1.8762888508225934), 2, True, False)
-            
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((6.620033513407005, -2.38069423916766), 3, True)
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-        
-    def test_556(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        
-        
-    def test_557(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (1.3660825711477749, 1.4250958545090597), 12, False, False))
-            obj_1.add_stone(Stone(False, (-0.27143041522476885, 6.149977053756546), 8, False, True))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
+            var_1 = obj_1.__str__()
+            var_0 = obj_1.__str__()
+            var_5 = obj_1.overlaps_any_stone(Stone(False, (6.558352061881392, 4.429159745586373), -2, True, False))
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.94374475807755, -5.921687574770189), 4, True, False))
+            var_3 = obj_1.done()
+            obj_1.add_stone(Stone(False, (2.221509509646962, -3.784519426628316), 5, True, False))
+        
+    def test_550(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-2.899118793566757, -7.818979343100864), -1, True, False)
+            
+            var_5 = obj_0.is_in_house()
+            obj_0.burn()
+            obj_0.move_out_of_play()
+            var_3 = obj_0.is_out_of_play()
+            var_1 = obj_0.__str__()
+            var_0 = obj_0.is_in_house()
+            var_7 = obj_0.move((-4.786345728460377, -4.500929116253953), 4, True)
+            var_2 = obj_0.is_passed_hogline()
+        
+    def test_551(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            var_0 = obj_1.drawn()
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (-4.016986790606149, -5.833322935253655), 7, False, False))
+            var_3 = obj_1.done()
+            var_6 = obj_1.overlaps_any_stone(Stone(True, (-0.7334338475348989, 4.987163105381688), 6, False, False))
+            var_1 = obj_1.drawn()
             var_5 = obj_1.drawn()
+            var_4 = obj_1.overlaps_any_stone(Stone(True, (5.551878823250037, 2.292941206510257), 1, True, True))
+        
+    def test_552(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (5.98394939340918, -5.0667730750105235), 0, True, True)
+            
+            var_3 = obj_0.is_in_house()
+            var_0 = obj_0.move((-1.9050784998793677, -7.114803830427352), 1, True)
+            var_2 = obj_0.is_in_house()
+            var_1 = obj_0.is_in_house()
+            var_4 = obj_0.move((5.243815892496608, -4.637539961989905), 10, True)
+        
+    def test_553(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (0.47785878065625376, 3.7157764634791253), 11, False, True)
+            
+            var_1 = obj_0.distance_to_center()
+            var_0 = obj_0.move((-1.5833398758504682, 5.344801401865929), -2, False)
+            var_2 = obj_0.is_out_of_play()
+        
+    def test_554(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (-0.38218084038123123, 1.8427330488066644), 12, True, False))
+            var_0 = obj_1.score()
+        
+    def test_555(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-4.210496182687088, 4.809274684326178), -2, True, False)
+            
+            var_0 = obj_0.is_passed_hogline()
+            var_3 = obj_0.distance_to_center()
+            var_7 = obj_0.__str__()
+            var_4 = obj_0.is_in_house()
+            obj_0.move_out_of_play()
+            var_2 = obj_0.is_passed_hogline()
+            var_1 = obj_0.is_in_house()
+            var_6 = obj_0.is_in_house()
+        
+    def test_556(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-1.9633421621861107, 5.410724040550997), 5, True, True)
+            
+            var_0 = obj_0.is_passed_hogline()
+            var_1 = obj_0.is_passed_hogline()
+            obj_0.move_out_of_play()
+            var_6 = obj_0.is_out_of_bounds()
+            var_8 = obj_0.is_in_house()
+            var_7 = obj_0.is_out_of_play()
+            var_4 = obj_0.move((-2.2071200039660415, -1.8164768760936614), -2, False)
+            var_5 = obj_0.is_out_of_bounds()
+            obj_0.burn()
+        
+    def test_557(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        var_3 = obj_2.red_winner()
+        var_2 = obj_2.display_scoreboard()
+        var_1 = obj_2.score()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, None)
         
     def test_558(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
         
     def test_559(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (5.320543353479726, -5.977670354343207), -1, False, False)
-            
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((7.936780328240539, 4.347499810641224), 7, False)
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_560(self):
         with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
             obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (5.50842009535495, 2.4548018025636544), 1, False, True))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (-4.429768920229241, -4.534852475724669), 5, False, True))
-            var_3 = obj_1.red_won()
+            var_4 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (-0.009146038394197475, 1.484617236392019), 4, False, False))
             var_5 = obj_1.drawn()
+            obj_1.add_stone(Stone(True, (-2.5150303261150917, 3.115856198793683), 6, False, True))
+            var_6 = obj_1.drawn()
+            var_3 = obj_1.__str__()
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (-5.042901322471975, 1.376275698643143), 11, False, False))
         
     def test_561(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (3.1642475550079805, 7.921494822864892), 0, False, False)
-            
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-5.702919733638028, -4.257030131036702), 0, False)
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
         
     def test_562(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            var_3 = obj_1.overlaps_any_stone(Stone(False, (-1.13516666221566, -1.139208374824765), 4, True, True))
+            var_4 = obj_1.done()
+            obj_1.add_stone(Stone(True, (4.082398562086867, -2.3497264090884418), 2, True, False))
+            var_6 = obj_1.overlaps_any_stone(Stone(False, (3.6433548925707253, -0.517448199040734), -1, False, False))
+            obj_1.add_stone(Stone(False, (-0.718114200902793, -5.247128750817797), 1, True, True))
+            var_5 = obj_1.drawn()
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (7.762921383756025, -7.119232855039838), 9, True, False))
         
     def test_563(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-3.656441967891432, -7.1900564383364856), 6, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-4.234284963100894, 1.8828197179556696), 7, True, False)
             
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((0.7313306887594582, 3.299179973786984), 0, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
+            var_0 = obj_0.__str__()
             obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
+            var_1 = obj_0.is_in_house()
         
     def test_564(self):
-        obj_2 = Game()
+        obj_0 = Stone(True, (5.016631629306103, -3.2288039485484), 8, True, True)
         
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_0 = obj_0.is_guard()
+        var_1 = obj_0.__str__()
         
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, 'Red stone at (-2.50, 5.49), round 8, burned')
         
     def test_565(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (1.4539211376181012, 7.213171090154816), 3, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
             
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-7.234683293845496, 4.112356158719315), 9, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
+            var_2 = obj_1.score()
+            var_0 = obj_1.drawn()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (4.228249201094691, 4.078685519750152), 3, False, False))
+            var_3 = obj_1.drawn()
         
     def test_566(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        
+    def test_567(self):
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(True)
+            
+            var_4 = obj_1.score()
+            obj_1.add_stone(Stone(True, (3.6483658835202526, 0.21994560647246253), 4, True, True))
+            obj_1.add_stone(Stone(False, (0.6482848447418057, -6.523699000314485), 11, True, False))
+            var_5 = obj_1.done()
+            var_3 = obj_1.__str__()
+            var_2 = obj_1.drawn()
+        
+    def test_568(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-6.0761779100328415, 0.49069126385167117), 7, False, True))
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-3.4162466878307782, 1.5029553706791745), -1, False, False))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-        
-    def test_567(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        
-        
-    def test_568(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-6.127380672348902, -5.8276514016574925), 1, True, False)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-6.6594649389239216, -4.143273003350586), 6, False)
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
+            var_0 = obj_1.score()
+            obj_1.add_stone(Stone(True, (-0.8323917485406707, -6.2474134416271365), 11, False, True))
         
     def test_569(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
+            
+            var_2 = obj_1.done()
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (-2.329608668084619, 1.2762793852254841), 12, False, False))
+            var_1 = obj_1.done()
         
     def test_570(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+            obj_1 = End(False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (2.5369311991914643, -1.4469268058869211), 11, True, False))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (-1.522211999983341, 0.11207461649426342), 10, True, True))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
+            var_1 = obj_1.red_won()
+            var_3 = obj_1.overlaps_any_stone(Stone(True, (-5.546910752133561, -1.79588595768133), -1, False, False))
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (2.3562052655469206, -5.626733635235594), 12, True, True))
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.565140788929666, -4.588014642931883), 2, False, True))
+            var_4 = obj_1.__str__()
         
     def test_571(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            var_0 = obj_1.score()
+            obj_1.add_stone(Stone(False, (-5.969830891319523, 7.331436175647308), 6, True, False))
+            var_3 = obj_1.__str__()
+            var_1 = obj_1.red_won()
+            var_4 = obj_1.done()
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (-3.5538452523038924, 0.13016893250030215), 6, True, True))
         
     def test_572(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (2.7535229481115344, 3.245424910566184), 3, False, False)
+            
+            var_5 = obj_0.is_in_house()
+            var_1 = obj_0.__str__()
+            obj_0.move_out_of_play()
+            var_4 = obj_0.distance_to_center()
+            var_3 = obj_0.is_in_house()
+            var_2 = obj_0.is_out_of_play()
         
     def test_573(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (7.942748072651991, -5.568562164293416), 0, True, True)
             
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (0.8933137957413457, -2.6009004020685484), 2, True, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (0.871454994052284, -5.259542906545851), -1, False, False))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
+            var_8 = obj_0.__str__()
+            var_9 = obj_0.is_guard()
+            var_7 = obj_0.is_in_house()
+            obj_0.burn()
+            var_2 = obj_0.move((2.303770059173731, 6.90978155569187), 11, True)
+            obj_0.burn()
+            var_5 = obj_0.is_passed_hogline()
+            var_0 = obj_0.is_guard()
+            var_4 = obj_0.is_passed_hogline()
+            var_6 = obj_0.distance_to_center()
         
     def test_574(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-5.5259267531232705, 0.9150965372543887), 12, False, True))
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.389736326069865, -0.3955468367434527), 0, True, True))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (-0.5933948692347997, 4.22583732564091), 12, True, False))
+            var_0 = obj_1.red_won()
         
     def test_575(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (2.9390125930618627, -4.13788360011409), 9, False, True)
-            
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-6.049578849039376, 2.9602220654867786), 7, False)
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        var_3 = obj_2.display_scoreboard()
+        obj_2.add_end(End(True))
+        var_2 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_2, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_576(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_1.drawn()
         
+        self.assertEqual(var_0, True)
         
     def test_577(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            var_0 = obj_1.drawn()
+            obj_1.add_stone(Stone(True, (-3.317083580226292, 0.25758283239666646), 11, False, True))
+            var_2 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (4.663247555963618, -6.3177355345003985), 12, False, False))
+            var_4 = obj_1.overlaps_any_stone(Stone(False, (4.967441254335416, 4.15710110779443), 12, False, False))
         
     def test_578(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (6.870961332540794, 3.468814959887366), 5, False, False))
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (7.533109472949144, 2.9715862635356167), 0, False, False))
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-        
-    def test_579(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (6.589243126450077, 5.58413417139011), 6, True, True)
-            
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-6.300691547011761, -2.9974661260385087), 2, False)
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-        
-    def test_580(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            obj_1.add_stone(Stone(True, (7.764040303231608, -7.350747925999515), 12, False, True))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.592809213539178, -4.54896623434902), 0, True, False))
-            var_3 = obj_1.red_won()
+            obj_1.add_stone(Stone(True, (-7.988329889332277, -0.41573433587282693), -1, True, True))
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (-0.17554841517412, 3.3997883609993576), 0, True, True))
+            obj_1.add_stone(Stone(False, (-6.475119721369985, 7.38609205455713), 3, False, True))
+            var_0 = obj_1.__str__()
+            var_4 = obj_1.drawn()
+        
+    def test_579(self):
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(False, (-3.3067574393723174, 0.863808645619045), 5, True, True)
+            
+            var_1 = obj_0.move((-1.9530060771261386, -5.3021363770599095), 12, True)
+            var_3 = obj_0.is_in_house()
+            var_0 = obj_0.__str__()
+            var_8 = obj_0.is_in_house()
+            var_2 = obj_0.__str__()
+            var_5 = obj_0.distance_to_center()
+            var_7 = obj_0.is_passed_hogline()
+            obj_0.burn()
+            var_9 = obj_0.distance_to_center()
+            obj_0.burn()
+        
+    def test_580(self):
+        obj_2 = Game()
+        
+        var_1 = obj_2.display_scoreboard()
+        var_2 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'Game with 0 ends')
         
     def test_581(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-4.384267538934598, -0.8880104968571061), 3, True, True)
-            
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((6.162627363320587, -6.651614017361133), 10, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
+        obj_1 = End(False)
+        
+        var_1 = obj_1.score()
+        var_2 = obj_1.red_won()
+        var_0 = obj_1.red_won()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, None)
         
     def test_582(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_583(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
+        var_0 = obj_2.score()
+        var_1 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_584(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (7.876188021406303, -0.10300146110569841), 9, False, False)
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(False, (4.947634571551481, -7.360892235693408), 8, False, True)
             
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-2.0386526629481576, 3.506698830131704), 9, True)
+            var_6 = obj_0.is_out_of_play()
+            var_2 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.move((7.6407137338054145, -3.6983743217705953), 10, True)
+            var_3 = obj_0.move((-6.741210899422988, -5.7840835382509255), -1, False)
+            var_0 = obj_0.is_guard()
             obj_0.burn()
+            var_5 = obj_0.distance_to_center()
         
     def test_585(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
+            
+            var_6 = obj_1.red_won()
+            var_2 = obj_1.score()
+            obj_1.add_stone(Stone(True, (0.25976487852635444, -3.9831089826535155), 12, True, False))
+            var_5 = obj_1.done()
+            var_0 = obj_1.score()
+            var_1 = obj_1.red_won()
+            var_3 = obj_1.red_won()
         
     def test_586(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
+            obj_1 = End(True)
+            
+            var_6 = obj_1.overlaps_any_stone(Stone(False, (-0.9120798055432022, 2.763633492622164), 9, False, True))
+            obj_1.add_stone(Stone(False, (4.63024362796272, 7.209813648153405), 5, True, True))
+            var_2 = obj_1.drawn()
+            var_3 = obj_1.__str__()
+            var_4 = obj_1.done()
+            obj_1.add_stone(Stone(True, (-2.8570637940555983, -4.893903167304371), 4, True, False))
+            var_1 = obj_1.drawn()
         
     def test_587(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(False, (-7.071051786401021, 3.8405428902924967), 10, True, True)
+            
+            var_0 = obj_0.is_out_of_play()
+            var_2 = obj_0.__str__()
+            var_3 = obj_0.__str__()
+            var_7 = obj_0.is_out_of_play()
+            var_1 = obj_0.move((1.2913743248774896, -6.78767357702066), 3, False)
+            var_8 = obj_0.__str__()
+            obj_0.burn()
+            var_5 = obj_0.is_guard()
+            var_6 = obj_0.is_passed_hogline()
         
     def test_588(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-6.683284914724922, 3.4917413493532568), -2, True, False)
+            
+            obj_0.move_out_of_play()
+            var_1 = obj_0.distance_to_center()
+            var_3 = obj_0.is_in_house()
+            var_2 = obj_0.is_out_of_bounds()
         
     def test_589(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+            obj_0 = Stone(False, (-3.082054772634459, -1.779135968407969), 11, False, True)
             
-            obj_1.add_stone(Stone(False, (7.267567281827757, 5.429205185626191), 12, True, False))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (1.4043886220439568, -1.4097162340272487), 8, True, False))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
+            var_5 = obj_0.is_passed_hogline()
+            var_3 = obj_0.is_in_house()
+            var_6 = obj_0.is_out_of_bounds()
+            obj_0.move_out_of_play()
+            var_4 = obj_0.move((4.6203081922062506, 7.630070540750271), 11, True)
+            obj_0.burn()
+            var_0 = obj_0.is_passed_hogline()
         
     def test_590(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        
-        
-    def test_591(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (3.966597478710767, -3.714541984996602), 11, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.688975466506577, 7.766958139181565), 8, False, True))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (-2.4547699044463602, 0.799419865271414), 12, False, True))
+            var_1 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (7.93833903147169, -6.149583396895215), 11, True, True))
+        
+    def test_591(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
         
     def test_592(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (1.6551334048906288, -6.953689477176459), 3, False, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-3.137935591060133, -5.802224830123233), 1, True, False)
             
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((4.306673091627921, -2.2575065545076924), 1, False)
-            var_6 = obj_0.is_out_of_bounds()
+            var_6 = obj_0.is_in_house()
             obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
+            var_5 = obj_0.is_passed_hogline()
+            var_0 = obj_0.is_guard()
+            var_1 = obj_0.is_passed_hogline()
+            var_4 = obj_0.is_in_house()
+            var_2 = obj_0.distance_to_center()
         
     def test_593(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-6.146934999397853, -6.290836571917614), 8, False, False)
-            
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((1.6306718480505324, -5.448611384781941), 12, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
+        obj_1 = End(False)
+        
+        var_0 = obj_1.done()
+        
+        self.assertEqual(var_0, False)
         
     def test_594(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        
-        
-    def test_595(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.015593377739119, -0.7980518888853005), 10, True, True))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (-0.6173649680759183, 5.5541260171852205), 3, False, False))
-        
-    def test_596(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (-4.866147531438417, -5.924315768151061), 7, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (1.1684268761632381, 6.940826866198439), 1, True, True))
-        
-    def test_597(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
         obj_2.add_end(End(True))
         
         
-    def test_598(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
+    def test_595(self):
+        obj_0 = Stone(True, (5.7928548556529265, 2.0589805089733098), 7, False, True)
+        
+        var_0 = obj_0.is_guard()
+        
+        self.assertEqual(var_0, False)
+        
+    def test_596(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-2.1371556807487444, 4.844853184287439), 2, True, True)
             
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-6.767619388646425, 4.958664998727002), 3, False, True))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (0.438667003685028, 2.6878868323162504), 0, True, False))
+            obj_0.burn()
+            obj_0.move_out_of_play()
+            var_3 = obj_0.is_in_house()
+            var_5 = obj_0.is_in_house()
+            var_2 = obj_0.__str__()
+            var_4 = obj_0.is_passed_hogline()
+            var_6 = obj_0.__str__()
+            var_1 = obj_0.is_guard()
+            var_8 = obj_0.is_guard()
+        
+    def test_597(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-6.23846809937587, -4.400271147909896), -1, False, False)
+            
+            var_3 = obj_0.is_passed_hogline()
+            obj_0.burn()
+            var_0 = obj_0.is_passed_hogline()
+            obj_0.move_out_of_play()
+            var_4 = obj_0.__str__()
+            var_1 = obj_0.__str__()
+        
+    def test_598(self):
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(True, (-2.29647577509442, 6.7942017686474205), 2, False, True)
+            
+            var_6 = obj_0.distance_to_center()
+            var_0 = obj_0.is_guard()
+            var_7 = obj_0.__str__()
+            var_9 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.is_in_house()
+            obj_0.move_out_of_play()
+            var_8 = obj_0.is_guard()
+            var_1 = obj_0.is_in_house()
+            var_3 = obj_0.distance_to_center()
+            var_2 = obj_0.distance_to_center()
         
     def test_599(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
         var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
+        var_2 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.score()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_600(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-7.013576136618246, -0.2966944480823468), 9, True, False)
-            
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((4.861988185068412, 7.247411653746143), 11, False)
-        
-    def test_601(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.5783091750945175, 6.082564632777739), 5, True, True))
-            obj_1.add_stone(Stone(False, (-2.1903240706072715, -6.04033285863939), 0, True, False))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (-1.6894321798866692, 5.902715599958148), 4, False, False))
+            obj_1.add_stone(Stone(True, (3.1564271976913094, 5.5117310392450705), 8, False, True))
+            obj_1.add_stone(Stone(True, (-0.5707003458268769, 5.781303230783768), 11, False, True))
+            var_5 = obj_1.overlaps_any_stone(Stone(True, (1.3296327297040378, 1.9216946807247997), 4, True, False))
+            var_2 = obj_1.done()
+            var_4 = obj_1.red_won()
+            var_1 = obj_1.done()
+        
+    def test_601(self):
+        obj_1 = End(True)
+        
+        var_0 = obj_1.red_won()
+        
+        self.assertEqual(var_0, None)
         
     def test_602(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
         
     def test_603(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
+        var_0 = obj_2.score()
+        var_1 = obj_2.__str__()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_604(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            var_5 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (-7.397070619392242, -6.5464687396374455), -2, True, False))
+            var_3 = obj_1.red_won()
+            obj_1.add_stone(Stone(True, (0.6881374899318189, -0.15450469405626954), 12, False, True))
+            var_2 = obj_1.done()
+            var_4 = obj_1.__str__()
         
     def test_605(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (1.3591627786338858, -5.430941243525808), 11, False, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-0.6517195871602794, -2.4768582633756573), -2, False)
-        
-    def test_606(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
         obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
+        var_1 = obj_2.score()
+        var_2 = obj_2.red_winner()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, None)
+        
+    def test_606(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (7.681559574265384, 3.564975898309209), 11, False, True)
+            
+            var_2 = obj_0.is_passed_hogline()
+            var_3 = obj_0.distance_to_center()
+            var_4 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.is_guard()
+            obj_0.burn()
         
     def test_607(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (-4.927149345000206, -6.8002981226720625), 4, True, True)
-            
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-7.676542308018858, -7.425444937312633), 10, True)
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
+        obj_1 = End(False)
+        
+        var_0 = obj_1.red_won()
+        
+        self.assertEqual(var_0, None)
         
     def test_608(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-6.059587222753013, 5.779928662078781), 7, True, True)
-            
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((3.3879069194283904, 5.695668379353108), 8, True)
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, (0, 0))
         
     def test_609(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (4.85262501248978, 5.8990373492505785), -1, False, True)
-            
-            var_4 = obj_0.move((0.45560021934074335, -3.650498853392506), 9, False)
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-        
-    def test_610(self):
         obj_2 = Game()
         
         obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
+        var_1 = obj_2.__str__()
+        var_3 = obj_2.__str__()
+        var_0 = obj_2.__str__()
+        var_4 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 1 ends')
+        self.assertEqual(var_1, 'Game with 1 ends')
+        self.assertEqual(var_3, 'Game with 1 ends')
+        self.assertEqual(var_4, 'Game with 1 ends')
+        
+    def test_610(self):
+        obj_1 = End(False)
+        
+        var_1 = obj_1.score()
+        var_0 = obj_1.red_won()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 0)
         
     def test_611(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+            obj_1 = End(True)
             
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (4.455465822867023, 6.707309742170594), 6, False, False))
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (-1.7745846774635297, 0.9656152365208257), 5, False, False))
+            var_0 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (4.801713386059575, -0.33474556493558083), 1, True, False))
+            var_2 = obj_1.score()
             var_5 = obj_1.drawn()
             var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (1.9540776352304388, 3.650994668055807), 2, False, True))
-            var_3 = obj_1.red_won()
         
     def test_612(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-1.0906220080516302, 5.8441074130970705), 9, False, False)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((-5.930412954219513, -1.3819915510801746), -2, False)
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        var_1 = obj_2.score()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
         
     def test_613(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-7.17366511016246, 0.567650018177849), 2, True, False)
+            obj_1 = End(False)
             
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-3.3299675590561932, 0.03591738181108539), 4, False)
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
+            var_0 = obj_1.red_won()
+            var_2 = obj_1.red_won()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (5.072579669350283, 7.569916773041255), 2, False, False))
         
     def test_614(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
         
     def test_615(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            obj_1.add_stone(Stone(True, (1.5383454131402665, 7.765549973440482), 5, False, False))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-3.961718862088796, -0.06919763500497034), 12, False, True))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
+        obj_1 = End(False)
+        
+        var_1 = obj_1.red_won()
+        var_2 = obj_1.red_won()
+        var_0 = obj_1.overlaps_any_stone(Stone(False, (3.734760926075875, 3.575150673269519), 1, False, True))
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
         
     def test_616(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-2.2197822759604904, -7.195597749788247), 0, True, True)
             
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-4.695113773151219, 0.48539180717620845), 2, False, False))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-5.196495419078456, -1.4032360158120234), 7, False, True))
+            obj_0.move_out_of_play()
+            obj_0.burn()
+            var_5 = obj_0.is_in_house()
+            var_0 = obj_0.is_guard()
+            var_2 = obj_0.is_guard()
+            var_3 = obj_0.is_out_of_play()
         
     def test_617(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (2.444151393461251, -4.035992115173125), 2, False, False)
+            
+            var_2 = obj_0.is_guard()
+            var_4 = obj_0.move((3.0047905466753573, 1.9208047369021504), 4, True)
+            obj_0.move_out_of_play()
+            obj_0.burn()
+            var_0 = obj_0.is_guard()
+            var_5 = obj_0.is_guard()
         
     def test_618(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
             obj_1 = End(False)
             
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.352662955193992, -2.625741339780909), 0, True, False))
-            obj_1.add_stone(Stone(False, (-0.5516176925346841, 7.459148775014773), 10, True, True))
-            var_7 = obj_1.__str__()
+            var_1 = obj_1.score()
+            var_2 = obj_1.drawn()
+            obj_1.add_stone(Stone(True, (2.463663894367542, 4.990537941514379), 2, False, False))
         
     def test_619(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(True, (-4.984702978716607, 2.1773721715509087), 9, False, True)
+            
+            var_1 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            var_6 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            obj_0.burn()
+            var_9 = obj_0.is_guard()
+            obj_0.move_out_of_play()
+            obj_0.burn()
+            obj_0.move_out_of_play()
+            var_0 = obj_0.is_out_of_bounds()
         
     def test_620(self):
+        obj_1 = End(True)
+        
+        var_0 = obj_1.drawn()
+        var_1 = obj_1.red_won()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, None)
+        
+    def test_621(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.141953874330598, -2.102324368306835), 7, True, False))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (-3.5288025202541586, 4.918290178810814), 2, True, True))
-        
-    def test_621(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (0.18912290759775807, -1.087136591756087), -2, False, False)
-            
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-1.2726076508216408, -5.287430669924351), -2, True)
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
+            var_3 = obj_1.__str__()
+            var_0 = obj_1.score()
+            var_4 = obj_1.drawn()
+            var_6 = obj_1.__str__()
+            var_2 = obj_1.score()
+            var_5 = obj_1.overlaps_any_stone(Stone(False, (-3.161423155352594, 3.243614675589926), 4, True, False))
+            obj_1.add_stone(Stone(True, (6.193325920313816, -4.05725816125479), 10, True, True))
         
     def test_622(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
         
     def test_623(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (0.030863152681988026, 7.781001262200052), 5, False, True)
-            
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((0.7243168661871344, -5.615480332156606), 8, True)
-            var_8 = obj_0.is_passed_hogline()
+        obj_2 = Game()
+        
+        var_1 = obj_2.display_scoreboard()
+        var_2 = obj_2.display_scoreboard()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_624(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
         var_2 = obj_2.score()
+        var_0 = obj_2.red_winner()
         var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_625(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (2.4139443870445803, -3.445939313583901), -2, True, False)
+            
+            var_3 = obj_0.is_passed_hogline()
+            var_4 = obj_0.move((2.2183911735301223, -1.5627375296344823), 1, False)
+            var_1 = obj_0.__str__()
+            var_2 = obj_0.is_guard()
+            var_0 = obj_0.is_passed_hogline()
         
     def test_626(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (3.803753072350684, 0.9656606542859993), 0, False, False)
+            
+            var_6 = obj_0.is_in_house()
+            var_4 = obj_0.is_guard()
+            var_7 = obj_0.__str__()
+            var_3 = obj_0.is_out_of_play()
+            var_5 = obj_0.__str__()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.is_passed_hogline()
+            var_0 = obj_0.distance_to_center()
         
     def test_627(self):
         obj_2 = Game()
         
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
         obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
         
     def test_628(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (3.3737055870441637, -1.1366701020406786), 11, True, False))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.0487058053658913, 3.6264928985511773), 0, True, True))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-        
-    def test_629(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (5.833308381336938, 7.182300924076843), 6, False, True))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-6.705751508989273, -0.4667561269419398), 4, True, False))
-            var_7 = obj_1.__str__()
-        
-    def test_630(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-7.928404783755054, 2.4595441920090284), 11, True, True)
-            
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-1.1326938434481715, -5.375353829250299), 7, True)
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-        
-    def test_631(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (5.749227536351929, 0.5783652411580391), 7, False, False))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (5.348716751901911, 2.2422292409187694), 3, False, False))
-            var_3 = obj_1.red_won()
-        
-    def test_632(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
+        var_3 = obj_2.__str__()
+        var_4 = obj_2.score()
+        var_2 = obj_2.red_winner()
+        var_1 = obj_2.__str__()
         obj_2.add_end(End(True))
         
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, 'Game with 0 ends')
+        self.assertEqual(var_4, (0, 0))
+        
+    def test_629(self):
+        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
+            obj_1 = End(True)
+            
+            obj_1.add_stone(Stone(False, (-3.1886138631809864, -5.133727805361525), 4, False, True))
+        
+    def test_630(self):
+        obj_1 = End(False)
+        
+        var_0 = obj_1.drawn()
+        var_2 = obj_1.red_won()
+        var_1 = obj_1.__str__()
+        var_4 = obj_1.__str__()
+        var_3 = obj_1.red_won()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, 'End with Yellow hammer and 0 stones')
+        
+    def test_631(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (0.6464573902420625, 3.942102567289542), 12, True, True)
+            
+            obj_0.move_out_of_play()
+            obj_0.burn()
+            var_2 = obj_0.move((-2.833105194738298, -5.4375087557617245), -2, True)
+            var_1 = obj_0.__str__()
+        
+    def test_632(self):
+        obj_0 = Stone(True, (-0.5123816250260997, -6.142901596048427), 8, True, False)
+        
+        var_0 = obj_0.__str__()
+        
+        self.assertEqual(var_0, 'Red stone at (-0.51, -6.14), round 8, active')
         
     def test_633(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+            obj_0 = Stone(False, (-6.691665344205791, 0.1662874172468083), 0, True, False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.9815015432143586, -7.66921270354597), 11, False, False))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (-7.854052123219139, 7.361321417674539), 8, False, False))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
+            var_8 = obj_0.is_guard()
+            obj_0.burn()
+            var_6 = obj_0.is_guard()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.is_in_house()
+            var_4 = obj_0.is_guard()
+            var_2 = obj_0.is_guard()
+            obj_0.burn()
+            var_0 = obj_0.is_in_house()
         
     def test_634(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
             obj_1 = End(False)
             
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.4400642214994335, -7.548569275350404), 9, True, True))
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-0.18583962073298999, -1.445534987153506), 1, False, False))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (-3.2805935546623655, 7.317062492947899), 9, False, True))
+            obj_1.add_stone(Stone(True, (-1.4850370676995848, -3.4759219225487055), 8, False, False))
         
     def test_635(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-5.9838363169604225, 5.20640229707298), 2, True, False))
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-3.098108652634373, 1.1378288250094926), 11, True, False))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (4.734737599413922, 5.171709889370737), -2, True, True))
+            var_0 = obj_1.score()
         
     def test_636(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
+        var_1 = obj_2.score()
+        var_0 = obj_2.score()
+        obj_2.add_end(End(True))
+        var_2 = obj_2.__str__()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 1 ends')
         
     def test_637(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (7.44371502623868, -0.5748830751974783), 0, False, False)
             
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (0.3397227496039683, -7.442288900048501), 4, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-0.5893326642113479, -1.3473420235247389), 6, True, True))
+            var_5 = obj_0.is_guard()
+            obj_0.burn()
+            var_0 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.is_passed_hogline()
+            var_2 = obj_0.__str__()
+            var_1 = obj_0.is_out_of_play()
+            var_7 = obj_0.is_in_house()
+            var_3 = obj_0.is_passed_hogline()
         
     def test_638(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-5.1748759317318065, 2.669283411689525), 6, False, True)
             
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (7.128767243759269, -6.408427612775446), -2, False, False))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.526085944945102, 0.18721135490834762), 8, False, False))
-            var_3 = obj_1.red_won()
+            var_8 = obj_0.is_in_house()
+            obj_0.burn()
+            var_0 = obj_0.move((3.5985336197926685, -4.053860124980428), 1, True)
+            var_2 = obj_0.distance_to_center()
+            var_7 = obj_0.__str__()
+            var_3 = obj_0.is_passed_hogline()
+            var_6 = obj_0.is_guard()
+            var_5 = obj_0.__str__()
+            var_4 = obj_0.is_guard()
         
     def test_639(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
         var_3 = obj_2.display_scoreboard()
+        var_2 = obj_2.score()
+        var_0 = obj_2.__str__()
+        var_4 = obj_2.red_winner()
+        var_1 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_4, None)
         
     def test_640(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-2.952565193521556, -6.953395493384072), 2, True, False)
+            obj_0 = Stone(True, (1.2142780080325917, 7.806351619984751), 5, False, False)
             
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
+            var_0 = obj_0.is_guard()
             obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-6.440415161271625, -2.972909455676694), 12, True)
+            var_5 = obj_0.is_passed_hogline()
+            var_1 = obj_0.is_out_of_play()
+            var_3 = obj_0.is_in_house()
+            var_2 = obj_0.is_guard()
         
     def test_641(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        
-        
-    def test_642(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (0.48158018856902984, 5.8492894841253325), 2, False, True)
-            
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((2.3291339463899092, -5.750341392433285), -2, True)
-        
-    def test_643(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        
-        
-    def test_644(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.616032124348127, 4.843927316309227), -2, True, False))
-            obj_1.add_stone(Stone(False, (-6.432411355651148, -0.30165731174088073), 8, False, True))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-        
-    def test_645(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-1.4412883871850646, -0.8890361673673084), 11, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-0.49679911359232065, -0.6215641147983568), 12, False, False))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
+            obj_1.add_stone(Stone(False, (-4.717889286353142, -3.3445102912110816), 12, False, False))
+            obj_1.add_stone(Stone(False, (-4.5859190392585365, 7.845272598284744), 5, True, True))
+        
+    def test_642(self):
+        obj_1 = End(True)
+        
+        var_1 = obj_1.__str__()
+        var_6 = obj_1.drawn()
+        var_2 = obj_1.red_won()
+        var_0 = obj_1.red_won()
+        var_4 = obj_1.score()
+        var_5 = obj_1.__str__()
+        var_3 = obj_1.drawn()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, 0)
+        self.assertEqual(var_5, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_6, True)
+        
+    def test_643(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-1.5202631644945725, -5.941602787197375), 2, True, True)
+            
+            obj_0.burn()
+            var_3 = obj_0.is_in_house()
+            var_4 = obj_0.is_guard()
+            var_0 = obj_0.distance_to_center()
+            var_2 = obj_0.__str__()
+        
+    def test_644(self):
+        obj_1 = End(False)
+        
+        var_0 = obj_1.red_won()
+        var_2 = obj_1.red_won()
+        var_1 = obj_1.__str__()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_2, None)
+        
+    def test_645(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
         
     def test_646(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(True, (-1.4515230386011595, -0.30959810001226806), 3, True, False))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.326766764785797, 6.202955001360564), 3, True, True))
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
+        obj_2 = Game()
+        
+        var_4 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
+        var_2 = obj_2.score()
+        var_3 = obj_2.__str__()
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, 'Game with 0 ends')
+        self.assertEqual(var_4, 'Game with 0 ends')
         
     def test_647(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
+        var_2 = obj_2.__str__()
         obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
+        var_0 = obj_2.score()
         var_3 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
         
     def test_648(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (1.3073769261791561, 5.2788397393463615), 1, False, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-6.567158002906698, 1.5795573167537054), -2, True)
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
+        obj_2 = Game()
+        
+        var_2 = obj_2.score()
+        var_3 = obj_2.score()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.__str__()
+        var_4 = obj_2.score()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, (0, 0))
         
     def test_649(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (6.368689733656986, -1.504082071622122), -1, True, False))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.895058270597696, 7.660188076421095), -1, False, False))
-            var_6 = obj_1.score()
+        obj_2 = Game()
+        
+        var_2 = obj_2.red_winner()
+        obj_2.add_end(End(False))
+        var_0 = obj_2.__str__()
+        var_3 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 1 ends')
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, 'Game with 1 ends')
         
     def test_650(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (1.4382956281572845, -5.459386845157866), 6, True, True))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.930751470966493, -0.7984609721737321), 9, True, False))
+        obj_2 = Game()
+        
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
+        var_2 = obj_2.score()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, (0, 0))
         
     def test_651(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-0.8020592236846156, -1.2629498960693457), 4, True, True)
+            
+            obj_0.move_out_of_play()
+            var_2 = obj_0.is_passed_hogline()
+            var_0 = obj_0.move((7.544173607977623, 4.4592173220172295), -1, True)
+            var_3 = obj_0.is_guard()
         
     def test_652(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (3.631679431345031, -7.164554076808143), 10, False, False)
             
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.430877958392879, 3.5628453846920856), 11, False, True))
-            obj_1.add_stone(Stone(False, (3.347795093463157, -7.2032320943466654), 5, True, True))
+            var_3 = obj_0.distance_to_center()
+            var_4 = obj_0.move((-3.5569944011473336, 3.9597262347593496), 10, True)
+            var_2 = obj_0.is_out_of_play()
+            var_0 = obj_0.move((5.196025687420478, -1.0822080131137373), -2, False)
+            var_1 = obj_0.__str__()
         
     def test_653(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
+        var_3 = obj_1.score()
+        var_2 = obj_1.red_won()
+        var_5 = obj_1.score()
+        var_4 = obj_1.red_won()
+        var_1 = obj_1.red_won()
+        var_0 = obj_1.drawn()
         
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, 0)
+        self.assertEqual(var_4, None)
+        self.assertEqual(var_5, 0)
         
     def test_654(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
+            
+            var_0 = obj_1.__str__()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (7.5992194438952865, -1.2176475907507154), -2, True, True))
         
     def test_655(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (5.717776697235562, -2.812128350057634), -2, True, False)
+            
+            var_2 = obj_0.__str__()
+            obj_0.burn()
+            var_4 = obj_0.is_out_of_play()
+            var_6 = obj_0.__str__()
+            var_7 = obj_0.move((0.6307351357643185, 6.325349955105564), 12, False)
+            var_8 = obj_0.is_guard()
+            var_1 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.__str__()
+            obj_0.move_out_of_play()
         
     def test_656(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.905826817813459, -6.924812827109049), 4, True, False))
-            obj_1.add_stone(Stone(False, (1.0023973471253598, 0.23787678895070563), 5, False, False))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
+            obj_1.add_stone(Stone(True, (-5.271870446451548, -0.6700162063530293), -2, False, False))
         
     def test_657(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-5.5487232384889165, 3.052964204391033), 12, True, True)
+            
+            obj_0.burn()
+            obj_0.move_out_of_play()
+            var_0 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.is_out_of_play()
         
     def test_658(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (0.9548015740241471, -4.087935565807134), 11, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-6.8563826991444845, 7.651924552054211), 8, True, False)
             
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
             obj_0.burn()
-            var_4 = obj_0.move((-2.6303944764205216, -6.050437645076844), 4, True)
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
+            var_6 = obj_0.is_out_of_play()
+            obj_0.burn()
+            var_8 = obj_0.is_passed_hogline()
+            var_5 = obj_0.is_out_of_play()
+            var_1 = obj_0.move((7.026436203713686, 3.2930454816681802), -2, True)
+            var_2 = obj_0.is_out_of_play()
+            var_4 = obj_0.__str__()
+            var_3 = obj_0.is_out_of_play()
         
     def test_659(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (-0.9010960455557697, -0.8015047371868604), 9, False, True)
-            
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((5.5575412186664295, 7.210954794837411), 5, True)
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-        
-    def test_660(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (-1.8844949556751516, 3.9876661406739444), 6, True, False)
-            
-            var_4 = obj_0.move((-6.709023975894317, -6.392191331686698), 4, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-        
-    def test_661(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (6.666812991558894, 5.579277943882925), 3, True, False)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_4 = obj_0.move((2.605919724547828, -5.632007631097272), 2, True)
-        
-    def test_662(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-3.6904280507427174, -4.045187170232104), 12, False, False))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (2.5073940507322394, -0.9831766540025377), 12, True, False))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-        
-    def test_663(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-4.5872757547035405, 3.897950503424589), 12, False, True)
-            
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((0.6429563185099667, 6.464456562379571), 0, True)
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-        
-    def test_664(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (4.4663337729181, 0.23175582855813737), 0, False, True))
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-3.1700235520511217, -2.9047964186381368), 4, False, False))
-        
-    def test_665(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
+        var_3 = obj_2.score()
+        var_2 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
         obj_2.add_end(End(False))
+        
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, (0, 0))
+        
+    def test_660(self):
+        obj_2 = Game()
+        
+        var_1 = obj_2.red_winner()
+        obj_2.add_end(End(True))
+        var_3 = obj_2.score()
         var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
         
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, (0, 0))
         
-    def test_666(self):
+    def test_661(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        
+    def test_662(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-0.8638863490420228, 0.4937055046524126), 1, True, True))
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (-6.766800902334255, 6.678119878262775), 6, True, False))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
+            var_3 = obj_1.score()
+            var_1 = obj_1.__str__()
+            var_2 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (3.374698756126783, -7.113045077759255), 8, True, False))
+        
+    def test_663(self):
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(True, (4.97176182081758, -5.996444450737346), 9, False, True)
+            
+            var_0 = obj_0.move((7.922556486600515, 3.7264674309078494), -2, False)
+            var_2 = obj_0.move((6.368836814907002, -0.8040337602352068), -1, False)
+            var_1 = obj_0.is_passed_hogline()
+            var_3 = obj_0.move((6.907842689953071, 4.219273166239624), 3, True)
+        
+    def test_664(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (0.713696894044574, 3.900531587185906), 9, True, False)
+            
+            var_2 = obj_0.is_out_of_bounds()
+            obj_0.burn()
+            var_4 = obj_0.is_guard()
+            var_1 = obj_0.is_out_of_play()
+            var_5 = obj_0.is_in_house()
+            obj_0.move_out_of_play()
+        
+    def test_665(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-4.318488283471847, -7.159397605441944), 9, False, False)
+            
+            var_1 = obj_0.move((-3.476698910269455, 7.736181114573117), 10, True)
+            var_0 = obj_0.is_in_house()
+            var_2 = obj_0.is_out_of_play()
+        
+    def test_666(self):
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
+            
+            var_0 = obj_2.display_scoreboard()
+            obj_2.add_end(End(True))
+            var_4 = obj_2.score()
+            obj_2.add_end(End(False))
+            var_2 = obj_2.score()
         
     def test_667(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-5.70484836557433, -2.147414856886405), 4, True, True)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_4 = obj_0.move((-7.461147426404191, 3.669631373379275), -2, True)
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        var_3 = obj_2.score()
+        var_2 = obj_2.score()
+        var_1 = obj_2.score()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, (0, 0))
         
     def test_668(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-3.0186008435051317, -5.21846701800291), 4, False, True))
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (-0.7761753887144387, -5.697026678494225), 2, False, True))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
         
     def test_669(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            obj_1.add_stone(Stone(True, (5.2059821127024435, -4.462633801815018), 4, True, True))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-3.6859359149000834, 7.4790960956710855), 6, False, True))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
+            obj_1.add_stone(Stone(False, (7.609124148006849, -0.6949787536203402), 2, True, False))
+            var_0 = obj_1.red_won()
         
     def test_670(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+            obj_0 = Stone(True, (2.219854438508637, 0.19598129852271917), 12, True, True)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (4.545429492393158, 3.899235201315083), 1, True, True))
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (2.7753080411084365, -4.753334948322525), -1, True, True))
+            var_2 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.move((5.269479232500112, 2.4639390436622364), 0, True)
+            var_6 = obj_0.is_guard()
+            var_1 = obj_0.is_in_house()
+            obj_0.move_out_of_play()
+            var_8 = obj_0.is_in_house()
+            var_0 = obj_0.is_passed_hogline()
+            var_7 = obj_0.is_passed_hogline()
+            var_4 = obj_0.is_out_of_bounds()
         
     def test_671(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (5.65203338806775, 5.0408243499864795), 11, True, False)
             
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (1.1656332447764832, 0.8523836383287691), 5, True, False))
-            obj_1.add_stone(Stone(True, (-5.947201165711025, -5.401311028729147), 3, True, False))
-            var_3 = obj_1.red_won()
+            var_0 = obj_0.is_guard()
         
     def test_672(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-4.775359182205207, 6.162301194315313), -1, False, False)
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(True, (-5.276951855471445, -7.678890681952009), 8, False, True)
             
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-2.228554559748556, 4.515834192251747), 3, False)
-            obj_0.move_out_of_play()
+            var_7 = obj_0.move((7.979667199108105, 7.205348211044692), 1, True)
+            var_5 = obj_0.is_out_of_bounds()
             var_6 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.__str__()
+            var_0 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.__str__()
+            var_2 = obj_0.is_in_house()
         
     def test_673(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+            obj_1 = End(False)
             
-            var_7 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (5.184697786360347, -1.1356689914325777), -2, False, True))
             var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-2.7224017756479935, -6.224504146349098), 4, False, True))
-            obj_1.add_stone(Stone(False, (-7.259455584565108, 2.699656811330014), 11, False, True))
-            var_6 = obj_1.score()
+            var_2 = obj_1.__str__()
+            var_1 = obj_1.done()
         
     def test_674(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (7.647746992492827, 4.419687313631391), 10, False, True)
-            
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-1.118638241289359, 3.905733016941886), -2, False)
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
+        obj_2 = Game()
+        
+        var_3 = obj_2.score()
+        var_1 = obj_2.__str__()
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, (0, 0))
         
     def test_675(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_676(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-0.3595804225354726, -5.563430613067773), -2, False, False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.678215056234542, 2.875027667907), 6, True, False))
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (5.482774848189212, -7.278776394487235), 7, True, True))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
+            var_3 = obj_0.move((-4.002981215164606, 5.0671467083645325), 7, False)
+            var_1 = obj_0.distance_to_center()
+            obj_0.burn()
+            var_2 = obj_0.is_out_of_play()
         
     def test_677(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (2.106626829808061, -5.826378972969934), 3, True, False)
-            
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-7.310022892558722, -4.392924781066871), 1, True)
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-        
-    def test_678(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-1.304242551205121, 5.267736693412772), 12, True, True)
-            
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((-3.224158112705222, -1.6986734122458582), 2, False)
-        
-    def test_679(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(False)
-            
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (-1.0034437356705155, 1.3323746011469986), 5, True, True))
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-5.259504192584458, 3.178866061956734), 2, False, True))
-        
-    def test_680(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        
+    def test_678(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        var_3 = obj_2.score()
+        var_2 = obj_2.score()
+        var_4 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, 'Game with 0 ends')
+        
+    def test_679(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
+        
+    def test_680(self):
+        obj_0 = Stone(True, (-2.6466699123024, 7.856851434643627), 6, True, True)
+        
+        var_0 = obj_0.is_out_of_bounds()
+        var_1 = obj_0.is_passed_hogline()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
         
     def test_681(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
         
     def test_682(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-3.4503992996703374, 2.971993522485567), -2, True, True)
-            
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-5.235007324466352, 6.791609824130838), 1, True)
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-        
-    def test_683(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-5.217537143788386, -5.952454774485352), 9, False, False))
-            obj_1.add_stone(Stone(False, (2.0498407027684493, 0.04438116212615917), 3, True, True))
+            var_0 = obj_1.score()
+            var_4 = obj_1.score()
+            var_5 = obj_1.__str__()
+            var_3 = obj_1.overlaps_any_stone(Stone(True, (-3.0150965156154896, 2.6913236721064138), -2, False, False))
+            var_2 = obj_1.drawn()
+            var_1 = obj_1.score()
+        
+    def test_683(self):
+        obj_2 = Game()
+        
+        obj_2.add_end(End(True))
+        var_1 = obj_2.red_winner()
+        
+        self.assertEqual(var_1, None)
         
     def test_684(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            obj_1.add_stone(Stone(False, (1.5987434605228863, -3.357313067734111), 4, False, True))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-3.876999524815842, -1.4642887759881411), 10, True, True))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
+            obj_2.add_end(End(False))
+            obj_2.add_end(End(True))
         
     def test_685(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        
-        
-    def test_686(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.9125653545664, -7.556309635331823), 4, True, True))
-            obj_1.add_stone(Stone(True, (-7.080493118326334, -7.149837191153667), 2, True, False))
-            var_5 = obj_1.drawn()
+            var_5 = obj_1.overlaps_any_stone(Stone(True, (0.08021603412506906, -7.011994987179101), 11, False, False))
+            var_6 = obj_1.drawn()
+            var_2 = obj_1.score()
+            obj_1.add_stone(Stone(True, (5.273596226678231, -4.106882447770895), 2, False, True))
+            obj_1.add_stone(Stone(True, (-4.42829832095075, 3.8514857999853636), 10, False, True))
+            var_4 = obj_1.drawn()
+            var_0 = obj_1.done()
+        
+    def test_686(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-4.407783805984549, 7.964020537781904), 8, False, True)
+            
+            var_0 = obj_0.__str__()
+            obj_0.burn()
         
     def test_687(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-4.422505328896154, 6.54839327546401), 11, True, True)
+            
+            var_0 = obj_0.distance_to_center()
+            var_8 = obj_0.distance_to_center()
+            var_7 = obj_0.is_passed_hogline()
+            var_2 = obj_0.move((-6.561482342838216, 1.2981978591053647), -1, False)
+            var_3 = obj_0.__str__()
+            obj_0.move_out_of_play()
+            var_6 = obj_0.distance_to_center()
+            var_5 = obj_0.is_out_of_play()
+            var_1 = obj_0.is_in_house()
         
     def test_688(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
+            obj_1 = End(False)
+            
+            obj_1.add_stone(Stone(True, (-0.2605815530625115, 3.612611864681371), 9, True, False))
+            var_1 = obj_1.score()
         
     def test_689(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+            obj_0 = Stone(True, (-2.7648652778536036, 0.3760446655052334), 5, False, False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-3.0492873232443145, 0.6921635395468346), 7, True, False))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (3.45923041199935, -0.2652535836709635), 1, True, False))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
+            obj_0.move_out_of_play()
         
     def test_690(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
+        var_3 = obj_2.red_winner()
+        var_1 = obj_2.display_scoreboard()
+        var_2 = obj_2.__str__()
+        obj_2.add_end(End(False))
+        obj_2.add_end(End(False))
         
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, None)
         
     def test_691(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (4.191336676261281, 6.51791111516142), 11, False, False)
+            
+            var_1 = obj_0.is_guard()
+            var_0 = obj_0.is_in_house()
+            var_3 = obj_0.__str__()
+            var_5 = obj_0.is_out_of_play()
+            obj_0.burn()
+            var_4 = obj_0.__str__()
         
     def test_692(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+            obj_1 = End(False)
             
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
+            var_5 = obj_1.overlaps_any_stone(Stone(False, (-0.38415411617872053, -6.334714543456473), 6, False, True))
+            var_2 = obj_1.drawn()
             var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (0.04491354160516181, 0.5764156741453075), 12, False, False))
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.045380817371939, 4.849530829978848), 3, False, True))
+            var_3 = obj_1.done()
+            var_1 = obj_1.__str__()
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (-7.10640090086004, -3.625601078229172), 12, False, True))
         
     def test_693(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-2.9653830687857976, 6.323238580253786), 6, False, False)
+            obj_1 = End(False)
             
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((2.4265062258788426, 5.226604385864379), 1, True)
-            obj_0.burn()
+            var_1 = obj_1.__str__()
+            var_2 = obj_1.score()
+            var_0 = obj_1.done()
+            obj_1.add_stone(Stone(True, (3.7717580046183077, 0.8115168933588048), 7, True, False))
         
     def test_694(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (7.571050506082889, -1.1333262097518357), 7, True, False)
-            
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((1.21396047116313, 3.0631313545040157), 7, False)
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
+        obj_2 = Game()
+        
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.__str__()
+        var_2 = obj_2.__str__()
+        var_3 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, 'Game with 0 ends')
         
     def test_695(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        
-        
-    def test_696(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (7.670328036047321, -0.7860083152768915), 4, False, True)
-            
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-3.762289000336775, -1.8285204403398847), 8, True)
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-        
-    def test_697(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (3.523892385180458, 0.16971417268304023), -1, False, True)
-            
-            var_4 = obj_0.move((7.865972773657139, 7.921363924844314), 4, True)
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-        
-    def test_698(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (6.620240192135158, 0.49925553197270744), 3, True, False))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-3.467992812847683, 5.225388105860054), 10, True, False))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
+            var_2 = obj_1.done()
+            obj_1.add_stone(Stone(False, (-3.9900912334405856, -6.7611031742867524), 5, True, False))
+            var_1 = obj_1.drawn()
         
-    def test_699(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (-3.3514490306642344, 0.5500199500910696), 1, True, True))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (0.1451788226964119, -5.092176964805706), 7, False, True))
-            var_6 = obj_1.score()
-        
-    def test_700(self):
+    def test_696(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
+        var_2 = obj_2.display_scoreboard()
+        var_1 = obj_2.red_winner()
+        var_4 = obj_2.score()
+        var_3 = obj_2.red_winner()
+        obj_2.add_end(End(True))
         
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, (0, 0))
+        
+    def test_697(self):
+        obj_1 = End(True)
+        
+        var_2 = obj_1.red_won()
+        var_0 = obj_1.score()
+        var_1 = obj_1.red_won()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        
+    def test_698(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        obj_2.add_end(End(False))
+        
+        self.assertEqual(var_0, None)
+        
+    def test_699(self):
+        obj_2 = Game()
+        
+        obj_2.add_end(End(False))
+        var_2 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_2, 'Game with 1 ends')
+        
+    def test_700(self):
+        obj_1 = End(True)
+        
+        var_0 = obj_1.done()
+        var_1 = obj_1.red_won()
+        var_2 = obj_1.drawn()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, True)
         
     def test_701(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
+        obj_2.add_end(End(True))
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
+        self.assertEqual(var_2, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
         
     def test_702(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (4.1485785959964225, -7.492022007890501), 9, True, True)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.8498087710460798, -1.1010994153957832), 6, False, True))
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-0.38233601636625814, 4.54791961323879), 10, False, False))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
+            obj_0.move_out_of_play()
+            obj_0.burn()
+            obj_0.move_out_of_play()
+            var_5 = obj_0.move((0.5259893637684385, 1.375673574946168), 9, False)
+            var_0 = obj_0.__str__()
+            var_2 = obj_0.move((1.938229314269206, -2.4158617499318122), 7, True)
+            obj_0.burn()
+            var_4 = obj_0.is_passed_hogline()
+            obj_0.move_out_of_play()
+            var_9 = obj_0.move((-7.1217568048498965, 1.399798173887861), 6, False)
         
     def test_703(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-7.678386549839779, 5.925168312531865), -2, False, False)
-            
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-4.622126008643532, -7.514686220697037), 12, True)
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        var_3 = obj_2.red_winner()
+        var_1 = obj_2.score()
+        var_2 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, None)
         
     def test_704(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(True, (-2.7329689085354616, 3.9436617360442003), 8, False, True)
+            
+            var_1 = obj_0.distance_to_center()
+            var_2 = obj_0.distance_to_center()
+            var_3 = obj_0.distance_to_center()
+            var_0 = obj_0.is_out_of_bounds()
         
     def test_705(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-5.096785507295641, 5.6049272876631395), 6, False, False)
-            
-            var_4 = obj_0.move((-6.8673133104292035, -3.1880403685946277), 5, False)
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
+        obj_1 = End(False)
+        
+        var_0 = obj_1.drawn()
+        
+        self.assertEqual(var_0, True)
         
     def test_706(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (3.3059457398463827, 7.559030946113474), 7, False, False)
-            
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((0.9526903803413802, 7.296731229335675), 5, True)
+        obj_1 = End(True)
+        
+        var_0 = obj_1.score()
+        var_1 = obj_1.red_won()
+        var_2 = obj_1.score()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 0)
         
     def test_707(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-0.08955916651614082, 2.3801397605713532), -2, False, False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
             
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((-0.8056931626535491, 3.8561821033438335), 0, True)
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
+            var_3 = obj_1.score()
+            var_0 = obj_1.drawn()
+            var_2 = obj_1.score()
+            obj_1.add_stone(Stone(True, (-4.738990573766591, 6.941894390778886), 9, True, False))
+            var_1 = obj_1.score()
+            var_5 = obj_1.done()
+            var_4 = obj_1.done()
         
     def test_708(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (6.0114485475880475, -0.4870915052743001), 5, True, False)
+            
+            var_2 = obj_0.__str__()
+            var_0 = obj_0.is_passed_hogline()
+            var_1 = obj_0.move((-1.2062634083533101, -0.18337303627946078), 5, True)
         
     def test_709(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
+        var_3 = obj_2.__str__()
+        obj_2.add_end(End(False))
+        var_2 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, 'Game with 0 ends')
         
     def test_710(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(False)
-            
-            obj_1.add_stone(Stone(True, (-5.240048939004566, -1.4984993018285024), 3, False, True))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.049128983458603, 4.3677924099901), 6, True, True))
+        obj_2 = Game()
+        
+        var_1 = obj_2.display_scoreboard()
+        obj_2.add_end(End(False))
+        
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_711(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (5.311661728669943, 5.209577795061708), 3, False, False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.145982618089768, -5.587141823911017), 4, True, True))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-2.0915663333555408, 0.1836859491271703), 11, True, True))
+            var_0 = obj_0.move((-3.525501267939081, 6.140137321265252), 7, False)
+            var_1 = obj_0.is_guard()
+            var_3 = obj_0.move((3.50434657473952, -5.983127747937857), 10, True)
+            var_2 = obj_0.is_in_house()
+            obj_0.burn()
+            var_5 = obj_0.is_out_of_bounds()
         
     def test_712(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (4.113478482344529, -1.6881028828166897), 8, True, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (7.730735579030945, -0.03725044493486962), 1, False, False))
+        obj_1 = End(True)
+        
+        var_0 = obj_1.drawn()
+        
+        self.assertEqual(var_0, True)
         
     def test_713(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (1.2334800918238766, -6.537083637758522), 9, False, False)
-            
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((4.773256014981564, 6.549287783512426), 8, True)
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
+        obj_2 = Game()
+        
+        var_1 = obj_2.red_winner()
+        obj_2.add_end(End(False))
+        
+        self.assertEqual(var_1, None)
         
     def test_714(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (4.0389167234369125, -6.222939196897865), 1, False, False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
             
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((-3.899329700069048, -1.0736406962646647), 6, False)
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
+            var_4 = obj_1.__str__()
+            var_5 = obj_1.score()
+            var_3 = obj_1.__str__()
+            var_6 = obj_1.__str__()
+            var_0 = obj_1.drawn()
+            var_1 = obj_1.score()
+            obj_1.add_stone(Stone(False, (3.019357063383403, -7.231329402555614), 11, True, False))
         
     def test_715(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
+        
+    def test_716(self):
         with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
             obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (-2.2459115192200354, 0.9517091347730666), 8, True, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-2.22436971638993, -5.224242922369022), -1, True, True))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
+            var_2 = obj_1.drawn()
+            var_1 = obj_1.done()
+            var_0 = obj_1.score()
+            var_4 = obj_1.red_won()
             var_5 = obj_1.drawn()
-        
-    def test_716(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        
+            obj_1.add_stone(Stone(False, (-3.9046310676282285, 3.36474688528787), 10, True, True))
         
     def test_717(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (2.9883374362224604, -2.1993125629702632), 3, True, True)
+            
+            obj_0.burn()
+            var_1 = obj_0.move((-0.5972014629993332, 2.3003641114122413), 4, False)
+            obj_0.burn()
         
     def test_718(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_2 = obj_2.red_winner()
+        var_1 = obj_2.score()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, None)
         
     def test_719(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-4.50610975119816, 7.970928238533029), 3, False, False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (0.9354124770814014, -1.7879586404201717), 11, False, False))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (1.214175370521767, 4.202926241342723), -2, True, True))
-            var_3 = obj_1.red_won()
+            var_0 = obj_0.__str__()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.is_out_of_bounds()
         
     def test_720(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
+        var_1 = obj_1.score()
+        var_0 = obj_1.overlaps_any_stone(Stone(False, (4.160598973025836, -6.556842359905843), 1, False, True))
         
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, 0)
         
     def test_721(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (0.32024375025822316, -4.329233256402636), 6, False, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-4.332702544886363, 0.5390652814148336), 8, True, False)
             
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
+            var_2 = obj_0.is_out_of_play()
             obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((7.8929940419341325, -6.50656109031071), 3, False)
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
+            var_0 = obj_0.is_out_of_play()
+            var_1 = obj_0.is_out_of_bounds()
         
     def test_722(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (4.657266998785095, -0.7471881747357223), 1, True, True))
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (-2.304093259681645, -6.8809090843657685), 10, True, False))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-        
-    def test_723(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        
+    def test_723(self):
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(True)
+            
+            var_0 = obj_1.__str__()
+            var_4 = obj_1.score()
+            obj_1.add_stone(Stone(True, (0.94180028899153, -5.957917305594449), 1, True, False))
+            var_5 = obj_1.__str__()
+            var_3 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (0.23576600105539924, -7.8572637684406885), 8, True, False))
+            var_6 = obj_1.score()
         
     def test_724(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
+        var_3 = obj_2.red_winner()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, None)
         
     def test_725(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
             var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (5.03840915070883, 2.767076314620807), 2, True, True))
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.840419871193962, -1.0150917523829968), 0, False, True))
+            obj_1.add_stone(Stone(False, (-5.163865342162961, 1.5105626119275826), 1, True, True))
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (-7.79625118618452, 0.514731988872521), 3, True, False))
+            var_1 = obj_1.red_won()
         
     def test_726(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-3.553427583525183, -7.9728810866631274), 12, False, True)
-            
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((6.056102433794674, -1.8149786018824887), 6, True)
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
+        obj_1 = End(False)
+        
+        var_2 = obj_1.score()
+        var_0 = obj_1.__str__()
+        var_3 = obj_1.red_won()
+        var_1 = obj_1.overlaps_any_stone(Stone(False, (-1.8645131330933218, 2.0473106232488387), 4, False, False))
+        
+        self.assertEqual(var_0, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, 0)
+        self.assertEqual(var_3, None)
         
     def test_727(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (6.883454171891492, -4.327553457371195), 10, False, False)
             
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (0.6762105774483622, 3.342198705245755), 7, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.596624383484457, 1.985927233420858), 2, True, False))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
+            var_2 = obj_0.is_in_house()
+            var_4 = obj_0.move((1.3878662305802134, 6.728573197941795), 2, True)
+            var_5 = obj_0.is_passed_hogline()
+            var_3 = obj_0.__str__()
+            obj_0.move_out_of_play()
+            var_0 = obj_0.is_in_house()
         
     def test_728(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_1 = obj_2.score()
+        var_0 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
         
     def test_729(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (-5.768264555216144, -2.1036219378404137), 9, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-6.161008276898039, 4.707630499952206), 1, True, False)
             
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((6.4967463131289644, -3.474863807487967), 3, True)
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
+            var_0 = obj_0.move((-5.946951578178044, 3.2566385128537583), 7, False)
+            var_3 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.is_guard()
+            var_7 = obj_0.move((-5.146481094202537, -5.46842400825331), 12, False)
+            var_4 = obj_0.is_out_of_play()
+            var_2 = obj_0.__str__()
+            var_6 = obj_0.is_guard()
             var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
         
     def test_730(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.6376207116794728, 1.294608517623379), 11, True, True))
-            obj_1.add_stone(Stone(True, (-5.40781862459276, 2.821494779103242), 10, True, False))
-            var_4 = obj_1.done()
+            obj_1.add_stone(Stone(True, (5.038670168811235, 5.768885830961546), 1, False, True))
+            var_0 = obj_1.score()
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.988358028533549, 6.344783776509944), 3, True, False))
         
     def test_731(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+            obj_1 = End(False)
             
-            obj_1.add_stone(Stone(True, (-6.100961209968794, 4.066041930851329), 0, True, False))
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.8826506302351884, 4.602586333388521), -2, False, False))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (-1.9154437953427124, 7.453257894085171), -1, False, True))
+            var_1 = obj_1.red_won()
+            var_2 = obj_1.done()
+            obj_1.add_stone(Stone(True, (-4.032696855916308, -7.670142108266495), 12, True, False))
+            var_3 = obj_1.drawn()
+            var_4 = obj_1.red_won()
         
     def test_732(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (3.484904744801268, 5.85569294678827), 5, True, True)
-            
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((2.678747328677165, -7.697242974709653), -2, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.red_winner()
+        var_3 = obj_2.__str__()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, 'Game with 0 ends')
         
     def test_733(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (0.3819834236204134, -2.6572663534106784), -2, False, False)
+            obj_0 = Stone(False, (2.1142666942844777, -7.032715412263258), 11, False, True)
             
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_4 = obj_0.move((5.168555721740052, 1.3720327734834221), 6, True)
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
+            var_1 = obj_0.is_guard()
+            var_0 = obj_0.is_out_of_play()
         
     def test_734(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
             obj_1 = End(False)
             
+            obj_1.add_stone(Stone(True, (0.21179853327710418, -7.585099865607246), 4, False, True))
+            obj_1.add_stone(Stone(False, (0.1810057916612653, -5.930064012712357), -2, True, True))
+            obj_1.add_stone(Stone(True, (-0.15359629524490437, -5.744280013747302), 3, True, False))
             var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (1.0164550630046474, 1.4627467100514941), -1, False, False))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (0.7704600087420133, 2.119649554812952), 10, True, True))
-            var_4 = obj_1.done()
         
     def test_735(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-4.213931542397466, -6.327633415655853), -1, True, True)
+            
+            var_1 = obj_0.is_in_house()
+            var_0 = obj_0.is_guard()
+            var_2 = obj_0.is_out_of_bounds()
         
     def test_736(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (6.36906597020829, 2.29465771834964), 1, True, False))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-0.2781624093329267, 7.448664813752316), 3, True, True))
+        obj_2 = Game()
+        
+        obj_2.add_end(End(False))
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
         
     def test_737(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
+            
+            obj_1.add_stone(Stone(False, (7.431012728023319, -7.301923139154834), 8, False, False))
+            var_0 = obj_1.red_won()
         
     def test_738(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-2.2581597319351747, -7.008422454407361), -2, False, True)
+            
+            var_0 = obj_0.is_passed_hogline()
         
     def test_739(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (0.7463524158775012, 1.3770369653086938), -1, True, True)
-            
-            var_4 = obj_0.move((-0.6603002469484593, 2.456496721675201), 12, True)
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.done()
+        
+        self.assertEqual(var_0, False)
         
     def test_740(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (3.8068704390438484, 0.9895641017200703), 12, False, False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-7.889698705911048, 3.104847920765394), 7, True, False)
             
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((-4.2760844654830485, 2.0089373045952694), 2, False)
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
             obj_0.burn()
+            var_0 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_4 = obj_0.is_out_of_play()
+            var_3 = obj_0.__str__()
         
     def test_741(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (5.220475737027675, 3.2934183505033783), -2, True, False))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (5.518629694259202, -3.372146321158626), 2, True, False))
-        
-    def test_742(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
+        var_3 = obj_2.score()
+        var_2 = obj_2.__str__()
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.red_winner()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, (0, 0))
+        
+    def test_742(self):
+        obj_1 = End(True)
+        
+        var_0 = obj_1.score()
+        var_1 = obj_1.done()
+        var_2 = obj_1.done()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, False)
         
     def test_743(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (3.3276450206918895, 1.4331491283667521), 8, False, False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (4.972267050211695, 0.38834197403988924), 0, False, False)
             
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((-0.9359167153340291, 2.9968695323006376), 10, True)
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
             obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
         
     def test_744(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(True)
-            
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (7.671024622387753, -2.1358533399377198), 10, True, True))
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (2.625281699193641, 3.188901321967718), 1, False, True))
-            var_5 = obj_1.drawn()
+        obj_2 = Game()
+        
+        var_3 = obj_2.score()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.score()
+        var_2 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, (0, 0))
         
     def test_745(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
         
     def test_746(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
+            
+            var_1 = obj_1.score()
+            var_2 = obj_1.score()
+            obj_1.add_stone(Stone(False, (6.727916481692599, 4.457928829064032), 12, False, True))
         
     def test_747(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (3.8094455885210916, -7.141854802468508), 9, False, False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
             
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-1.2010880629672673, -3.4012274144544765), 10, True)
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
+            var_2 = obj_1.done()
+            var_4 = obj_1.score()
+            var_0 = obj_1.score()
+            var_3 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (4.928353469947671, -1.984005013089929), -2, False, False))
         
     def test_748(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (1.0624142664868224, -7.752774781054548), 7, True, True)
-            
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((7.514351880145174, 3.096984984993684), 10, True)
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
+        obj_1 = End(False)
+        
+        var_5 = obj_1.__str__()
+        var_0 = obj_1.score()
+        var_4 = obj_1.red_won()
+        var_2 = obj_1.done()
+        var_1 = obj_1.red_won()
+        var_3 = obj_1.drawn()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, None)
+        self.assertEqual(var_5, 'End with Yellow hammer and 0 stones')
         
     def test_749(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            obj_1.add_stone(Stone(False, (5.5668474838620785, -5.818546080257928), 5, False, True))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-5.670847038177744, -3.158941135435107), 2, True, False))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
+        obj_1 = End(False)
+        
+        var_5 = obj_1.__str__()
+        var_3 = obj_1.drawn()
+        var_2 = obj_1.drawn()
+        var_4 = obj_1.overlaps_any_stone(Stone(True, (-7.39882477465866, 4.886935091603288), 10, False, True))
+        var_0 = obj_1.done()
+        var_1 = obj_1.red_won()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, False)
+        self.assertEqual(var_5, 'End with Yellow hammer and 0 stones')
         
     def test_750(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (7.307962299986226, 6.098596916898845), 12, True, False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (1.6879792948465013, 3.7809222538570904), 1, False, True)
             
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
             obj_0.burn()
-            var_4 = obj_0.move((5.959423478251136, -2.9177403073921564), 4, True)
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
+            var_0 = obj_0.is_in_house()
+            var_1 = obj_0.is_guard()
+            var_4 = obj_0.is_out_of_play()
+            var_2 = obj_0.is_out_of_play()
         
     def test_751(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (0.40597917513687065, -4.003541797407117), 11, False, True)
             
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.803501160481757, 4.335113123512324), 7, False, False))
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (5.44222172225599, -5.818532782732667), 1, True, True))
+            var_0 = obj_0.__str__()
         
     def test_752(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (3.5143437671160793, 0.449735051224776), 1, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-6.160528907669455, -2.393637987158744), 5, False, True))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-        
-    def test_753(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-3.4728517311315628, 7.527714367496058), 8, True, False))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (5.81901915961366, 2.766360728366706), 7, False, True))
-        
-    def test_754(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-7.618994191202111, 3.9354316182633937), 4, True, True)
-            
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-1.1660752143509114, -6.507614057516587), 5, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-        
-    def test_755(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        
+    def test_753(self):
+        obj_1 = End(False)
+        
+        var_0 = obj_1.drawn()
+        var_1 = obj_1.drawn()
+        var_3 = obj_1.red_won()
+        var_2 = obj_1.drawn()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, None)
+        
+    def test_754(self):
+        obj_2 = Game()
+        
+        var_3 = obj_2.red_winner()
+        obj_2.add_end(End(False))
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'Game with 1 ends')
+        self.assertEqual(var_3, None)
+        
+    def test_755(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            var_3 = obj_1.overlaps_any_stone(Stone(False, (-5.937565211711529, 4.5857516865955095), 12, True, False))
+            var_2 = obj_1.score()
+            var_1 = obj_1.__str__()
+            var_0 = obj_1.done()
+            var_4 = obj_1.drawn()
         
     def test_756(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        obj_2.add_end(End(False))
         
         
     def test_757(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            obj_1.add_stone(Stone(True, (-6.280950831825114, 1.9536941394968004), 12, False, True))
         
     def test_758(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-2.348652835658596, 0.5053317633450725), 8, False, False)
+            
+            var_2 = obj_0.move((-6.351537887327339, -6.7130803855168), -1, False)
+            var_1 = obj_0.is_in_house()
+            obj_0.move_out_of_play()
+            var_3 = obj_0.is_guard()
         
     def test_759(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-6.665370075170641, -3.9457143482405357), 9, True, False)
             
-            obj_1.add_stone(Stone(False, (7.396562526551211, -1.8483683222931742), 6, True, True))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.38728953661005, 6.711516407802961), 2, False, True))
-            var_6 = obj_1.score()
+            var_2 = obj_0.distance_to_center()
+            var_1 = obj_0.is_out_of_play()
+            var_0 = obj_0.is_passed_hogline()
         
     def test_760(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (5.246286241721473, 2.7390456792508786), 0, False, False)
-            
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((-3.0916108476667326, 5.180024615375942), 9, True)
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_761(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
+        var_1 = obj_2.red_winner()
+        var_3 = obj_2.score()
+        var_4 = obj_2.score()
         obj_2.add_end(End(True))
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, (0, 0))
         
     def test_762(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-4.1401464592317065, 2.494049178569096), -1, False, False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
             
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((3.7325459820860374, -5.079491892106573), 9, False)
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
+            var_0 = obj_1.drawn()
+            var_1 = obj_1.done()
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (4.4976313237886405, -6.097526419886385), 1, True, False))
+            var_4 = obj_1.red_won()
+            var_5 = obj_1.drawn()
+            var_6 = obj_1.__str__()
+            var_3 = obj_1.drawn()
         
     def test_763(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (-6.159310348552264, -7.236436119231064), 9, True, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (4.60349195984265, -6.279145509095271), 1, True, True))
+            var_0 = obj_1.done()
             var_6 = obj_1.score()
+            var_4 = obj_1.score()
+            var_3 = obj_1.done()
+            obj_1.add_stone(Stone(False, (-0.7321107194850587, 6.902520663280152), -1, False, True))
+            var_5 = obj_1.score()
+            var_2 = obj_1.overlaps_any_stone(Stone(False, (5.227025497586665, 5.146710017906532), 3, False, True))
         
     def test_764(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (2.0142098040307737, -4.742642634359562), 1, False, True)
-            
-            var_4 = obj_0.move((7.500891397798441, -4.221319258727233), 5, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.overlaps_any_stone(Stone(False, (-1.9803588917640251, -5.207645777289031), 7, True, False))
+        
+        self.assertEqual(var_0, False)
         
     def test_765(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
+        var_2 = obj_1.score()
+        var_0 = obj_1.red_won()
+        var_1 = obj_1.score()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, 0)
         
     def test_766(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
+        var_0 = obj_1.done()
+        var_1 = obj_1.red_won()
+        var_2 = obj_1.done()
         
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, False)
         
     def test_767(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (1.7473788850005558, 2.265744731452319), 6, True, True)
+            
+            obj_0.burn()
+            var_1 = obj_0.is_guard()
+            var_2 = obj_0.__str__()
         
     def test_768(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_4 = obj_1.__str__()
+        var_0 = obj_1.drawn()
+        var_1 = obj_1.drawn()
+        var_3 = obj_1.red_won()
+        var_2 = obj_1.score()
         
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, 0)
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, 'End with Yellow hammer and 0 stones')
         
     def test_769(self):
-        obj_2 = Game()
+        obj_0 = Stone(False, (-1.5039580925060143, -1.6714120230554936), 5, False, True)
         
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
+        var_0 = obj_0.__str__()
         
+        self.assertEqual(var_0, 'Yellow stone at (2.50, 5.49), round 5, burned')
         
     def test_770(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
+        var_0 = obj_1.drawn()
         
+        self.assertEqual(var_0, True)
         
     def test_771(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(True, (-3.0604025486001465, 4.429523919132903), 2, True, True))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-1.9753178932556175, -7.632909347309656), 9, False, False))
-            var_6 = obj_1.score()
-        
-    def test_772(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(False, (7.50442188156326, -0.834613814869579), 2, False, True))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.4304688102515275, -0.18203358708754358), 0, False, True))
-        
-    def test_773(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-0.08144231919086309, 0.016520779498435445), 12, True, False))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (-2.4989441716633713, 5.490401393493347), -1, True, False))
-        
-    def test_774(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.795743479204065, 5.342293481647594), 8, True, True))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (4.381291407181248, 2.79878905693319), 6, True, False))
-        
-    def test_775(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (4.392907160884636, 0.0913225920862697), 8, False, False)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((-1.8452012664385666, -0.628740899652465), 12, True)
-            obj_0.move_out_of_play()
-        
-    def test_776(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
         
-    def test_777(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
+    def test_772(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        
+    def test_773(self):
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, (0, 0))
+        
+    def test_774(self):
+        obj_0 = Stone(False, (0.42414948517716944, -5.223935397219465), 9, False, False)
+        
+        var_0 = obj_0.is_out_of_bounds()
+        var_1 = obj_0.is_passed_hogline()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, True)
+        
+    def test_775(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
+            
+            var_2 = obj_1.score()
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (6.15402557170167, 4.771642256821806), -1, True, False))
+            obj_1.add_stone(Stone(False, (-0.8786423153742007, 7.815029772149037), -2, True, True))
+        
+    def test_776(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (6.750600367072053, -6.365345301312454), 3, True, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (5.810999782014012, -3.9950451453110265), 1, False, True))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
+            obj_1.add_stone(Stone(True, (-3.5052998924870007, -2.9765589315389054), 9, True, False))
+            var_1 = obj_1.drawn()
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (0.993013501105052, -5.194272025448711), 8, True, False))
+            var_3 = obj_1.score()
+            var_2 = obj_1.red_won()
+        
+    def test_777(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-4.710617240491283, -2.9481136042362497), -1, True, True)
+            
+            var_0 = obj_0.distance_to_center()
+            var_3 = obj_0.distance_to_center()
+            var_2 = obj_0.is_in_house()
+            var_1 = obj_0.is_in_house()
         
     def test_778(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (4.2358752301657585, 3.424001036468324), -2, False, True)
+            obj_0 = Stone(False, (6.527683371593406, 5.877685796789029), 11, True, False)
             
             obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((3.483984024034763, -0.1322812464955696), 5, False)
+            var_3 = obj_0.is_out_of_bounds()
             var_5 = obj_0.is_guard()
             obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
+            var_1 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_9 = obj_0.is_in_house()
+            var_7 = obj_0.move((3.8000711731752954, -7.7480921602641875), 7, True)
+            var_0 = obj_0.is_passed_hogline()
+            var_4 = obj_0.distance_to_center()
         
     def test_779(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_4 = obj_2.__str__()
+        var_0 = obj_2.display_scoreboard()
+        obj_2.add_end(End(True))
+        var_3 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, 'Game with 0 ends')
         
     def test_780(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (5.445104875696776, 1.0301195488926194), -1, False, False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (3.621369585142828, -4.810080918317796), 1, False, False)
             
+            var_1 = obj_0.is_in_house()
             obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((1.2122151373886823, 6.725481372591444), 5, True)
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
+            var_0 = obj_0.distance_to_center()
+            var_2 = obj_0.move((5.476869427833588, 5.935494062863318), 8, False)
         
     def test_781(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (1.3666700947261337, -0.33567987758229734), -1, False, False)
+            
+            var_3 = obj_0.is_in_house()
+            obj_0.move_out_of_play()
+            var_0 = obj_0.is_passed_hogline()
+            var_4 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            var_2 = obj_0.is_passed_hogline()
         
     def test_782(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (4.17270874674181, 3.310015383638177), 7, True, False))
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (5.265872843520391, -4.838868683085364), 5, True, False))
-            var_4 = obj_1.done()
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
         
     def test_783(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (2.7865198985965236, 0.3416366749256934), 10, False, True)
             
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (7.732798538602907, 5.7120991807336825), 8, True, True))
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (-4.731582417511429, -0.15933856541543), 6, False, False))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
+            var_5 = obj_0.__str__()
+            var_4 = obj_0.__str__()
+            obj_0.burn()
+            var_1 = obj_0.is_out_of_bounds()
+            var_8 = obj_0.is_out_of_play()
+            var_0 = obj_0.is_out_of_bounds()
+            obj_0.burn()
+            var_3 = obj_0.move((7.267944309913641, 5.422852573172127), -1, False)
+            var_6 = obj_0.is_out_of_play()
         
     def test_784(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (2.938914831461391, -2.9163368849359763), 10, False, False)
             
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.607225757115188, 3.9297747778654983), 4, False, True))
-            obj_1.add_stone(Stone(False, (7.527659521245475, -7.881030801999168), 8, True, True))
+            var_6 = obj_0.move((-5.013328875626387, -0.17617352190697666), 4, False)
+            var_4 = obj_0.is_out_of_play()
+            var_5 = obj_0.move((-6.753703368544784, 1.1628932961113954), 0, True)
+            var_2 = obj_0.__str__()
+            var_3 = obj_0.__str__()
+            var_1 = obj_0.__str__()
+            var_0 = obj_0.is_in_house()
         
     def test_785(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (-5.3115563046126795, 2.496365526401455), 1, False, False)
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(False)
             
-            var_4 = obj_0.move((0.05943867823033955, -2.6285190823689817), 6, True)
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
+            var_3 = obj_1.__str__()
+            var_0 = obj_1.score()
+            var_2 = obj_1.__str__()
+            var_1 = obj_1.red_won()
+            var_4 = obj_1.__str__()
+            obj_1.add_stone(Stone(False, (3.0324907758339066, -0.32426115004290423), 5, False, True))
         
     def test_786(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(True, (-1.9820897207814827, 2.6329655800474807), 6, True, True)
             
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-0.6760132993096217, 1.2654567326385955), 8, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.196918409834865, 4.086116612289594), 10, False, True))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
+            var_4 = obj_0.move((1.9837754551734665, -2.1647538073943533), -2, False)
+            var_3 = obj_0.move((-7.9390305110740655, 3.552407059804999), 6, True)
+            obj_0.move_out_of_play()
+            var_2 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.is_in_house()
+            var_7 = obj_0.is_in_house()
+            var_6 = obj_0.is_out_of_bounds()
         
     def test_787(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
+        var_3 = obj_2.score()
+        var_4 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, None)
+        
+    def test_788(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.781700196153512, 3.590505577128683), 9, False, True))
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-1.6075099562222999, -0.5299531991823923), -1, True, False))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-        
-    def test_788(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (4.289750929236696, -0.14924473716729203), 9, False, True)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-2.6134016848104373, -1.0154191606792295), 2, True)
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (7.092037541433964, -2.7766458958551397), 7, True, True))
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (4.219135744740591, -0.04264889513523329), -2, True, False))
         
     def test_789(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-2.621814994594475, 6.818120937218282), 8, False, True))
-            obj_1.add_stone(Stone(True, (5.266612565956281, -7.806225858816223), 2, False, False))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_790(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (5.636932418929266, 6.38507409159441), 5, False, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
             
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((6.714838850837012, 6.968277177473132), 12, True)
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
+            var_3 = obj_1.overlaps_any_stone(Stone(True, (-5.603066011409769, 3.0270943351765016), 2, False, False))
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (4.83596928868001, -7.5350620839274605), -1, True, True))
+            var_4 = obj_1.done()
+            var_6 = obj_1.done()
+            var_2 = obj_1.done()
+            var_5 = obj_1.red_won()
+            var_0 = obj_1.red_won()
         
     def test_791(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (0.7878093918159781, -3.3123836115506773), 2, True, False)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((3.306736869083883, -2.419878551369571), 1, False)
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
+        obj_2 = Game()
+        
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
+        var_2 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, None)
         
     def test_792(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-6.538743078929727, -7.386084342953291), 1, False, True)
+            
+            obj_0.move_out_of_play()
+            obj_0.move_out_of_play()
         
     def test_793(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (4.8450229589591025, 1.0283378262145622), 2, False, False)
-            
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((7.184423621101786, 7.000933550153144), 0, True)
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
+        obj_1 = End(True)
+        
+        var_4 = obj_1.red_won()
+        var_3 = obj_1.red_won()
+        var_0 = obj_1.drawn()
+        var_2 = obj_1.red_won()
+        var_1 = obj_1.red_won()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, None)
         
     def test_794(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        
-        
-    def test_795(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (4.1894798567523885, -3.274889508501083), 1, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-3.72588881411542, -7.610849901913909), 10, False, False))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (5.817201690525639, 7.581436477247179), 0, True, False))
+            var_3 = obj_1.drawn()
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.128469866369313, 6.460625167097666), 12, False, False))
+            var_1 = obj_1.drawn()
+        
+    def test_795(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
         
     def test_796(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (2.821907841947189, -1.4098612678094895), 11, True, True)
-            
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_4 = obj_0.move((5.134205700991352, -3.100658181386967), 7, True)
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
         
     def test_797(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.score()
+        var_2 = obj_2.__str__()
+        var_4 = obj_2.score()
+        obj_2.add_end(End(False))
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_4, (0, 0))
         
     def test_798(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-2.94307653652049, 6.335060047112776), 10, True, True))
-            obj_1.add_stone(Stone(False, (-3.980807941545395, -1.625496393132945), -2, True, True))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        var_2 = obj_2.score()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_2, (0, 0))
         
     def test_799(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-5.403932904962646, 1.4018802859776809), 7, False, True)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-7.543590252581559, 4.318318338681081), 5, True)
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
+            var_2 = obj_2.red_winner()
+            obj_2.add_end(End(False))
+            var_4 = obj_2.display_scoreboard()
+            var_3 = obj_2.__str__()
+            obj_2.add_end(End(True))
         
     def test_800(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (3.0872510663793733, 3.1265130662884175), 9, True, True)
+            
+            var_5 = obj_0.is_out_of_play()
+            var_8 = obj_0.is_passed_hogline()
+            var_9 = obj_0.is_out_of_play()
+            var_6 = obj_0.is_passed_hogline()
+            var_2 = obj_0.is_passed_hogline()
+            var_7 = obj_0.is_out_of_play()
+            obj_0.burn()
+            var_0 = obj_0.is_out_of_bounds()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.is_out_of_play()
         
     def test_801(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        
-        
-    def test_802(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
-        
-    def test_803(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-1.0197038645885925, -5.240683823353271), 5, True, False))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (1.1033450707718995, 0.3585061466240038), 5, False, False))
+            obj_1.add_stone(Stone(False, (2.963809769807506, -3.9024012874514895), 3, False, False))
+            obj_1.add_stone(Stone(False, (2.729409010458788, 5.7754727307080955), 12, False, True))
+            var_0 = obj_1.drawn()
+            var_1 = obj_1.__str__()
+        
+    def test_802(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-4.832226493429642, 4.788169953348513), 3, True, False)
+            
+            var_3 = obj_0.move((-5.6879446645689935, -6.345876919790896), 12, True)
+            var_1 = obj_0.__str__()
+            var_2 = obj_0.move((-0.7192643273119614, -0.412569353510138), 0, True)
+            var_0 = obj_0.__str__()
+            obj_0.burn()
+        
+    def test_803(self):
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
+            
+            var_3 = obj_2.score()
+            var_1 = obj_2.__str__()
+            obj_2.add_end(End(False))
+            obj_2.add_end(End(True))
         
     def test_804(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (5.099986787863177, -6.642048652235678), 6, False, True)
-            
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-7.090299796362293, -3.12533425279811), 0, False)
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
+        obj_2 = Game()
+        
+        var_4 = obj_2.score()
+        obj_2.add_end(End(False))
+        var_1 = obj_2.display_scoreboard()
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 1 ends')
+        self.assertEqual(var_1, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
+        self.assertEqual(var_2, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
+        self.assertEqual(var_4, (0, 0))
         
     def test_805(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(True)
             
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.576518272703902, -6.809168276605934), 5, True, True))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (5.258420043719548, 4.124526842570587), 10, False, True))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (-1.3520789987174133, 2.0119526661663496), 10, True, False))
+            obj_1.add_stone(Stone(True, (-0.6138756070538793, 0.8147967358084962), 11, False, True))
         
     def test_806(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_2 = obj_2.__str__()
         obj_2.add_end(End(True))
+        var_1 = obj_2.score()
         
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
         
     def test_807(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (3.908780367414119, 5.451074113929277), -1, False, True)
+            obj_0 = Stone(False, (-5.355055760893206, -4.334196744669244), 11, True, True)
             
-            var_4 = obj_0.move((-6.154388098403876, 0.03772136363622991), 9, True)
+            var_0 = obj_0.__str__()
             var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
+            var_2 = obj_0.is_in_house()
         
     def test_808(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
         obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
+        var_1 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_1, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
         
     def test_809(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-7.077443072462579, 1.8563814415589412), 7, True, False)
             
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-2.4719894447907613, 5.805356633100191), -1, True, False))
-            obj_1.add_stone(Stone(False, (4.257895850132085, 4.912545450624121), 12, True, True))
-            var_6 = obj_1.score()
+            var_5 = obj_0.is_guard()
+            var_3 = obj_0.is_passed_hogline()
+            var_7 = obj_0.__str__()
+            var_4 = obj_0.is_guard()
+            var_8 = obj_0.is_in_house()
+            var_0 = obj_0.is_in_house()
+            var_1 = obj_0.move((-4.2913439855999975, 2.942206513377929), 8, False)
+            obj_0.burn()
+            var_2 = obj_0.is_out_of_bounds()
         
     def test_810(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-0.5770006106215391, -2.5254304224491246), 5, True, True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (4.076696070714306, -1.9504731944002973), 12, True, True)
             
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-2.6825063194202166, 7.057860272379521), 12, True)
-            var_8 = obj_0.is_passed_hogline()
             var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_9 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            var_2 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_5 = obj_0.__str__()
+            var_6 = obj_0.__str__()
+            var_3 = obj_0.__str__()
         
     def test_811(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (4.105507331637909, 7.087706688465136), 11, True, False)
+            
+            var_6 = obj_0.is_guard()
+            var_3 = obj_0.is_in_house()
+            obj_0.burn()
+            var_7 = obj_0.move((6.7151869277577525, -7.643917028832773), 2, True)
+            var_8 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.is_guard()
+            var_2 = obj_0.__str__()
+            var_5 = obj_0.move((-3.5598361641821334, -1.9619666926636246), 5, True)
         
     def test_812(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (-1.244588303067486, -5.166926071608339), 6, True, False))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.123023359140431, 4.48449080251066), 6, True, True))
-        
-    def test_813(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (-4.816753044701523, 0.1746538795742829), 3, False, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.7949933836750613, 7.510179495218937), 8, False, True))
-        
-    def test_814(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, None)
+        
+    def test_813(self):
+        obj_2 = Game()
+        
+        obj_2.add_end(End(False))
+        var_0 = obj_2.display_scoreboard()
+        var_2 = obj_2.display_scoreboard()
+        var_3 = obj_2.score()
+        
+        self.assertEqual(var_0, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
+        self.assertEqual(var_2, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
+        self.assertEqual(var_3, (0, 0))
+        
+    def test_814(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (1.8841140763806976, 6.953770167364331), 4, False, False)
+            
+            var_0 = obj_0.move((-4.224248119884667, 2.0070620343603256), -2, True)
+            var_1 = obj_0.is_passed_hogline()
+            var_5 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.is_in_house()
+            var_4 = obj_0.is_guard()
         
     def test_815(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (-1.2790691890490962, -5.995352964256462), 7, True, False)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((7.834850806153959, 0.11560923884996122), 9, True)
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
         
     def test_816(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
+        var_4 = obj_2.display_scoreboard()
+        var_3 = obj_2.score()
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.score()
+        var_0 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_817(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.657546070406857, -6.138773247540518), 3, True, False))
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (6.07196081737275, -0.07603971340621563), 9, False, True))
-            var_4 = obj_1.done()
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_818(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(True)
-            
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-2.5077140305681187, -1.437789308373489), 4, True, True))
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (1.3231796038655013, -7.013715675745674), 12, False, True))
+        obj_2 = Game()
+        
+        var_2 = obj_2.score()
+        var_1 = obj_2.score()
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, (0, 0))
         
     def test_819(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
+        var_0 = obj_2.red_winner()
+        var_3 = obj_2.score()
+        var_2 = obj_2.__str__()
+        obj_2.add_end(End(True))
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, (0, 0))
         
     def test_820(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-3.861070980296814, 5.583299570975113), 9, False, True))
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-2.4265971770165518, -5.7443048654089015), 4, True, True))
+        obj_0 = Stone(False, (4.992271809723938, 0.36351112541688657), 1, True, True)
+        
+        var_0 = obj_0.is_passed_hogline()
+        var_1 = obj_0.is_out_of_bounds()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
         
     def test_821(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-7.399266449099807, -4.7674983027682), 10, False, False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-1.5728733294337491, 5.134379817857781), 12, True, True)
             
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
+            var_0 = obj_0.is_passed_hogline()
+            var_2 = obj_0.is_passed_hogline()
+            var_1 = obj_0.is_guard()
+            var_5 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.is_guard()
+            var_8 = obj_0.distance_to_center()
             obj_0.burn()
-            var_4 = obj_0.move((7.800445257505402, -0.5617990222081026), 10, False)
-            var_8 = obj_0.is_passed_hogline()
+            var_3 = obj_0.is_out_of_play()
             var_6 = obj_0.is_out_of_bounds()
         
     def test_822(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-2.7381293767521466, -0.90556374472005), 1, True, False))
-            obj_1.add_stone(Stone(True, (-7.591021946423158, 7.702129381450389), 9, True, True))
+            obj_2.add_end(End(True))
+            obj_2.add_end(End(False))
+            var_4 = obj_2.display_scoreboard()
+            obj_2.add_end(End(False))
+            var_1 = obj_2.score()
         
     def test_823(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-1.6653717793922276, 5.563063808927511), 8, False, True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-2.214146024123359, -1.4192516054945603), 12, True, True)
             
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((2.691306285680797, 4.742559518996872), -1, False)
-            var_6 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.is_passed_hogline()
+            var_0 = obj_0.is_out_of_play()
+            var_2 = obj_0.distance_to_center()
         
     def test_824(self):
         with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (-0.5198127275063857, 5.021343750853253), 4, False, True)
+            obj_0 = Stone(True, (-3.369635824831988, -6.695996827912838), 7, False, True)
             
-            var_6 = obj_0.is_out_of_bounds()
             obj_0.move_out_of_play()
+            var_3 = obj_0.is_guard()
             obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
+            var_0 = obj_0.__str__()
+            var_1 = obj_0.is_out_of_bounds()
             var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-2.3612615331589666, -7.046645249418569), 12, True)
-            var_10 = obj_0.__str__()
+            var_6 = obj_0.is_in_house()
+            var_4 = obj_0.distance_to_center()
         
     def test_825(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-5.697718176955011, 7.186657759436901), 3, True, False)
+            
+            obj_0.burn()
+            obj_0.move_out_of_play()
+            var_3 = obj_0.move((-2.684023681642641, 5.48775632215901), 8, True)
+            var_5 = obj_0.is_guard()
+            var_4 = obj_0.distance_to_center()
+            var_9 = obj_0.is_out_of_bounds()
+            var_6 = obj_0.move((-2.4669674129075982, 1.5802788822422364), 2, True)
+            var_2 = obj_0.is_out_of_play()
+            obj_0.burn()
+            var_8 = obj_0.is_in_house()
         
     def test_826(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
-            obj_1.add_stone(Stone(False, (5.590706022332975, -0.08586150245218249), 6, False, True))
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (0.6920498590913109, -3.015682914955203), 9, True, True))
-            var_4 = obj_1.done()
+            var_3 = obj_1.done()
+            var_2 = obj_1.drawn()
+            var_4 = obj_1.overlaps_any_stone(Stone(True, (3.6088370035268866, -7.616296842702516), 0, False, True))
+            var_0 = obj_1.score()
+            var_1 = obj_1.done()
         
     def test_827(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (4.536339403614152, -5.735192598505378), 5, True, True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (0.8658415601806819, -3.608627546015475), -2, False, True)
             
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((4.251739442425967, -1.464919005691101), 2, True)
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
             obj_0.move_out_of_play()
-            var_7 = obj_0.is_in_house()
         
     def test_828(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (-5.812397901104211, -1.6972894634704083), 9, False, True)
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
+            obj_1 = End(True)
             
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-4.722020390263799, -4.712544203176163), 6, False)
-            var_8 = obj_0.is_passed_hogline()
+            var_0 = obj_1.overlaps_any_stone(Stone(True, (5.664450681235344, 4.106646472979895), 8, False, True))
+            var_4 = obj_1.red_won()
+            var_6 = obj_1.red_won()
+            obj_1.add_stone(Stone(True, (5.397729023494643, 7.295074999307076), 8, False, True))
+            var_1 = obj_1.red_won()
+            var_2 = obj_1.drawn()
+            var_3 = obj_1.overlaps_any_stone(Stone(False, (-6.042560357925749, 2.788090700541673), 10, True, True))
         
     def test_829(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (4.049705773571473, -4.327512701836053), 4, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (7.913804804126059, 2.2928207817930435), 2, False, False)
             
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((-7.628814741227735, 3.52121769902657), -2, False)
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
+            var_1 = obj_0.is_guard()
+            var_2 = obj_0.distance_to_center()
+            var_4 = obj_0.distance_to_center()
+            var_0 = obj_0.is_passed_hogline()
+            var_3 = obj_0.is_in_house()
         
     def test_830(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-0.8682739730272111, -2.1557781829449443), 12, False, False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (6.618062298595985, 4.813013140074405), 2, False, False)
             
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-4.33303205861778, -3.831915690661763), 6, True)
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
+            var_2 = obj_0.move((3.3194018348078025, 2.9701565196986586), 4, True)
+            var_0 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.__str__()
         
     def test_831(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-0.368327832665976, 3.3324552781239767), 1, True, True)
-            
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((2.615631755548325, 7.20926349663098), 6, True)
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-        
-    def test_832(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        
+    def test_832(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
+            
+            var_0 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (-3.3790990541093784, -1.6024596789149594), 3, False, False))
+            var_3 = obj_1.done()
+            obj_1.add_stone(Stone(True, (6.419446864512311, -5.259935811114472), -1, True, False))
+            var_2 = obj_1.score()
         
     def test_833(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (2.1564909305986255, -0.7272023605417246), 12, True, True)
-            
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-2.1576788158420683, 0.8423590345727447), 6, False)
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
+        obj_2 = Game()
+        
+        var_1 = obj_2.red_winner()
+        var_2 = obj_2.score()
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, (0, 0))
         
     def test_834(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (2.948649152213802, -6.706203459243433), 6, True, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((1.1536873598702915, 1.6144540465870811), 9, True)
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
+        obj_1 = End(False)
+        
+        var_2 = obj_1.drawn()
+        var_1 = obj_1.__str__()
+        var_0 = obj_1.red_won()
+        var_3 = obj_1.score()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, 0)
         
     def test_835(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (7.4872562838834025, 4.863294427776541), 8, True, False)
-            
-            obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-6.789799719886036, 2.9571831405791205), -2, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_836(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_1 = obj_2.score()
+        var_0 = obj_2.__str__()
+        var_2 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
         
     def test_837(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (4.268081089846552, 6.691770200561429), 11, False, False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (5.421990316273716, -2.460828617802724), 6, False, False)
             
-            obj_0.burn()
-            var_4 = obj_0.move((0.3730544002896874, -5.460158481793002), 1, True)
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
+            var_2 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.distance_to_center()
+            var_0 = obj_0.distance_to_center()
         
     def test_838(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (1.0705110352155298, 3.152949984372597), 12, False, True)
             
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (2.4662215930025866, -4.248326523622623), 5, True, True))
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-3.282227780982028, -6.470701966701315), 4, True, False))
-            var_6 = obj_1.score()
+            var_0 = obj_0.is_passed_hogline()
         
     def test_839(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (6.574481904414748, 3.176164557967267), 5, False, False))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-1.2434013720327322, 7.8169504225536866), 8, False, False))
+        obj_1 = End(True)
+        
+        var_2 = obj_1.red_won()
+        var_1 = obj_1.score()
+        var_4 = obj_1.__str__()
+        var_0 = obj_1.done()
+        var_3 = obj_1.drawn()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, 'End with Red hammer and 0 stones')
         
     def test_840(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_1.overlaps_any_stone(Stone(True, (-4.158688848044235, -6.018211757207512), 10, False, True))
         
+        self.assertEqual(var_0, False)
         
     def test_841(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
         
     def test_842(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-0.8753231243727608, -6.789298042611252), 5, True, False))
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-0.46593342758623457, 3.8328628545327668), -1, True, True))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
+        obj_1 = End(False)
+        
+        var_0 = obj_1.__str__()
+        var_1 = obj_1.red_won()
+        
+        self.assertEqual(var_0, 'End with Yellow hammer and 0 stones')
+        self.assertEqual(var_1, None)
         
     def test_843(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (3.599966703669237, -2.374852367114432), 11, True, True)
+            obj_0 = Stone(False, (6.829060594782209, -5.92885678419645), 0, False, False)
             
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
             obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-2.6139792805345152, -1.2781217689706246), -2, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
         
     def test_844(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (4.059602406057456, 1.2706170960809544), 9, True, False)
+            
+            obj_0.burn()
+            var_1 = obj_0.is_out_of_play()
+            var_2 = obj_0.move((2.254343061500821, -6.074922797166684), 6, True)
+            var_6 = obj_0.is_guard()
+            var_5 = obj_0.is_out_of_play()
+            var_3 = obj_0.is_passed_hogline()
+            var_7 = obj_0.is_out_of_play()
+            var_4 = obj_0.move((-4.188430740506945, 1.8126780478045497), 4, False)
+            obj_0.move_out_of_play()
         
     def test_845(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(True, (3.211241665638564, 4.033831429784978), 5, False, True)
+            
+            var_0 = obj_0.move((-7.275086875012308, -7.587750142978905), 3, True)
         
     def test_846(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (5.7257876132975785, 1.9034675930197302), -2, True, True))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.699941854858034, 7.134556919585313), 3, True, True))
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
         
     def test_847(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (7.734073469322025, 7.408963628971335), 6, False, True)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-4.259913076107027, 1.3425499870816768), 8, False, True)
             
-            var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_4 = obj_0.move((-6.104965015914843, 7.9113058931486115), 5, False)
-            var_10 = obj_0.__str__()
+            var_3 = obj_0.is_out_of_play()
+            var_4 = obj_0.is_out_of_bounds()
+            var_0 = obj_0.is_guard()
             obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
+            var_1 = obj_0.distance_to_center()
+            var_7 = obj_0.is_passed_hogline()
+            var_2 = obj_0.move((-3.3204779613108, -2.9189335212429466), -1, False)
+            var_5 = obj_0.is_in_house()
+            obj_0.burn()
         
     def test_848(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (5.703402526485219, 3.938415959036792), 2, False, True))
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.11266660910559, -3.791087587374083), 12, True, True))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_849(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(True, (5.6101286120566325, -2.7640060539657973), 6, True, False)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((4.878960625282966, -7.678741084655323), 12, True)
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.score()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
         
     def test_850(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            obj_1.add_stone(Stone(False, (-7.640213582162737, 1.0070036917946652), -1, True, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.883897418747711, -4.061792648548442), 7, True, True))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
+            obj_1.add_stone(Stone(True, (-3.094059833307247, 1.7538782920657656), 2, False, False))
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (-5.909869232586805, -0.644341882441422), 10, False, False))
+            var_3 = obj_1.__str__()
+            var_4 = obj_1.red_won()
+            var_1 = obj_1.__str__()
         
     def test_851(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (2.0754212877944482, 0.23051350715208585), 7, True, False)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_4 = obj_0.move((6.38852816811284, 5.91509341752135), 1, True)
-        
-    def test_852(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.075012412067446, -7.073143116631298), 9, True, True))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (4.17008206796606, -6.813951891660672), -1, False, False))
-            var_6 = obj_1.score()
+            var_1 = obj_1.drawn()
+            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.6456461777149887, -2.699306251651617), 1, False, False))
+            var_3 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (1.1526689572876094, -6.385692500095672), 4, False, False))
+            var_0 = obj_1.__str__()
+        
+    def test_852(self):
+        obj_1 = End(True)
+        
+        var_1 = obj_1.score()
+        var_3 = obj_1.overlaps_any_stone(Stone(False, (-3.1242000970519044, -1.4984450586879294), 6, False, True))
+        var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.8445174260188502, 0.7778191322791734), 5, True, True))
+        var_0 = obj_1.__str__()
+        
+        self.assertEqual(var_0, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_1, 0)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, False)
         
     def test_853(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
+        obj_2.add_end(End(False))
+        var_0 = obj_2.red_winner()
+        obj_2.add_end(End(False))
+        var_2 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_2, None)
         
     def test_854(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
+        var_0 = obj_1.red_won()
         
+        self.assertEqual(var_0, None)
         
     def test_855(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
+        var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.300276281320954, -1.1465794113531107), 1, True, True))
+        var_1 = obj_1.done()
+        var_3 = obj_1.drawn()
+        var_0 = obj_1.score()
         
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, True)
         
     def test_856(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (1.5994395399573307, -4.645242666449244), 8, False, True))
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (0.8686591254845517, 1.3983073154004586), 6, False, False))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        obj_2.add_end(End(False))
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_857(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-6.5389948385026635, 7.154615515916385), 11, True, False)
-            
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_4 = obj_0.move((-6.98021653438126, 5.2199080989684905), 10, False)
+        obj_2 = Game()
+        
+        obj_2.add_end(End(True))
+        
         
     def test_858(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (-7.118381784620272, -7.017410539056636), -2, True, True))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-4.768118229129355, 2.7196614036511573), 5, True, True))
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        obj_2.add_end(End(False))
+        var_0 = obj_2.score()
+        var_2 = obj_2.score()
+        var_3 = obj_2.__str__()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, 'Game with 1 ends')
         
     def test_859(self):
         obj_2 = Game()
         
         var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_2 = obj_2.__str__()
+        obj_2.add_end(End(False))
+        var_1 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_1, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_860(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
+        var_0 = obj_1.__str__()
         
+        self.assertEqual(var_0, 'End with Red hammer and 0 stones')
         
     def test_861(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (7.180372577739323, 6.7761160407938945), 1, False, False)
-            
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-6.420730986482077, -7.297454971357679), 11, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
         
     def test_862(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
+        obj_2.add_end(End(True))
         
+        self.assertEqual(var_1, None)
         
     def test_863(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(True, (-6.836081761807998, -7.888883537934566), 3, True, True)
+            
+            var_1 = obj_0.__str__()
+            var_6 = obj_0.move((-0.5048702890396246, -4.44321372107475), 10, False)
+            var_0 = obj_0.is_in_house()
+            var_4 = obj_0.is_out_of_play()
+            var_3 = obj_0.is_guard()
+            var_5 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
         
     def test_864(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (1.5848095372873399, 5.1157738799028944), 12, True, True)
             
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (7.659525914415109, 0.22569315419151437), 10, False, True))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (-0.21635569153263923, -2.0318817064182255), 8, True, False))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
+            var_1 = obj_0.is_in_house()
+            var_0 = obj_0.is_in_house()
         
     def test_865(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-5.422587478716629, -7.476223858246211), 9, False, False)
+            
+            var_1 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_2 = obj_0.is_passed_hogline()
         
     def test_866(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
+            obj_1 = End(True)
             
-            obj_1.add_stone(Stone(True, (-6.9693969731774335, -0.3284138043768099), 7, True, False))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-0.6438049362160303, -1.4582892982252567), 11, True, True))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (1.2294424656078018, -5.7656254140150995), 3, False, True))
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (4.408343120380094, 6.094456783409628), -2, False, False))
         
     def test_867(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (7.915469555332566, 0.8325229652071666), 1, False, False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-1.6830721722938726, 5.645764371227241), 8, True, True))
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (0.8794039754727851, 6.447391672192076), 12, True, True))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
+            var_7 = obj_0.is_in_house()
+            var_3 = obj_0.is_out_of_bounds()
+            var_5 = obj_0.is_out_of_play()
+            var_0 = obj_0.is_out_of_play()
+            var_4 = obj_0.is_passed_hogline()
+            var_2 = obj_0.__str__()
+            var_6 = obj_0.is_out_of_bounds()
+            var_1 = obj_0.is_passed_hogline()
+            var_8 = obj_0.is_out_of_play()
         
     def test_868(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (4.759563103915879, -2.679565636303826), 3, False, True)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-3.573879262735275, -0.34776095533472606), 2, True, True))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (-4.119693594798694, -1.658224338605672), 10, True, False))
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
+            obj_0.move_out_of_play()
+            var_0 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.move((-6.140399096860566, -5.73603627594097), 3, True)
         
     def test_869(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (2.5776592273093204, 6.42934795899666), -2, True, True))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.584366824370376, -0.22306016493941527), 1, True, False))
-            var_4 = obj_1.done()
+        obj_2 = Game()
+        
+        var_1 = obj_2.display_scoreboard()
+        obj_2.add_end(End(False))
+        
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_870(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
+        var_2 = obj_2.__str__()
         obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
+        var_1 = obj_2.red_winner()
         
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'Game with 0 ends')
         
     def test_871(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.95663905881311, 6.607312012632557), 11, False, False))
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (-1.4888498264491172, 6.712584916064763), 0, False, True))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.__str__()
+        var_1 = obj_1.__str__()
+        
+        self.assertEqual(var_0, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_1, 'End with Red hammer and 0 stones')
         
     def test_872(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
+        var_0 = obj_2.score()
+        var_2 = obj_2.red_winner()
+        var_3 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, None)
         
     def test_873(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (6.45280916442745, -3.239956911196275), -2, True, True))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.124379681209339, 4.401102600692825), 2, False, True))
-            var_4 = obj_1.done()
-        
-    def test_874(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (3.9579067400321613, 1.238274707508328), 8, True, False))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-4.785852890361168, -5.742308677214792), 3, True, False))
-        
-    def test_875(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.__str__()
+        var_3 = obj_2.red_winner()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, 'Game with 0 ends')
+        self.assertEqual(var_3, None)
+        
+    def test_874(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        var_4 = obj_2.red_winner()
+        obj_2.add_end(End(True))
+        var_3 = obj_2.__str__()
+        var_1 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
+        self.assertEqual(var_3, 'Game with 1 ends')
+        self.assertEqual(var_4, None)
+        
+    def test_875(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
+            
+            var_3 = obj_1.done()
+            var_1 = obj_1.drawn()
+            var_0 = obj_1.drawn()
+            var_4 = obj_1.red_won()
+            obj_1.add_stone(Stone(True, (3.5277874367730355, 4.2655621974937805), 3, False, False))
         
     def test_876(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (-0.5911417597177486, 0.4498131185358627), -2, False, True))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.770886716745872, 2.9583849439692074), 1, False, False))
-            var_7 = obj_1.__str__()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, None)
         
     def test_877(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (6.067073911656877, -1.16768245582829), 12, False, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((5.594599788595858, 2.675340492097993), 9, True)
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        var_2 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
+        var_3 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, 'Game with 0 ends')
         
     def test_878(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
+        var_0 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_879(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (7.748279803764195, -5.335295564508437), 11, True, False)
-            
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_4 = obj_0.move((-2.372707729811234, -2.2315115815566884), 2, True)
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
+        obj_2 = Game()
+        
+        obj_2.add_end(End(False))
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'Game with 1 ends')
         
     def test_880(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
+        var_3 = obj_2.score()
         obj_2.add_end(End(True))
+        var_1 = obj_2.red_winner()
+        var_2 = obj_2.red_winner()
         var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
         
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, None)
         
     def test_881(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+            obj_0 = Stone(True, (1.5105753408525562, 5.820222452901641), 5, False, False)
             
-            obj_1.add_stone(Stone(False, (-5.206150724953698, -5.991213389795625), 9, True, False))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (2.137991175450683, 0.08324416240732191), 0, False, True))
+            var_2 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            var_5 = obj_0.move((0.9018671656328969, -1.1631902129939604), 12, True)
+            var_3 = obj_0.is_out_of_bounds()
+            obj_0.burn()
+            obj_0.move_out_of_play()
+            var_6 = obj_0.distance_to_center()
         
     def test_882(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.4495235997789084, -4.145450253143572), 4, False, False))
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (2.7772644843849577, -3.348959733154407), 4, True, False))
-            var_3 = obj_1.red_won()
+            obj_1.add_stone(Stone(True, (0.052377672593809876, -3.497770239183481), -2, True, False))
+            var_0 = obj_1.drawn()
         
     def test_883(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(False, (-5.893997544199932, -7.294594261710705), 2, True, True)
+            
+            var_0 = obj_0.distance_to_center()
+            var_1 = obj_0.move((-5.740773422940903, 4.435217272096597), 11, True)
         
     def test_884(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (1.720983880972705, 2.8692788700441536), -2, False, False)
-            
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-6.2542531217808435, -6.483039628216654), 1, True)
-            var_7 = obj_0.is_in_house()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_885(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-5.95278710506806, -7.116986350939607), 2, False, False))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (-2.6854322670314907, 6.078282608050298), 0, True, False))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
         
     def test_886(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-5.586155041313948, 7.366240419176924), 9, False, True)
             
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.575732426761698, 0.29344153131682305), 2, True, True))
-            obj_1.add_stone(Stone(False, (3.2679031835500556, -2.801823763235788), 4, True, True))
+            obj_0.burn()
+            var_2 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            obj_0.burn()
+            obj_0.burn()
+            var_6 = obj_0.is_passed_hogline()
+            obj_0.burn()
         
     def test_887(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        
-        
-    def test_888(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        
-        
-    def test_889(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-0.7586738909913819, 6.0112284425766855), 3, False, False))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (-3.1090930626142903, -7.831966373934749), 9, False, True))
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
+            var_6 = obj_1.red_won()
+            var_2 = obj_1.score()
+            obj_1.add_stone(Stone(False, (3.1218796353785994, -4.072693913441782), 11, False, False))
+            var_0 = obj_1.drawn()
+            var_4 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (-3.2643510595644845, 5.490922825777565), 0, True, True))
+            obj_1.add_stone(Stone(False, (-3.8514089397275146, -2.86872178214046), 1, False, False))
+        
+    def test_888(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (5.380714830842276, 2.133059133195715), 3, False, False)
+            
+            obj_0.burn()
+            var_5 = obj_0.is_in_house()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.is_passed_hogline()
+            var_9 = obj_0.is_guard()
+            var_3 = obj_0.is_in_house()
+            var_2 = obj_0.move((7.908622613141127, 7.023376003833651), 5, False)
+            var_6 = obj_0.distance_to_center()
+            var_7 = obj_0.is_in_house()
+            var_0 = obj_0.move((-6.3364076502732445, -1.371448516823916), 7, False)
+        
+    def test_889(self):
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_0 = obj_2.red_winner()
+        obj_2.add_end(End(False))
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
         
     def test_890(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-6.921064554512686, 6.3265743056074655), 0, True, True)
             
-            obj_1.add_stone(Stone(True, (6.328134999322204, 7.079895790369973), 2, True, False))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-2.5960200310067982, 7.940636750600172), -2, False, False))
+            obj_0.move_out_of_play()
+            obj_0.move_out_of_play()
+            obj_0.burn()
+            var_1 = obj_0.is_out_of_play()
         
     def test_891(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
         var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
+        var_1 = obj_2.__str__()
+        obj_2.add_end(End(False))
+        var_0 = obj_2.score()
+        var_3 = obj_2.red_winner()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, None)
         
     def test_892(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-5.644641417059894, -5.349342516459357), 8, False, False)
-            
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((-5.61681347031487, 6.166758934749081), 2, True)
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
+        obj_2 = Game()
+        
+        var_3 = obj_2.score()
+        var_2 = obj_2.red_winner()
+        var_4 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, (0, 0))
+        self.assertEqual(var_4, 'Game with 0 ends')
         
     def test_893(self):
         obj_2 = Game()
         
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.score()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
         
     def test_894(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-2.238592328480257, 4.546217128139478), 12, False, False)
+            obj_1 = End(True)
             
-            var_4 = obj_0.move((-3.7678800364394593, 5.076874573100849), 6, False)
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            obj_0.burn()
+            var_4 = obj_1.overlaps_any_stone(Stone(True, (-5.574292439998056, -1.1604849243182027), 0, False, False))
+            var_1 = obj_1.score()
+            obj_1.add_stone(Stone(True, (-7.758857442383258, 2.8125768756984844), 1, True, False))
+            var_2 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (2.3908782746214055, 7.056231099827745), -1, True, True))
         
     def test_895(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-3.2217141560201856, -6.517348749774069), -2, True, False)
             
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.924146372693452, -1.5623217177698017), 1, False, True))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (2.6087519179547307, -7.609845906685667), 6, False, False))
+            var_6 = obj_0.distance_to_center()
+            var_2 = obj_0.distance_to_center()
+            var_4 = obj_0.distance_to_center()
+            var_5 = obj_0.is_guard()
+            var_1 = obj_0.is_guard()
+            var_0 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.distance_to_center()
         
     def test_896(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
+        var_0 = obj_1.drawn()
+        var_1 = obj_1.drawn()
         
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, True)
         
     def test_897(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.728797090198716, 4.470095077923002), 0, False, False))
-            obj_1.add_stone(Stone(False, (3.0658991502084163, -1.891296312996264), 4, True, False))
+        obj_1 = End(True)
+        
+        var_1 = obj_1.red_won()
+        var_3 = obj_1.overlaps_any_stone(Stone(True, (0.1437063626558608, -7.775085170163081), 9, True, True))
+        var_0 = obj_1.__str__()
+        var_2 = obj_1.__str__()
+        
+        self.assertEqual(var_0, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_3, False)
         
     def test_898(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (0.7317158145423264, 0.004072054962691141), 0, True, True)
-            
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((4.874838067157469, -4.83613368374686), 0, False)
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
+        obj_1 = End(False)
+        
+        var_1 = obj_1.drawn()
+        var_4 = obj_1.drawn()
+        var_6 = obj_1.__str__()
+        var_5 = obj_1.red_won()
+        var_0 = obj_1.score()
+        var_2 = obj_1.red_won()
+        var_3 = obj_1.red_won()
+        
+        self.assertEqual(var_0, 0)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, None)
+        self.assertEqual(var_4, True)
+        self.assertEqual(var_5, None)
+        self.assertEqual(var_6, 'End with Yellow hammer and 0 stones')
         
     def test_899(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(False, (-4.721748216246885, 5.6230539787600335), 8, True, True)
+            
+            var_3 = obj_0.is_guard()
+            var_2 = obj_0.is_in_house()
+            var_1 = obj_0.is_passed_hogline()
+            var_4 = obj_0.move((-6.142680976161225, 7.988661522546968), 7, True)
+            var_0 = obj_0.distance_to_center()
         
     def test_900(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (-4.721054883309661, 5.508268330154655), 9, False, False)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
             
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((5.027264858800535, -7.675714481574035), 0, True)
-            var_9 = obj_0.distance_to_center()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
+            var_1 = obj_1.__str__()
+            var_0 = obj_1.done()
+            obj_1.add_stone(Stone(True, (2.3927041763591443, 1.3121974255152278), 0, True, False))
         
     def test_901(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-7.14231841272133, -1.0691386658507795), 0, True, True)
             
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-1.9997119778933214, 4.43987747886375), 6, False, False))
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(False, (4.890586018420617, -1.346017083194507), 2, False, True))
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
+            var_0 = obj_0.distance_to_center()
         
     def test_902(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (1.1833746389850912, 1.704675622853948), 6, True, False)
-            
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-7.625808976665311, -5.982721278860009), 0, False)
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
+        obj_2 = Game()
+        
+        var_1 = obj_2.red_winner()
+        obj_2.add_end(End(False))
+        
+        self.assertEqual(var_1, None)
         
     def test_903(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+            obj_0 = Stone(True, (4.209625406993947, 2.4502863215394015), -2, False, False)
             
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (6.806977038057189, -3.505054965975484), 11, False, True))
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.204299630788073, 7.506924203741949), 8, True, True))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
+            var_0 = obj_0.__str__()
         
     def test_904(self):
         with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-2.5467683382093096, 3.3516443831061427), 3, False, True)
+            obj_0 = Stone(False, (-0.23868555367147515, 4.625708429518436), 10, True, True)
             
-            var_5 = obj_0.is_guard()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_4 = obj_0.move((-3.8354715336082883, -3.5779246394940287), -2, False)
             obj_0.move_out_of_play()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
+            var_8 = obj_0.is_in_house()
+            var_6 = obj_0.distance_to_center()
+            var_1 = obj_0.distance_to_center()
             var_7 = obj_0.is_in_house()
+            var_3 = obj_0.is_out_of_play()
+            var_5 = obj_0.move((-6.208983658201978, 7.390296690251521), -2, False)
+            obj_0.burn()
+            var_2 = obj_0.is_in_house()
         
     def test_905(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (2.943609396687, 1.2915381648197535), -1, True, True)
+            
+            obj_0.burn()
+            var_0 = obj_0.is_passed_hogline()
+            var_2 = obj_0.is_in_house()
+            var_4 = obj_0.is_out_of_bounds()
+            obj_0.burn()
         
     def test_906(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(False)
+            
+            var_4 = obj_1.score()
+            var_2 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (2.6632469037939757, -7.522068930887839), 4, False, False))
+            var_0 = obj_1.done()
+            var_5 = obj_1.drawn()
+            var_3 = obj_1.done()
         
     def test_907(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (-1.0230838871782204, -2.1531248675365493), 3, False, True)
-            
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((1.8030124635740012, 6.771723807186804), -2, True)
-            var_1 = obj_0.is_out_of_play()
-        
-    def test_908(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-1.9695945619681954, 0.879241513108342), 0, True, False)
-            
-            var_4 = obj_0.move((2.3422846464457834, 7.795782658536487), 3, True)
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-        
-    def test_909(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (-4.6682738043989165, 0.8220290379886954), 6, False, True)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_4 = obj_0.move((-1.6353404355757277, -2.445091769850638), -1, True)
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            obj_0.move_out_of_play()
-        
-    def test_910(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        
+    def test_908(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        var_2 = obj_2.score()
+        var_3 = obj_2.score()
+        var_1 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, (0, 0))
+        
+    def test_909(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (4.062229755390156, 0.9553013818468195), 8, False, False)
+            
+            var_2 = obj_0.distance_to_center()
+            var_3 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.is_passed_hogline()
+            var_6 = obj_0.__str__()
+            var_0 = obj_0.is_guard()
+            var_1 = obj_0.is_passed_hogline()
+            var_5 = obj_0.is_out_of_bounds()
+        
+    def test_910(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (6.3298382330189416, 3.628100246143248), -1, True, False)
+            
+            var_0 = obj_0.is_out_of_play()
+            var_1 = obj_0.is_passed_hogline()
         
     def test_911(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(False, (5.9764277726564785, -5.323402238447773), 6, False, False))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.2296088866113433, 2.9035612352488123), 3, True, False))
+        obj_2 = Game()
+        
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
         
     def test_912(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
         
     def test_913(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (2.8196899267877793, -1.554054940775984), -2, True, False)
             
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (3.8015342984772715, 7.863794269945821), 7, True, False))
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.303796804412819, 3.001371350235271), 9, False, True))
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
+            var_4 = obj_0.is_in_house()
+            obj_0.burn()
+            var_5 = obj_0.is_out_of_play()
+            var_0 = obj_0.is_guard()
+            var_1 = obj_0.is_out_of_bounds()
+            obj_0.burn()
         
     def test_914(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
             
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-5.735648442990552, -4.657129469523712), 6, True, False))
+            var_0 = obj_1.red_won()
+            obj_1.add_stone(Stone(True, (2.0577366601386107, 4.09945230837762), 0, True, True))
             var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (4.94313272224262, -2.459129485135014), 8, False, True))
-            var_3 = obj_1.red_won()
+            var_3 = obj_1.done()
+            var_1 = obj_1.done()
         
     def test_915(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(True)
-            
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (2.3480111460004043, -0.7094754339398115), 5, False, True))
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (-1.0967202339182922, 2.6509517637399522), 2, True, False))
-            var_5 = obj_1.drawn()
+        obj_0 = Stone(False, (-0.4599282809477039, 3.445581585867844), 1, False, False)
+        
+        var_1 = obj_0.__str__()
+        var_3 = obj_0.is_guard()
+        var_0 = obj_0.__str__()
+        var_4 = obj_0.__str__()
+        var_2 = obj_0.is_out_of_bounds()
+        
+        self.assertEqual(var_0, 'Yellow stone at (-0.46, 3.45), round 1, active')
+        self.assertEqual(var_1, 'Yellow stone at (-0.46, 3.45), round 1, active')
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, 'Yellow stone at (-0.46, 3.45), round 1, active')
         
     def test_916(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (5.875704016688269, 3.3809651681164965), -1, False, False)
+            
+            var_0 = obj_0.is_passed_hogline()
+            var_1 = obj_0.is_passed_hogline()
         
     def test_917(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
         
     def test_918(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (5.5621114453641844, -2.7652464262931336), 12, True, False)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-3.980080726801452, -7.425984640016136), 7, False, False)
             
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((2.229427642032718, -6.960495571389542), -1, False)
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
+            var_3 = obj_0.distance_to_center()
+            var_2 = obj_0.is_guard()
+            var_5 = obj_0.distance_to_center()
+            var_0 = obj_0.is_in_house()
+            var_1 = obj_0.distance_to_center()
+            var_4 = obj_0.is_passed_hogline()
         
     def test_919(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        
+        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
+            obj_1 = End(False)
+            
+            var_1 = obj_1.done()
+            var_3 = obj_1.drawn()
+            obj_1.add_stone(Stone(True, (-2.133186100795177, -5.7468596646996435), 7, True, True))
+            var_0 = obj_1.done()
         
     def test_920(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(False, (-4.919353551201592, 0.6651818258909561), 10, False, False)
+            
+            var_8 = obj_0.is_in_house()
+            var_2 = obj_0.distance_to_center()
+            var_6 = obj_0.__str__()
+            var_1 = obj_0.distance_to_center()
+            var_9 = obj_0.is_in_house()
+            obj_0.move_out_of_play()
+            var_3 = obj_0.move((0.14230367174772773, -5.488937616649226), -1, True)
+            var_4 = obj_0.is_out_of_play()
+            var_0 = obj_0.__str__()
+            var_5 = obj_0.is_out_of_play()
         
     def test_921(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
+        var_1 = obj_1.overlaps_any_stone(Stone(False, (6.573093829923751, -7.516628184530914), 5, False, True))
+        var_0 = obj_1.overlaps_any_stone(Stone(False, (-2.1456659583705626, 0.2799320454894385), 10, True, False))
         
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
         
     def test_922(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-0.4998596678207221, 0.6926229906406736), 6, False, True)
             
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-4.441568727655596, 5.670194528197051), 11, True, True))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-5.8794473757861, 6.6643394431985), 0, False, True))
-            var_3 = obj_1.red_won()
+            var_0 = obj_0.is_passed_hogline()
+            obj_0.move_out_of_play()
+            var_3 = obj_0.move((7.155576278596616, 6.725100200767708), 8, False)
+            var_2 = obj_0.move((-2.0136270518054697, 2.726784034691663), 11, True)
+            var_5 = obj_0.distance_to_center()
+            var_6 = obj_0.is_passed_hogline()
+            var_1 = obj_0.is_out_of_bounds()
+            var_4 = obj_0.is_out_of_play()
         
     def test_923(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.__str__()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        
+    def test_924(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(False)
             
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-6.014655326210146, 2.5622329665078247), 2, False, True))
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (7.451134559544743, 4.450163315670709), 0, True, False))
-        
-    def test_924(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        
+            var_4 = obj_1.score()
+            var_3 = obj_1.drawn()
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (7.856703581137619, 2.9801962248835903), -2, False, True))
+            obj_1.add_stone(Stone(False, (6.945273102192129, 0.963502293781966), 12, True, True))
+            var_2 = obj_1.done()
         
     def test_925(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(False, (4.8736742067663705, 7.134776342459769), 7, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-2.514670297526436, -3.727416905182224), 8, True, True)
             
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
+            var_2 = obj_0.is_out_of_play()
             obj_0.move_out_of_play()
             obj_0.burn()
-            var_4 = obj_0.move((3.4621350646519122, 7.754643582360471), 12, False)
         
     def test_926(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (-4.51915244610373, 5.235064307048489), 9, True, False))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (3.0423558946356106, -7.5518209591698575), 11, True, False))
-            var_7 = obj_1.__str__()
+        obj_0 = Stone(False, (-0.7115143266939814, -5.408426855384105), 8, False, False)
+        
+        obj_0.move_out_of_play()
+        var_4 = obj_0.is_out_of_bounds()
+        var_0 = obj_0.is_in_house()
+        var_2 = obj_0.is_out_of_play()
+        var_6 = obj_0.is_in_house()
+        var_3 = obj_0.is_out_of_bounds()
+        var_5 = obj_0.is_out_of_bounds()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, False)
+        self.assertEqual(var_5, False)
+        self.assertEqual(var_6, False)
         
     def test_927(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (5.959845748087634, -6.129513255746506), 11, True, True)
+            obj_0 = Stone(True, (-1.1415179542663552, -0.18331033137083175), 11, False, True)
             
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
+            var_3 = obj_0.is_out_of_play()
             obj_0.move_out_of_play()
-            var_4 = obj_0.move((0.8581556673307347, 2.918833009558389), 7, False)
             obj_0.burn()
+            var_1 = obj_0.is_passed_hogline()
+            var_2 = obj_0.__str__()
+            var_7 = obj_0.move((-0.8051502504395796, -5.941454890565229), 10, False)
+            var_5 = obj_0.is_in_house()
+            var_8 = obj_0.is_out_of_bounds()
             var_6 = obj_0.is_out_of_bounds()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
         
     def test_928(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (5.030413184367266, 6.953924281403824), 0, True, False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (7.189420197660738, -7.017598232422667), 3, False, True)
             
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
+            var_4 = obj_0.is_passed_hogline()
+            var_2 = obj_0.is_in_house()
             obj_0.move_out_of_play()
-            var_4 = obj_0.move((3.991221422524003, 7.504829476454731), 3, False)
-            var_8 = obj_0.is_passed_hogline()
-            var_7 = obj_0.is_in_house()
+            var_5 = obj_0.distance_to_center()
+            var_7 = obj_0.distance_to_center()
+            var_3 = obj_0.__str__()
+            var_1 = obj_0.is_out_of_bounds()
+            var_0 = obj_0.move((7.662510400243466, -0.27702186935508166), 2, True)
         
     def test_929(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (5.219728294832997, 5.89461325247559), 11, True, True)
+            
+            var_0 = obj_0.is_out_of_bounds()
+            obj_0.move_out_of_play()
+            var_5 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            var_8 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            var_6 = obj_0.is_out_of_play()
+            var_7 = obj_0.is_in_house()
+            obj_0.burn()
         
     def test_930(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            obj_1.add_stone(Stone(True, (3.3441437358678616, -4.138116891337738), 9, False, False))
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-3.3214655344677215, 3.7116106843065584), 6, False, True))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
+        obj_2 = Game()
+        
+        obj_2.add_end(End(True))
+        var_1 = obj_2.__str__()
+        var_2 = obj_2.__str__()
+        var_4 = obj_2.score()
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'Game with 1 ends')
+        self.assertEqual(var_2, 'Game with 1 ends')
+        self.assertEqual(var_4, (0, 0))
         
     def test_931(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (7.960190267816733, 3.0726968250854902), 4, False, False))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.915298654560866, -4.814288582365009), 4, True, False))
+        obj_0 = Stone(False, (0.42438644707929996, -3.101637190920826), 2, False, False)
+        
+        var_1 = obj_0.is_in_house()
+        var_3 = obj_0.move((-2.6054743255543897, -2.4172015171142576), 4, False)
+        var_0 = obj_0.distance_to_center()
+        var_7 = obj_0.is_out_of_play()
+        var_2 = obj_0.is_out_of_play()
+        var_5 = obj_0.distance_to_center()
+        var_8 = obj_0.is_passed_hogline()
+        var_4 = obj_0.is_passed_hogline()
+        var_6 = obj_0.move((-1.3865709400857682, -4.823871830520201), 4, False)
+        
+        self.assertEqual(var_0, 5.934199610641465)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, True)
+        self.assertEqual(var_5, 5.934199610641465)
+        self.assertEqual(var_6, True)
+        self.assertEqual(var_7, False)
+        self.assertEqual(var_8, True)
         
     def test_932(self):
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_2 = obj_2.__str__()
+        obj_2.add_end(End(True))
+        var_0 = obj_2.red_winner()
+        obj_2.add_end(End(True))
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'Game with 0 ends')
+        
+    def test_933(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-7.470077071879727, -6.702558583214747), -1, False, True)
+            
+            var_2 = obj_0.is_passed_hogline()
+            var_7 = obj_0.is_guard()
+            var_1 = obj_0.is_in_house()
+            var_5 = obj_0.is_out_of_play()
+            var_3 = obj_0.is_in_house()
+            var_0 = obj_0.is_guard()
+            var_8 = obj_0.is_passed_hogline()
+            obj_0.move_out_of_play()
+            var_6 = obj_0.move((-0.04597418050370017, -4.409438701295468), 5, True)
+        
+    def test_934(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-0.9866884342529563, -1.0110550263814684), 1, True, True)
+            
+            var_1 = obj_0.is_out_of_play()
+            var_3 = obj_0.is_passed_hogline()
+            obj_0.burn()
+            var_0 = obj_0.__str__()
+            var_2 = obj_0.move((-6.51606687819085, 7.254929694790183), 1, False)
+        
+    def test_935(self):
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(True, (-1.9558800408690917, -0.3907439322265489), 5, True, False)
+            
+            var_4 = obj_0.move((0.3019978871291453, -1.4681870636782524), 8, True)
+            var_2 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            var_5 = obj_0.move((1.4636358903557927, -4.329133864906455), 0, True)
+            var_7 = obj_0.is_passed_hogline()
+            var_0 = obj_0.is_guard()
+            var_1 = obj_0.move((-7.330191139181387, -6.637095185867569), 2, True)
+            var_8 = obj_0.__str__()
+            var_6 = obj_0.is_out_of_play()
+        
+    def test_936(self):
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(True, (-0.9134811122482382, -3.3904783356238646), 1, False, True)
+            
+            var_0 = obj_0.is_in_house()
+            var_1 = obj_0.distance_to_center()
+            var_2 = obj_0.is_in_house()
+        
+    def test_937(self):
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
+            
+            var_0 = obj_2.__str__()
+            obj_2.add_end(End(True))
+            obj_2.add_end(End(False))
+        
+    def test_938(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            obj_1.add_stone(Stone(False, (1.0021680712551255, 7.008534696947811), 5, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (0.2336083364335817, 4.863916354907943), 5, False, False))
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
+            var_5 = obj_1.__str__()
+            var_0 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (1.7680720296336485, -7.620223964646252), 9, True, False))
+            var_6 = obj_1.red_won()
+            var_2 = obj_1.done()
+            var_1 = obj_1.done()
             var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-        
-    def test_933(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        
-        
-    def test_934(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_4 = obj_2.red_winner()
-        
-        
-    def test_935(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (3.567712580505507, 0.49896265352801095), 5, True, True)
-            
-            obj_0.move_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_4 = obj_0.move((1.9854930798594506, -1.2946318289420269), 4, True)
-        
-    def test_936(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.9029190428632585, -6.705710775884368), 0, False, False))
-            obj_1.add_stone(Stone(True, (1.2346929985163353, -0.03715710935973604), 10, False, True))
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-        
-    def test_937(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (-0.3012177682143182, 1.8150839167198143), 8, True, False)
-            
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_7 = obj_0.is_in_house()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((1.6875141815296377, -7.827823676272855), 0, True)
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            obj_0.move_out_of_play()
-        
-    def test_938(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            obj_1.add_stone(Stone(True, (-2.3547838426200265, -5.019309015753263), 11, False, True))
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (6.0459351460423925, 6.009552059778798), -1, True, False))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
         
     def test_939(self):
         with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (0.3363148098204096, 2.951003633085765), 7, True, True)
+            obj_0 = Stone(False, (-7.539256274881563, -5.949290208946605), 5, False, True)
             
-            obj_0.burn()
             obj_0.move_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((6.58702756271086, -1.9607419133547186), 9, False)
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
+            var_2 = obj_0.is_out_of_bounds()
+            obj_0.move_out_of_play()
+            var_3 = obj_0.is_out_of_play()
         
     def test_940(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.690606665483019, -4.806498347664752), -2, True, True))
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (7.013464193399814, -5.784797223857501), 9, False, False))
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_5 = obj_1.drawn()
+        obj_1 = End(True)
+        
+        var_1 = obj_1.__str__()
+        var_0 = obj_1.red_won()
+        var_2 = obj_1.red_won()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_2, None)
         
     def test_941(self):
-        obj_2 = Game()
-        
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        
+        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
+            obj_0 = Stone(False, (-7.399306710106218, 5.9095308422597395), 6, False, True)
+            
+            var_1 = obj_0.distance_to_center()
+            obj_0.burn()
+            var_5 = obj_0.__str__()
+            var_3 = obj_0.__str__()
+            var_8 = obj_0.is_in_house()
+            var_7 = obj_0.is_out_of_play()
+            obj_0.burn()
+            var_0 = obj_0.is_guard()
+            var_4 = obj_0.__str__()
         
     def test_942(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
+        var_1 = obj_2.score()
+        var_3 = obj_2.__str__()
+        var_0 = obj_2.score()
+        var_4 = obj_2.score()
+        var_2 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, 'Game with 0 ends')
+        self.assertEqual(var_4, (0, 0))
         
     def test_943(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
+        var_1 = obj_2.display_scoreboard()
+        obj_2.add_end(End(False))
+        var_0 = obj_2.red_winner()
         var_3 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_3, 'End |    1 | Total\n----|------|------\nRed |    0 |     0\nYel | h  0 |     0\n')
         
     def test_944(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-7.359041412735095, -2.6177927556777956), 2, True, True)
             
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (0.4722573956223819, -3.0436764823592934), 8, True, True))
-            obj_1.add_stone(Stone(False, (0.6737848420332337, 2.564076499142894), 4, False, False))
-            var_7 = obj_1.__str__()
+            obj_0.move_out_of_play()
+            var_4 = obj_0.is_out_of_play()
+            var_1 = obj_0.is_out_of_play()
+            var_0 = obj_0.is_out_of_play()
+            var_2 = obj_0.is_passed_hogline()
         
     def test_945(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+            obj_0 = Stone(False, (3.387749478466487, -6.1352535168177695), 12, True, True)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-5.678235506411365, 4.6985117394557765), 6, False, True))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (5.536936886344984, 7.098338310385834), -2, False, True))
-            var_6 = obj_1.score()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.is_out_of_play()
+            obj_0.burn()
+            var_2 = obj_0.is_passed_hogline()
         
     def test_946(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (7.015967840989788, 7.274158153890486), -2, False, False)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_5 = obj_0.is_guard()
-            var_4 = obj_0.move((-2.763852340750878, -4.861886685711669), 1, False)
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
+        obj_2 = Game()
+        
+        var_1 = obj_2.red_winner()
+        var_0 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
         
     def test_947(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_0 = obj_2.__str__()
+        var_2 = obj_2.red_winner()
+        var_1 = obj_2.red_winner()
+        var_3 = obj_2.score()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, (0, 0))
         
     def test_948(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-7.874010604145905, 0.2237176150851088), 7, False, True)
             
-            var_3 = obj_1.red_won()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (0.44879718413381475, -3.068631959876109), 0, True, False))
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(False, (-7.829160134320741, -1.9781310859448524), 9, True, False))
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_7 = obj_1.__str__()
+            obj_0.move_out_of_play()
+            var_0 = obj_0.is_guard()
+            var_2 = obj_0.move((-7.26755271778875, 7.682413362906825), 5, False)
         
     def test_949(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(True, (-0.5325544299755993, 0.023081545765732514), 0, False, False)
+            
+            var_2 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.distance_to_center()
+            obj_0.move_out_of_play()
+            var_5 = obj_0.is_in_house()
+            var_0 = obj_0.is_in_house()
+            var_7 = obj_0.is_in_house()
+            var_6 = obj_0.move((0.6682550294297513, -4.15202970879897), 3, True)
+            var_4 = obj_0.is_guard()
+            var_1 = obj_0.__str__()
+            var_9 = obj_0.move((-2.1933633991327515, 1.0155922387517702), 12, True)
         
     def test_950(self):
-        obj_2 = Game()
-        
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
+            
+            obj_1.add_stone(Stone(False, (-4.247974330801775, -4.399791523407677), 3, True, False))
+            var_0 = obj_1.overlaps_any_stone(Stone(False, (2.244040959863977, 0.4455550404830504), 11, True, False))
+            var_3 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (2.9036160252946033, 6.087415800428667), 0, False, False))
+            var_4 = obj_1.drawn()
+            var_5 = obj_1.score()
         
     def test_951(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_1 = obj_2.__str__()
+        var_3 = obj_2.__str__()
         obj_2.add_end(End(False))
+        var_4 = obj_2.__str__()
+        var_2 = obj_2.__str__()
         
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, 'Game with 1 ends')
+        self.assertEqual(var_3, 'Game with 0 ends')
+        self.assertEqual(var_4, 'Game with 1 ends')
         
     def test_952(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
             obj_1 = End(True)
             
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (5.423533435525515, 0.5688566166393443), 5, False, False))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (-2.8077179090540856, -5.5224581193790705), 10, True, True))
-            var_3 = obj_1.red_won()
+            var_3 = obj_1.score()
+            obj_1.add_stone(Stone(True, (-5.219104698037324, 6.922904517354132), 1, True, True))
+            var_0 = obj_1.drawn()
+            var_1 = obj_1.score()
         
     def test_953(self):
         obj_2 = Game()
         
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
+        var_0 = obj_2.score()
         
+        self.assertEqual(var_0, (0, 0))
         
     def test_954(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (-0.020749227767778322, 5.852236493256209), -2, False, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (-0.5856769838895595, 7.642243095823796), 8, False, False)
             
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
+            var_1 = obj_0.distance_to_center()
             obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-1.3863702991115456, 6.891547037729579), 5, False)
         
     def test_955(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
+        var_1 = obj_1.__str__()
+        var_0 = obj_1.done()
         
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, 'End with Yellow hammer and 0 stones')
         
     def test_956(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(True))
-        var_3 = obj_2.display_scoreboard()
-        
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-4.663372444343464, 7.6446510385063515), 11, False, False)
+            
+            var_3 = obj_0.is_out_of_play()
+            var_2 = obj_0.distance_to_center()
+            obj_0.burn()
+            obj_0.burn()
+            var_0 = obj_0.is_passed_hogline()
+            var_6 = obj_0.__str__()
+            var_4 = obj_0.is_passed_hogline()
+            obj_0.burn()
         
     def test_957(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(True, (6.009915826959585, 5.153046110335911), 10, False, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((3.683439231236946, -7.511126449431616), 2, False)
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
+        obj_0 = Stone(False, (0.07449730482512074, 0.31166247678064174), 6, False, False)
+        
+        var_0 = obj_0.is_in_house()
+        var_4 = obj_0.distance_to_center()
+        var_3 = obj_0.is_passed_hogline()
+        var_2 = obj_0.is_guard()
+        var_1 = obj_0.is_in_house()
+        
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, False)
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, 0.3204424251862587)
         
     def test_958(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (2.4767070100264945, -7.255891459707017), 1, False, True)
-            
-            var_8 = obj_0.is_passed_hogline()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((2.19166924829063, -5.4350653627125975), 1, False)
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
+        obj_0 = Stone(True, (-2.4671953175541788, -5.77151116311734), 8, False, False)
+        
+        var_2 = obj_0.move((1.7601698654761702, 6.429293357753627), 5, False)
+        var_3 = obj_0.is_guard()
+        var_4 = obj_0.is_in_house()
+        var_0 = obj_0.is_out_of_play()
+        var_1 = obj_0.distance_to_center()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, 0.9656927075766091)
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, True)
         
     def test_959(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-7.627654023383325, -4.3759480986840895), 6, False, False))
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (-6.773902600044297, -4.807151244351246), 1, False, True))
-            var_5 = obj_1.drawn()
+        obj_1 = End(True)
+        
+        var_3 = obj_1.done()
+        var_6 = obj_1.__str__()
+        var_0 = obj_1.red_won()
+        var_4 = obj_1.__str__()
+        var_1 = obj_1.__str__()
+        var_2 = obj_1.__str__()
+        var_5 = obj_1.__str__()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_2, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_5, 'End with Red hammer and 0 stones')
+        self.assertEqual(var_6, 'End with Red hammer and 0 stones')
         
     def test_960(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (4.423873529571571, -4.682243518693079), 0, True, True)
-            
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.burn()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((0.6685161663538093, -0.9744392460869786), 6, True)
+        obj_2 = Game()
+        
+        var_3 = obj_2.score()
+        obj_2.add_end(End(True))
+        var_0 = obj_2.score()
+        var_2 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_2, (0, 0))
+        self.assertEqual(var_3, (0, 0))
         
     def test_961(self):
-        obj_2 = Game()
-        
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        
-        
-    def test_962(self):
         with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(True)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-5.65816627059686, -2.1124533473992706), 5, True, False))
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
-            obj_1.add_stone(Stone(True, (-2.973433850682083, -6.783481735536705), 12, True, True))
+            var_2 = obj_1.score()
+            var_4 = obj_1.__str__()
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (0.9451873594606592, -7.732831454967489), 3, False, False))
+            var_3 = obj_1.score()
+            var_6 = obj_1.overlaps_any_stone(Stone(True, (-3.753149277480807, 6.200852299099747), 12, True, False))
+            var_5 = obj_1.overlaps_any_stone(Stone(False, (3.377207605899681, -1.5430857464134355), 8, False, True))
+            var_0 = obj_1.red_won()
         
-    def test_963(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_0 = Stone(False, (3.6708930208277106, -7.054634512055188), 9, True, False)
-            
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((6.453101027325612, -3.0109071793505855), 12, True)
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-        
-    def test_964(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (4.49935785356292, -5.38103582935679), 2, False, True))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (1.0783066054364578, -0.173622070700711), 1, False, True))
-            var_3 = obj_1.red_won()
-        
-    def test_965(self):
+    def test_962(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
+        var_0 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
+        var_2 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        
+    def test_963(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
+            
+            var_6 = obj_1.drawn()
+            var_5 = obj_1.drawn()
+            obj_1.add_stone(Stone(False, (5.167388574665269, 3.902047272076352), -1, True, True))
+            obj_1.add_stone(Stone(False, (1.306665293224805, 0.5509327670434523), 12, False, False))
+            var_4 = obj_1.overlaps_any_stone(Stone(False, (0.5665860246127341, -5.655833565810861), 7, True, True))
+            var_2 = obj_1.red_won()
+            var_1 = obj_1.__str__()
+        
+    def test_964(self):
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
+            
+            obj_2.add_end(End(True))
+            obj_2.add_end(End(False))
+        
+    def test_965(self):
+        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
+            obj_0 = Stone(False, (0.7610626330179979, 2.622024195308766), 9, False, False)
+            
+            obj_0.burn()
+            var_2 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.move((5.538474449254897, -4.504776532164193), 0, False)
+            var_0 = obj_0.is_out_of_bounds()
         
     def test_966(self):
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
+        
+    def test_967(self):
+        obj_0 = Stone(False, (-5.181450203069865, 3.4808723563983825), 8, True, True)
+        
+        var_2 = obj_0.is_passed_hogline()
+        var_0 = obj_0.is_in_house()
+        var_1 = obj_0.is_passed_hogline()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_2, False)
+        
+    def test_968(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
             obj_1 = End(True)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (0.04425537970277027, 3.566894207651554), 5, True, False))
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (0.9981008555173911, -3.5269503485927167), 11, False, True))
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-        
-    def test_967(self):
-        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-5.5173643258180025, -5.075420691655697), 2, True, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((1.554276020650029, 0.7652700220803759), 12, True)
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
-            var_10 = obj_0.__str__()
-        
-    def test_968(self):
-        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
-            obj_1 = End(True)
-            
-            var_3 = obj_1.red_won()
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(False, (7.034985613639366, 6.611694270408201), 4, True, True))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.599390685586949, -4.1244279408254325), 10, True, True))
-            var_4 = obj_1.done()
+            var_1 = obj_1.overlaps_any_stone(Stone(True, (2.4058561785841235, 6.595183313364817), 0, False, False))
+            obj_1.add_stone(Stone(True, (-2.739595331997007, -5.9873933165481485), -1, False, False))
+            var_5 = obj_1.__str__()
+            var_4 = obj_1.red_won()
+            var_3 = obj_1.drawn()
+            obj_1.add_stone(Stone(True, (-7.166971954619516, -6.156694815802975), 6, True, True))
         
     def test_969(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
         obj_2.add_end(End(False))
+        var_1 = obj_2.red_winner()
         
+        self.assertEqual(var_1, None)
         
     def test_970(self):
         obj_2 = Game()
         
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
+        var_1 = obj_2.score()
+        var_0 = obj_2.__str__()
+        var_2 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, (0, 0))
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_971(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
-            
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.895097442593178, -4.341268667353219), 4, False, True))
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(False, (-2.140318404601258, -3.4495753736122783), 12, False, True))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-        
-    def test_972(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (5.976978099007308, -6.337252666762312), 9, True, True))
-            obj_1.add_stone(Stone(True, (-1.7762336288285336, -2.9573540389369697), 1, True, True))
-            var_7 = obj_1.__str__()
-        
-    def test_973(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(True, (-6.189642521801153, 4.518606471394545), 6, False, False))
-            var_4 = obj_1.done()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (-1.7643338741238406, -4.354105717214706), 3, False, True))
-            var_3 = obj_1.red_won()
-        
-    def test_974(self):
         obj_2 = Game()
         
-        var_4 = obj_2.red_winner()
-        var_2 = obj_2.score()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(False))
-        var_5 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
+        var_2 = obj_2.display_scoreboard()
+        var_0 = obj_2.__str__()
         
+        self.assertEqual(var_0, 'Game with 0 ends')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
-    def test_975(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.776252727859957, 6.591079816454567), 10, True, False))
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (-1.4740780973268173, -5.662483257164048), 0, True, False))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
+    def test_972(self):
+        obj_0 = Stone(False, (-1.2866033043669898, -1.9668072131117516), 1, True, False)
         
-    def test_976(self):
+        var_3 = obj_0.is_out_of_bounds()
+        var_1 = obj_0.is_out_of_bounds()
+        var_0 = obj_0.is_out_of_bounds()
+        obj_0.move_out_of_play()
+        var_4 = obj_0.is_passed_hogline()
+        
+        self.assertEqual(var_0, False)
+        self.assertEqual(var_1, False)
+        self.assertEqual(var_3, False)
+        self.assertEqual(var_4, False)
+        
+    def test_973(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (5.96136064913688, -1.6105832556700328), -2, True, True)
-            
-            obj_0.move_out_of_play()
-            obj_0.burn()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((-6.467097173032926, 5.428979319488487), 8, False)
-            var_6 = obj_0.is_out_of_bounds()
-        
-    def test_977(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
             obj_1 = End(False)
             
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.487328327495515, -0.07541449312709858), 8, False, False))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (0.7558652100311019, 1.5753129697253758), 4, False, True))
+            obj_1.add_stone(Stone(True, (1.7959329943554057, 5.030063361645057), 12, False, True))
+            var_2 = obj_1.__str__()
+            obj_1.add_stone(Stone(True, (0.4543949150400799, -2.9669399382943773), -1, False, True))
+            obj_1.add_stone(Stone(True, (6.833053168971411, 6.883608695112374), -1, False, False))
+            var_1 = obj_1.score()
+        
+    def test_974(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_0 = Stone(False, (-7.658562312380692, -7.998805165077746), 11, False, False)
+            
+            obj_0.burn()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.move((6.9370301291213785, 3.7312062889967006), 12, False)
+        
+    def test_975(self):
+        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
+            obj_1 = End(False)
+            
+            var_1 = obj_1.overlaps_any_stone(Stone(False, (0.5497134012003908, -1.4662616229516203), 6, False, True))
+            var_6 = obj_1.__str__()
+            var_5 = obj_1.__str__()
+            var_0 = obj_1.drawn()
+            var_2 = obj_1.score()
+            var_4 = obj_1.score()
+            var_3 = obj_1.overlaps_any_stone(Stone(False, (-5.3922124283603505, 5.347942683739417), 11, True, True))
+        
+    def test_976(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(True, (-1.8299037496852915, -1.3861017694073094), 9, True, True)
+            
+            var_5 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.is_out_of_play()
+            var_0 = obj_0.is_guard()
+            var_3 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_1 = obj_0.is_out_of_play()
+        
+    def test_977(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.__str__()
+        var_2 = obj_2.__str__()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, 'Game with 0 ends')
+        self.assertEqual(var_2, 'Game with 0 ends')
         
     def test_978(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (2.9518473407585546, -7.652897804951442), -1, False, False)
-            
-            obj_0.move_out_of_play()
-            var_4 = obj_0.move((5.8596597581340895, -0.7074914932877476), 11, True)
-            var_10 = obj_0.__str__()
-            var_1 = obj_0.is_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
+        obj_1 = End(True)
+        
+        var_0 = obj_1.red_won()
+        var_1 = obj_1.red_won()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, None)
         
     def test_979(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(True, (1.9068439764464333, -2.1779866835270667), 11, True, True)
+            obj_0 = Stone(True, (-1.6736970775104005, 0.3413941613686369), -1, False, False)
             
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((-1.569228228852344, -0.29682879487637237), 5, True)
-            var_1 = obj_0.is_out_of_play()
-            var_9 = obj_0.distance_to_center()
-            var_7 = obj_0.is_in_house()
+            var_5 = obj_0.is_in_house()
+            var_2 = obj_0.is_out_of_play()
+            var_3 = obj_0.is_guard()
             obj_0.burn()
-            var_10 = obj_0.__str__()
-            var_6 = obj_0.is_out_of_bounds()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
+            var_1 = obj_0.is_out_of_bounds()
+            obj_0.burn()
         
     def test_980(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (-6.052620702725758, 6.691578412525029), 8, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_1 = End(True)
             
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.burn()
-            var_5 = obj_0.is_guard()
-            obj_0.move_out_of_play()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_1 = obj_0.is_out_of_play()
-            var_4 = obj_0.move((0.17468116721341787, -7.082876248941961), 11, False)
+            var_0 = obj_1.done()
+            obj_1.add_stone(Stone(True, (3.5771733862332376, 0.8091833753756035), 5, True, False))
         
     def test_981(self):
-        obj_2 = Game()
-        
-        obj_2.add_end(End(True))
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
-        var_4 = obj_2.red_winner()
-        
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (4.113068944419901, -3.5876073267889588), 2, True, True)
+            
+            var_0 = obj_0.is_out_of_bounds()
+            obj_0.burn()
+            var_3 = obj_0.is_passed_hogline()
+            var_1 = obj_0.move((-2.2781095699714573, -2.9103490235759253), 10, True)
         
     def test_982(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            obj_1.add_stone(Stone(False, (-3.0073360018373485, -3.217727493973859), 9, False, False))
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-6.660791665607901, 2.277916786456551), 11, True, False))
-            var_5 = obj_1.drawn()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
+        obj_2 = Game()
+        
+        var_1 = obj_2.display_scoreboard()
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_983(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(False)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (3.731524291625764, 7.249126036060963), 3, False, False))
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            obj_1.add_stone(Stone(True, (-6.993398494869112, -6.085847675802629), 1, True, True))
+        obj_2 = Game()
+        
+        var_0 = obj_2.display_scoreboard()
+        var_1 = obj_2.red_winner()
+        var_2 = obj_2.display_scoreboard()
+        
+        self.assertEqual(var_0, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'End |  | Total\n----|------\nRed |  |     0\nYel |  |     0\n')
         
     def test_984(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
             
-            var_7 = obj_1.__str__()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (-2.225166786004758, 3.8593712262976023), 9, False, False))
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-7.238401550915567, 7.951804494687368), 11, True, False))
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_5 = obj_1.drawn()
+            obj_2.add_end(End(True))
+            var_0 = obj_2.display_scoreboard()
+            obj_2.add_end(End(True))
+            var_1 = obj_2.red_winner()
+            obj_2.add_end(End(False))
         
     def test_985(self):
-        obj_2 = Game()
+        obj_1 = End(False)
         
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        var_4 = obj_2.red_winner()
+        var_1 = obj_1.red_won()
+        var_0 = obj_1.drawn()
+        var_3 = obj_1.drawn()
+        var_2 = obj_1.drawn()
         
+        self.assertEqual(var_0, True)
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, True)
+        self.assertEqual(var_3, True)
         
     def test_986(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_0 = Stone(False, (-6.829820843674918, 5.38026113587682), 12, True, True)
-            
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_4 = obj_0.move((0.6997066403362098, -0.9283082629969712), -2, False)
-            obj_0.burn()
-        
-    def test_987(self):
-        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
-            obj_1 = End(True)
-            
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (6.930783627051772, -6.939824825941223), 4, True, False))
-            obj_1.add_stone(Stone(True, (2.3789715528712314, 4.588272816929919), 10, False, False))
-            var_5 = obj_1.drawn()
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_7 = obj_1.__str__()
-        
-    def test_988(self):
-        with self.assertRaisesRegex(ValueError, "Stone's hammer status does not match the end's hammer status."):
+        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
             obj_1 = End(False)
             
-            var_7 = obj_1.__str__()
-            obj_1.add_stone(Stone(True, (2.308208392113823, -1.1296793958341347), 10, True, True))
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (2.4426933021795794, -5.96806889852083), 6, True, False))
-            var_5 = obj_1.drawn()
-            var_4 = obj_1.done()
-            var_6 = obj_1.score()
-            var_3 = obj_1.red_won()
+            var_6 = obj_1.red_won()
+            var_1 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (7.237432435196768, 5.8017227837735525), 9, False, True))
+            obj_1.add_stone(Stone(True, (-6.738467203139145, 2.3289713861489787), 4, True, True))
+            var_2 = obj_1.drawn()
+            var_5 = obj_1.done()
+            var_0 = obj_1.red_won()
+        
+    def test_987(self):
+        obj_2 = Game()
+        
+        var_0 = obj_2.score()
+        var_2 = obj_2.__str__()
+        var_1 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, None)
+        self.assertEqual(var_2, 'Game with 0 ends')
+        
+    def test_988(self):
+        with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
+            obj_0 = Stone(False, (-2.061208162850651, 2.4463112674464558), 8, False, False)
+            
+            var_1 = obj_0.distance_to_center()
+            var_2 = obj_0.is_in_house()
+            var_4 = obj_0.is_out_of_bounds()
+            var_3 = obj_0.move((-6.243362862583242, 2.925185561897548), 9, False)
+            var_8 = obj_0.is_passed_hogline()
+            var_6 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
+            var_0 = obj_0.is_out_of_play()
+            obj_0.move_out_of_play()
         
     def test_989(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(True, (-2.763951648293032, 1.64387592327237), 2, False, True)
-            
-            var_1 = obj_0.is_out_of_play()
-            var_10 = obj_0.__str__()
-            var_4 = obj_0.move((-0.5086649795660776, 5.789028091850431), 7, True)
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_6 = obj_0.is_out_of_bounds()
-            var_8 = obj_0.is_passed_hogline()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_7 = obj_0.is_in_house()
+        obj_2 = Game()
+        
+        var_1 = obj_2.__str__()
+        var_0 = obj_2.score()
+        
+        self.assertEqual(var_0, (0, 0))
+        self.assertEqual(var_1, 'Game with 0 ends')
         
     def test_990(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_2 = obj_2.score()
-        var_5 = obj_2.__str__()
-        obj_2.add_end(End(False))
+        var_0 = obj_1.score()
         
+        self.assertEqual(var_0, 0)
         
     def test_991(self):
-        obj_2 = Game()
-        
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        obj_2.add_end(End(True))
-        var_5 = obj_2.__str__()
-        
+        with self.assertRaisesRegex(ValueError, "If the last end was a blank, the hammer should not switch to the other team."):
+            obj_2 = Game()
+            
+            var_2 = obj_2.display_scoreboard()
+            obj_2.add_end(End(True))
+            obj_2.add_end(End(False))
         
     def test_992(self):
-        with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(True)
-            
-            var_6 = obj_1.score()
-            obj_1.add_stone(Stone(False, (-2.3024571074255746, -0.3550920713863164), -1, False, True))
-            var_5 = obj_1.drawn()
-            var_7 = obj_1.__str__()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (7.772372793734473, 4.082638495263959), 12, True, False))
-            var_4 = obj_1.done()
-            var_3 = obj_1.red_won()
-        
-    def test_993(self):
         obj_2 = Game()
         
-        obj_2.add_end(End(False))
-        var_4 = obj_2.red_winner()
-        var_3 = obj_2.display_scoreboard()
-        var_5 = obj_2.__str__()
-        var_2 = obj_2.score()
+        obj_2.add_end(End(True))
+        var_0 = obj_2.display_scoreboard()
+        var_2 = obj_2.display_scoreboard()
         
+        self.assertEqual(var_0, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
+        self.assertEqual(var_2, 'End |    1 | Total\n----|------|------\nRed | h  0 |     0\nYel |    0 |     0\n')
+        
+    def test_993(self):
+        with self.assertRaisesRegex(ValueError, "Stone position is out of bounds."):
+            obj_0 = Stone(True, (4.08661245131321, -2.692353417753308), 6, False, False)
+            
+            var_4 = obj_0.is_in_house()
+            var_3 = obj_0.move((-5.115894367703456, 1.2235736697268411), 0, False)
+            obj_0.burn()
+            var_2 = obj_0.is_out_of_play()
+            var_5 = obj_0.is_in_house()
+            var_0 = obj_0.__str__()
+            var_1 = obj_0.move((-7.2653647714617655, 7.0324727836277106), 1, False)
         
     def test_994(self):
-        with self.assertRaisesRegex(ValueError, "Cannot calculate distance to center for a burned stone."):
-            obj_0 = Stone(True, (2.0402915766127094, -2.2404458204803266), 3, True, True)
+        with self.assertRaisesRegex(ValueError, "Stone's round does not match the expected round based on the number of stones already placed."):
+            obj_1 = End(True)
             
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_9 = obj_0.distance_to_center()
-            var_4 = obj_0.move((1.4661034838516063, 7.216128908360345), 9, True)
-            var_1 = obj_0.is_out_of_play()
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            obj_0.burn()
+            var_3 = obj_1.red_won()
+            obj_1.add_stone(Stone(False, (4.22953269429633, -6.645663184483869), 2, True, True))
+            var_1 = obj_1.__str__()
+            var_0 = obj_1.__str__()
         
     def test_995(self):
         with self.assertRaisesRegex(ValueError, "Round must be between 1 and 10."):
-            obj_1 = End(False)
+            obj_0 = Stone(True, (-3.3223198328447108, 7.491465000604961), -2, True, True)
             
-            var_7 = obj_1.__str__()
-            var_3 = obj_1.red_won()
-            var_6 = obj_1.score()
-            var_2 = obj_1.overlaps_any_stone(Stone(False, (2.908519537021917, -5.7098070177117215), 12, True, False))
-            obj_1.add_stone(Stone(True, (7.453697492876611, -0.9414856388763191), 12, True, True))
-            var_4 = obj_1.done()
-            var_5 = obj_1.drawn()
+            var_0 = obj_0.distance_to_center()
+            var_3 = obj_0.distance_to_center()
+            var_5 = obj_0.distance_to_center()
+            var_4 = obj_0.__str__()
+            var_1 = obj_0.move((6.8499509513847165, 4.674935281105025), 8, True)
+            var_6 = obj_0.__str__()
+            var_2 = obj_0.is_out_of_play()
         
     def test_996(self):
-        with self.assertRaisesRegex(ValueError, "Cannot move an out-of-play stone."):
-            obj_0 = Stone(False, (-3.4405450164495672, 2.971256846523902), 8, False, True)
-            
-            var_4 = obj_0.move((-3.2841795853371103, -4.589633538463488), 11, False)
-            obj_0.move_out_of_play()
-            var_5 = obj_0.is_guard()
-            var_8 = obj_0.is_passed_hogline()
-            var_6 = obj_0.is_out_of_bounds()
-            var_10 = obj_0.__str__()
-            var_7 = obj_0.is_in_house()
-            obj_0.burn()
-            var_9 = obj_0.distance_to_center()
-            var_1 = obj_0.is_out_of_play()
+        obj_1 = End(False)
+        
+        var_0 = obj_1.done()
+        
+        self.assertEqual(var_0, False)
         
     def test_997(self):
-        with self.assertRaisesRegex(ValueError, "The first stone must be thrown by the team without the hammer."):
-            obj_1 = End(True)
-            
-            var_3 = obj_1.red_won()
-            var_4 = obj_1.done()
-            obj_1.add_stone(Stone(True, (7.877585749829612, -7.94856379386659), 8, False, True))
-            var_7 = obj_1.__str__()
-            var_5 = obj_1.drawn()
-            var_2 = obj_1.overlaps_any_stone(Stone(True, (-4.995387134011757, -4.558499917451776), 11, True, False))
-            var_6 = obj_1.score()
+        obj_2 = Game()
+        
+        var_1 = obj_2.score()
+        var_0 = obj_2.red_winner()
+        
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, (0, 0))
         
     def test_998(self):
         with self.assertRaisesRegex(ValueError, "Stone is already out of play."):
-            obj_0 = Stone(False, (-5.610801632425376, 2.030438347573254), 5, False, True)
+            obj_0 = Stone(True, (-3.2773016039464373, 5.840443447463107), 2, True, True)
             
-            var_6 = obj_0.is_out_of_bounds()
+            var_2 = obj_0.is_passed_hogline()
             obj_0.burn()
             obj_0.move_out_of_play()
-            var_4 = obj_0.move((-2.853760682023468, 5.18454464715664), 10, True)
-            var_1 = obj_0.is_out_of_play()
-            var_7 = obj_0.is_in_house()
-            var_9 = obj_0.distance_to_center()
-            var_8 = obj_0.is_passed_hogline()
-            var_10 = obj_0.__str__()
-            var_5 = obj_0.is_guard()
+            var_5 = obj_0.is_passed_hogline()
+            var_4 = obj_0.is_passed_hogline()
+            var_1 = obj_0.is_passed_hogline()
         
     def test_999(self):
-        obj_2 = Game()
+        obj_1 = End(True)
         
-        obj_2.add_end(End(False))
-        var_2 = obj_2.score()
-        var_4 = obj_2.red_winner()
-        var_5 = obj_2.__str__()
-        var_3 = obj_2.display_scoreboard()
+        var_3 = obj_1.drawn()
+        var_0 = obj_1.red_won()
+        var_1 = obj_1.drawn()
+        var_4 = obj_1.__str__()
+        var_2 = obj_1.red_won()
         
+        self.assertEqual(var_0, None)
+        self.assertEqual(var_1, True)
+        self.assertEqual(var_2, None)
+        self.assertEqual(var_3, True)
+        self.assertEqual(var_4, 'End with Red hammer and 0 stones')
         

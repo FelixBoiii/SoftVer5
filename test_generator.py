@@ -3,7 +3,6 @@ import ast
 from pathlib import Path
 import random
 
-
 def indent(code: str, level: int = 1) -> str:
     """Indent code by a given number of levels."""
     indentation = "    " * level
@@ -84,6 +83,7 @@ def generate_arguments(argtypelist: list[str], classes) -> list[any]:
 def generate_test(
     classes: dict[str, list[tuple[str, list[str], str]]],
     file: str,
+    generated_signatures
 ) -> str:
     """
     Generates a random test case for the given classes and methods.
@@ -119,22 +119,25 @@ def generate_test(
     init_line = ""
     method_lines = []
     arguments_type_list = []
-    for i, method in enumerate(class_methods):
+
+    num_methods = random.randint(1, len(class_methods) - 1)  # exclude __init__
+    non_init_methods = [m for m in class_methods if m[0] != "__init__"]
+    selected_methods = random.choices(non_init_methods, k=num_methods)
+
+    init_line = f"obj_{class_index} = {class_name}({", ".join(map(str, generate_arguments(class_methods[0][1], classes)))})"
+
+
+    for i, method in enumerate(selected_methods):
         method_name = method[0]
         method_line = ""
 
         arg_text = ", ".join(map(str, generate_arguments(method[1], classes)))
 
-        if method_name == "__init__":
-            init_line = f"obj_{class_index} = {class_name}({arg_text})"
-            continue
+        if method[2] != "None":
+            method_line += f"var_{i} = "
+            arguments_type_list.append((f"var_{i}", method[2]))
 
-        else:
-            if method[2] != "None":
-                method_line += f"var_{i} = "
-                arguments_type_list.append((f"var_{i}", method[2]))
-
-            method_line += f"obj_{class_index}.{method_name}({arg_text})"
+        method_line += f"obj_{class_index}.{method_name}({arg_text})"
 
         method_lines.append(method_line)
 
@@ -145,6 +148,9 @@ def generate_test(
     result = evaluate(evaluation_code, arguments_type_list, file)
     result_type = result[0]
 
+    booleanValues = []
+    isBoolean = lambda s: s == "True" or s == "False"
+
     test = ""
     if result_type == "error":
         exception = f"with self.assertRaisesRegex({result[1][0]}, \"{result[1][1]}\"):"
@@ -152,9 +158,24 @@ def generate_test(
     else:
         assertations = []
 
+        for var in result[1]:
+            assertations.append(f"self.assertEqual({var[0]}, {var[2]})")
+            if isBoolean(var[2]):
+                booleanValues.append(var[2])
+
         assertations_code = "\n".join(assertations)
 
         test = f"{evaluation_code}\n\n{assertations_code}"
+
+    # if result_type == "error":
+    #     signature = (class_name, tuple(m[0] for m in selected_methods), result[1][1])  # e.g. "ValueError"
+    # else:
+    #     signature = (class_name, tuple(m[0] for m in selected_methods), tuple(m for m in booleanValues))
+    
+    # if signature in generated_signatures and random.randint(0, 5) != 0:
+    #     return generate_test(classes, file, generated_signatures)
+    
+    # generated_signatures.add(signature)
 
     return test
 
@@ -223,6 +244,8 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
+    generated_signatures = set()
+
 
     classes_and_methods = get_classes_and_methods(args.input_file)
     print("Classes and their methods with types:")
@@ -234,6 +257,8 @@ if __name__ == "__main__":
     tests = []
     print("Generating tests:")
     for _ in range(args.num):
-        tests.append(generate_test(classes_and_methods, args.input_file))
+        tests.append(generate_test(classes_and_methods, args.input_file, generated_signatures))
+    
+    print(generated_signatures)
 
     write_unittest_file(tests, args.input_file, "tests.py")
