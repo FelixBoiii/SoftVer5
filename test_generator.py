@@ -78,31 +78,54 @@ def generate_test(
         var_2 = obj_0.distance_to_center()
     "
     """
-    initObj = ""
-    methods = ""
-    tests = ""
+    test = ""
+    
     className = "Stone"
+    
     boolVar0 = bool(random.getrandbits(1))
     boolVar1 = bool(random.getrandbits(1))
     boolVar2 = bool(random.getrandbits(1))
+
     floatVar0 = random.uniform(-8, 8)
     floatVar1 = random.uniform(-8, 8)
     intVar0 = random.randint(-2, 12)
-    class_ = classes[className]
+    
+    # class_ = classes[className]
+    
     initObj = f"obj_0 = {className}({str(boolVar0)}, ({str(floatVar0)}, {str(floatVar1)}), {str(intVar0)}, {str(boolVar1)}, {str(boolVar2)})"
     methods = """
-var_1 = obj_0.move((-1.50, -2.50), 8, True)         # Random method 1
-var_2 = obj_0.distance_to_center()                        # Random method 2
-var_3 = obj_0.is_passed_hogline()                         # Random method 3
-var_4 = obj_0.is_in_house()                               # Random method 4
+var_1 = obj_0.move((-1.50, -2.50), 8, True)
+var_2 = obj_0.distance_to_center()
+var_3 = obj_0.is_passed_hogline()
+var_4 = obj_0.is_in_house()
+var_5 = obj_0.is_out_of_play()
+var_6 = str(obj_0)
     """
-    tests = """
-self.assertEqual(var_1, True)
-self.assertEqual(var_2, 11.144049259545154)
-self.assertEqual(var_3, True)
-self.assertEqual(var_4, False)
-    """
-    test = initObj+"\n"+methods+"\n"+tests
+
+    method_description = [("var_1", "bool"), ("var_2", "float"), ("var_3", "bool"), ("var_4", "bool"), ("var_5", "bool"), ("var_6", "string")]
+
+    evaluation = evaluate(f"{initObj}\n{methods}", method_description, file)
+    print(evaluation)
+
+    if evaluation[0] == "error":
+        test += f"with self.assertRaisesRegex({evaluation[1][0]}, \"{evaluation[1][1]}\"):\n"
+        test += f"{indent(initObj, 1)}\n"
+        test += indent(methods, 1)
+    else:
+        assertations = f"""
+self.assertEqual(var_1, {evaluation[1][0][2]})
+self.assertEqual(var_2, {evaluation[1][1][2]})
+self.assertEqual(var_3, {evaluation[1][2][2]})
+self.assertEqual(var_4, {evaluation[1][3][2]})
+self.assertEqual(var_5, {evaluation[1][4][2]})
+self.assertEqual(var_6, {evaluation[1][5][2]})
+        """
+
+        test += f"{initObj}\n"
+        test += f"{methods}\n"
+        test += assertations
+
+#     test = initObj+"\n"+methods+"\n"+tests
     # for obj in classes.keys():
     #     initObj += ""
     #     for methods in obj.
