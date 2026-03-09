@@ -50,6 +50,39 @@ def get_classes_and_methods(
 
     return classes
 
+def generate_argument_by_type(argument_type: str, classes) -> any:
+    if argument_type == "bool":
+        random_bool = bool(random.getrandbits(1))
+        return random_bool
+    elif argument_type == "float":
+        random_float = random.uniform(-8, 8)
+        return random_float
+    elif argument_type == "int":
+        random_int = random.randint(-2, 12)
+        return random_int
+    elif "tuple" in argument_type:
+        argument_list = argument_type[6:-1].split(", ")
+
+        arg_tuple = ()
+
+        for argument in argument_list:
+            new_arg_tuple = (generate_argument_by_type(argument, classes),)
+            arg_tuple += new_arg_tuple
+        
+        return arg_tuple
+    else:
+        return f"{argument_type}({", ".join(map(str, generate_arguments(classes[argument_type][0][1], classes)))})"
+
+
+    raise TypeError("Argument type not found.")
+
+def generate_arguments(argtypelist: list[str], classes) -> list[any]:
+    arguments = []
+
+    for argument_type in argtypelist:
+        arguments.append(generate_argument_by_type(argument_type, classes))
+
+    return arguments
 
 def generate_test(
     classes: dict[str, list[tuple[str, list[str], str]]],
@@ -78,62 +111,108 @@ def generate_test(
         var_2 = obj_0.distance_to_center()
     "
     """
+    evaluation_code = ""
+    
+    classes_keys = list(classes.keys())
+    class_name = random.choice(classes_keys)
+    class_methods = classes[class_name]
+    class_index = classes_keys.index(class_name)
+
+    evaluation_code = ""
+    init_line = ""
+    method_lines = []
+    arguments_type_list = []
+    for i, method in enumerate(class_methods):
+        method_name = method[0]
+        method_line = ""
+
+        arg_text = ", ".join(map(str, generate_arguments(method[1], classes)))
+
+        if method_name == "__init__":
+            init_line = f"obj_{class_index} = {class_name}({arg_text})"
+            continue
+
+        else:
+            if method[2] != "None":
+                method_line += f"var_{i} = "
+                arguments_type_list.append((f"var_{i}", method[2]))
+
+            method_line += f"obj_{class_index}.{method_name}({arg_text})"
+
+        method_lines.append(method_line)
+
+    random.shuffle(method_lines)
+
+    evaluation_code = f"{init_line}\n\n{"\n".join(method_lines)}"
+
+    result = evaluate(evaluation_code, arguments_type_list, file)
+    result_type = result[0]
+
     test = ""
-    
-    className = "Stone"
-    
-    boolVar0 = bool(random.getrandbits(1))
-    boolVar1 = bool(random.getrandbits(1))
-    boolVar2 = bool(random.getrandbits(1))
-
-    floatVar0 = random.uniform(-8, 8)
-    floatVar1 = random.uniform(-8, 8)
-    intVar0 = random.randint(-2, 12)
-    
-    # class_ = classes[className]
-
-    testMethods = [
-        "var_1 = obj_0.move((-1.50, -2.50), 8, True)",
-        "var_2 = obj_0.distance_to_center()",
-        "var_3 = obj_0.is_passed_hogline()",
-        "obj_0.burn()",
-        "obj_0.move_out_of_play()",
-        "var_4 = obj_0.is_in_house()",
-        "var_5 = obj_0.is_out_of_play()",
-        "var_6 = str(obj_0)",
-        "var_7 = obj_0.is_guard()",
-        "var_8 = obj_0.is_out_of_bounds()"
-    ]
-
-    random.shuffle(testMethods)
-    
-    initObj = f"obj_0 = {className}({str(boolVar0)}, ({str(floatVar0)}, {str(floatVar1)}), {str(intVar0)}, {str(boolVar1)}, {str(boolVar2)})"
-    methods = "\n".join(testMethods)
-
-    method_description = [("var_1", "bool"), ("var_2", "float"), ("var_3", "bool"), ("var_4", "bool"), ("var_5", "bool"), ("var_6", "string"), ("var_7", "bool"), ("var_8", "bool")]
-
-    evaluation = evaluate(f"{initObj}\n{methods}", method_description, file)
-    print(evaluation)
-
-    if evaluation[0] == "error":
-        test += f"with self.assertRaisesRegex({evaluation[1][0]}, \"{evaluation[1][1]}\"):\n"
-        test += f"{indent(initObj, 1)}\n"
-        test += indent(methods, 1)
+    if result_type == "error":
+        exception = f"with self.assertRaisesRegex({result[1][0]}, \"{result[1][1]}\"):"
+        test = f"{exception}\n{indent(evaluation_code)}"
     else:
-        assertations = f"""
-self.assertEqual(var_1, {evaluation[1][0][2]})
-self.assertEqual(var_2, {evaluation[1][1][2]})
-self.assertEqual(var_3, {evaluation[1][2][2]})
-self.assertEqual(var_4, {evaluation[1][3][2]})
-self.assertEqual(var_5, {evaluation[1][4][2]})
-self.assertEqual(var_6, {evaluation[1][5][2]})
-self.assertEqual(var_7, {evaluation[1][6][2]})
-self.assertEqual(var_8, {evaluation[1][7][2]})
-        """
+        assertations = []
 
-        test += f"{initObj}\n"
-        test += f"{methods}\n"
-        test += assertations
+        assertations_code = "\n".join(assertations)
+
+        test = f"{evaluation_code}\n\n{assertations_code}"
+
+    print(result)
+
+#     boolVar0 = bool(random.getrandbits(1))
+#     boolVar1 = bool(random.getrandbits(1))
+#     boolVar2 = bool(random.getrandbits(1))
+
+#     floatVar0 = random.uniform(-8, 8)
+#     floatVar1 = random.uniform(-8, 8)
+#     intVar0 = random.randint(-2, 12)
+    
+#     # class_ = classes[className]
+
+#     testMethods = [
+#         "var_1 = obj_0.move((-1.50, -2.50), 8, True)",
+#         "var_2 = obj_0.distance_to_center()",
+#         "var_3 = obj_0.is_passed_hogline()",
+#         "obj_0.burn()",
+#         "obj_0.move_out_of_play()",
+#         "var_4 = obj_0.is_in_house()",
+#         "var_5 = obj_0.is_out_of_play()",
+#         "var_6 = str(obj_0)",
+#         "var_7 = obj_0.is_guard()",
+#         "var_8 = obj_0.is_out_of_bounds()"
+#     ]
+
+#     random.shuffle(testMethods)
+    
+#     initObj = f"obj_0 = {className}({str(boolVar0)}, ({str(floatVar0)}, {str(floatVar1)}), {str(intVar0)}, {str(boolVar1)}, {str(boolVar2)})"
+#     methods = "\n".join(testMethods)
+
+#     method_description = [("var_1", "bool"), ("var_2", "float"), ("var_3", "bool"), ("var_4", "bool"), ("var_5", "bool"), ("var_6", "string"), ("var_7", "bool"), ("var_8", "bool")]
+
+#     evaluation = evaluate(f"{initObj}\n{methods}", method_description, file)
+#     print(evaluation)
+
+#     if evaluation[0] == "error":
+#         test += f"with self.assertRaisesRegex({evaluation[1][0]}, \"{evaluation[1][1]}\"):\n"
+#         test += f"{indent(initObj, 1)}\n"
+#         test += indent(methods, 1)
+#     else:
+#         assertations = f"""
+# self.assertEqual(var_1, {evaluation[1][0][2]})
+# self.assertEqual(var_2, {evaluation[1][1][2]})
+# self.assertEqual(var_3, {evaluation[1][2][2]})
+# self.assertEqual(var_4, {evaluation[1][3][2]})
+# self.assertEqual(var_5, {evaluation[1][4][2]})
+# self.assertEqual(var_6, {evaluation[1][5][2]})
+# self.assertEqual(var_7, {evaluation[1][6][2]})
+# self.assertEqual(var_8, {evaluation[1][7][2]})
+#         """
+
+#         test += f"{initObj}\n"
+#         test += f"{methods}\n"
+#         test += assertations
 
 #     test = initObj+"\n"+methods+"\n"+tests
     # for obj in classes.keys():
